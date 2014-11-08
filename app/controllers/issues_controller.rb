@@ -1,4 +1,4 @@
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -50,7 +50,7 @@ class IssuesController < ApplicationController
   include SortHelper
   include IssuesHelper
   helper :timelog
-  include Redmine::Export::PDF
+  include Yield::Export::PDF
 
   def index
     retrieve_query

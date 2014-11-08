@@ -1,4 +1,4 @@
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -15,7 +15,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-require 'redmine/scm/adapters/mercurial_adapter'
+require 'yield/scm/adapters/mercurial_adapter'
 
 class Repository::Mercurial < Repository
   # sort changesets by revision number
@@ -38,7 +38,7 @@ class Repository::Mercurial < Repository
   end
 
   def self.scm_adapter_class
-    Redmine::Scm::Adapters::MercurialAdapter
+    Yield::Scm::Adapters::MercurialAdapter
   end
 
   def self.scm_name

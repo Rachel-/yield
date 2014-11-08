@@ -1,4 +1,4 @@
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -142,7 +142,7 @@ class ActiveSupport::TestCase
   end
 
   def self.convert_installed?
-    Redmine::Thumbnail.convert_available?
+    Yield::Thumbnail.convert_available?
   end
 
   # Returns the path to the test +vendor+ repository
@@ -226,7 +226,7 @@ class ActiveSupport::TestCase
   end
 end
 
-module Redmine
+module Yield
   module ApiTest
     # Base class for API tests
     class Base < ActionDispatch::IntegrationTest
@@ -247,7 +247,7 @@ module Redmine
         should_allow_http_basic_auth_with_key(http_method, url, parameters, options)
         should_allow_key_based_auth(http_method, url, parameters, options)
       end
-    
+
       # Test that a request allows the username and password for HTTP BASIC
       #
       # @param [Symbol] http_method the HTTP method for request (:get, :post, :put, :delete)
@@ -259,7 +259,7 @@ module Redmine
       def self.should_allow_http_basic_auth_with_username_and_password(http_method, url, parameters={}, options={})
         success_code = options[:success_code] || :success
         failure_code = options[:failure_code] || :unauthorized
-    
+
         context "should allow http basic auth using a username and password for #{http_method} #{url}" do
           context "with a valid HTTP authentication" do
             setup do
@@ -269,32 +269,32 @@ module Redmine
               end
               send(http_method, url, parameters, credentials(@user.login, 'my_password'))
             end
-    
+
             should_respond_with success_code
             should_respond_with_content_type_based_on_url(url)
             should "login as the user" do
               assert_equal @user, User.current
             end
           end
-    
+
           context "with an invalid HTTP authentication" do
             setup do
               @user = User.generate!
               send(http_method, url, parameters, credentials(@user.login, 'wrong_password'))
             end
-    
+
             should_respond_with failure_code
             should_respond_with_content_type_based_on_url(url)
             should "not login as the user" do
               assert_equal User.anonymous, User.current
             end
           end
-    
+
           context "without credentials" do
             setup do
               send(http_method, url, parameters)
             end
-    
+
             should_respond_with failure_code
             should_respond_with_content_type_based_on_url(url)
             should "include_www_authenticate_header" do
@@ -303,7 +303,7 @@ module Redmine
           end
         end
       end
-    
+
       # Test that a request allows the API key with HTTP BASIC
       #
       # @param [Symbol] http_method the HTTP method for request (:get, :post, :put, :delete)
@@ -315,7 +315,7 @@ module Redmine
       def self.should_allow_http_basic_auth_with_key(http_method, url, parameters={}, options={})
         success_code = options[:success_code] || :success
         failure_code = options[:failure_code] || :unauthorized
-    
+
         context "should allow http basic auth with a key for #{http_method} #{url}" do
           context "with a valid HTTP authentication using the API token" do
             setup do
@@ -332,7 +332,7 @@ module Redmine
               assert_equal @user, User.current
             end
           end
-    
+
           context "with an invalid HTTP authentication" do
             setup do
               @user = User.generate!
@@ -347,7 +347,7 @@ module Redmine
           end
         end
       end
-    
+
       # Test that a request allows full key authentication
       #
       # @param [Symbol] http_method the HTTP method for request (:get, :post, :put, :delete)
@@ -359,7 +359,7 @@ module Redmine
       def self.should_allow_key_based_auth(http_method, url, parameters={}, options={})
         success_code = options[:success_code] || :success
         failure_code = options[:failure_code] || :unauthorized
-    
+
         context "should allow key based auth using key=X for #{http_method} #{url}" do
           context "with a valid api token" do
             setup do
@@ -382,7 +382,7 @@ module Redmine
               assert_equal @user, User.current
             end
           end
-    
+
           context "with an invalid api token" do
             setup do
               @user = User.generate! do |user|
@@ -404,14 +404,14 @@ module Redmine
             end
           end
         end
-    
-        context "should allow key based auth using X-Redmine-API-Key header for #{http_method} #{url}" do
+
+        context "should allow key based auth using X-Yield-API-Key header for #{http_method} #{url}" do
           setup do
             @user = User.generate! do |user|
               user.admin = true
             end
             @token = Token.create!(:user => @user, :action => 'api')
-            send(http_method, url, parameters, {'X-Redmine-API-Key' => @token.value.to_s})
+            send(http_method, url, parameters, {'X-Yield-API-Key' => @token.value.to_s})
           end
           should_respond_with success_code
           should_respond_with_content_type_based_on_url(url)
@@ -421,7 +421,7 @@ module Redmine
           end
         end
       end
-    
+
       # Uses should_respond_with_content_type based on what's in the url:
       #
       # '/project/issues.xml' => should_respond_with_content_type :xml
@@ -442,7 +442,7 @@ module Redmine
           raise "Unknown content type for should_respond_with_content_type_based_on_url: #{url}"
         end
       end
-    
+
       # Uses the url to assert which format the response should be in
       #
       # '/project/issues.xml' => should_be_a_valid_xml_string
@@ -459,21 +459,21 @@ module Redmine
           raise "Unknown content type for should_be_a_valid_response_based_on_url: #{url}"
         end
       end
-    
+
       # Checks that the response is a valid JSON string
       def self.should_be_a_valid_json_string
         should "be a valid JSON string (or empty)" do
           assert(response.body.blank? || ActiveSupport::JSON.decode(response.body))
         end
       end
-    
+
       # Checks that the response is a valid XML string
       def self.should_be_a_valid_xml_string
         should "be a valid XML string" do
           assert REXML::Document.new(response.body)
         end
       end
-    
+
       def self.should_respond_with(status)
         should "respond with #{status}" do
           assert_response status

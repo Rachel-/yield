@@ -1,4 +1,4 @@
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -29,7 +29,7 @@ class IssueTest < ActiveSupport::TestCase
            :custom_fields, :custom_fields_projects, :custom_fields_trackers, :custom_values,
            :time_entries
 
-  include Redmine::I18n
+  include Yield::I18n
 
   def teardown
     User.current = nil
@@ -591,7 +591,7 @@ class IssueTest < ActiveSupport::TestCase
     user = User.find(2)
     group = Group.generate!
     group.users << user
- 
+
     issue = Issue.generate!(:author_id => 1, :assigned_to => group)
     assert_include 4, issue.new_statuses_allowed_to(user).map(&:id)
   end

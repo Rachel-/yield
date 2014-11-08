@@ -1,4 +1,4 @@
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -31,7 +31,7 @@ class MyController < ApplicationController
              'calendar' => :label_calendar,
              'documents' => :label_document_plural,
              'timelog' => :label_spent_time
-           }.merge(Redmine::Views::MyPage::Block.additional_blocks).freeze
+           }.merge(Yield::Views::MyPage::Block.additional_blocks).freeze
 
   DEFAULT_LAYOUT = {  'left' => ['issuesassignedtome'],
                       'right' => ['issuesreportedbyme']

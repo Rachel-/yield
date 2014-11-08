@@ -1,4 +1,4 @@
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -20,7 +20,7 @@
 # Settings can be defined through the application in Admin -> Settings
 
 app_title:
-  default: Redmine
+  default: Yield
 app_subtitle:
   default: Project management
 welcome_text:
@@ -56,7 +56,7 @@ activity_days_default:
 per_page_options:
   default: '25,50,100'
 mail_from:
-  default: redmine@example.net
+  default: yield@example.net
 bcc_recipients:
   default: 1
 plain_text_mail:
@@ -183,7 +183,7 @@ default_projects_modules:
   - gantt
 default_projects_tracker_ids:
   serialized: true
-  default: 
+  default:
 # Role given to a non-admin user who creates a project
 new_project_user_role_id:
   format: int

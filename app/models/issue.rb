@@ -1,4 +1,4 @@
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -16,9 +16,9 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 class Issue < ActiveRecord::Base
-  include Redmine::SafeAttributes
-  include Redmine::Utils::DateCalculation
-  include Redmine::I18n
+  include Yield::SafeAttributes
+  include Yield::Utils::DateCalculation
+  include Yield::I18n
 
   belongs_to :project
   belongs_to :tracker
@@ -198,7 +198,7 @@ class Issue < ActiveRecord::Base
     base_reload(*args)
   end
 
-  # Overrides Redmine::Acts::Customizable::InstanceMethods#available_custom_fields
+  # Overrides Yield::Acts::Customizable::InstanceMethods#available_custom_fields
   def available_custom_fields
     (project && tracker) ? (project.all_issue_custom_fields & tracker.custom_fields) : []
   end

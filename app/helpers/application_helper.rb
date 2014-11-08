@@ -1,6 +1,6 @@
 # encoding: utf-8
 #
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -21,10 +21,10 @@ require 'forwardable'
 require 'cgi'
 
 module ApplicationHelper
-  include Redmine::WikiFormatting::Macros::Definitions
-  include Redmine::I18n
+  include Yield::WikiFormatting::Macros::Definitions
+  include Yield::I18n
   include GravatarHelper::PublicMethods
-  include Redmine::Pagination::Helper
+  include Yield::Pagination::Helper
 
   extend Forwardable
   def_delegators :wiki_helper, :wikitoolbar_for, :heads_for_wiki_formatter
@@ -138,7 +138,7 @@ module ApplicationHelper
     if project.archived?
       h(project.name)
     elsif options.key?(:action)
-      ActiveSupport::Deprecation.warn "#link_to_project with :action option is deprecated and will be removed in Redmine 3.0."
+      ActiveSupport::Deprecation.warn "#link_to_project with :action option is deprecated and will be removed in Yield 3.0."
       url = {:controller => 'projects', :action => 'show', :id => project}.merge(options)
       link_to project.name, url, html_options
     else
@@ -463,7 +463,7 @@ module ApplicationHelper
   end
 
   def syntax_highlight(name, content)
-    Redmine::SyntaxHighlighting.highlight_by_filename(content, name)
+    Yield::SyntaxHighlighting.highlight_by_filename(content, name)
   end
 
   def to_path_param(path)
@@ -493,7 +493,7 @@ module ApplicationHelper
 
   def other_formats_links(&block)
     concat('<p class="other-formats">'.html_safe + l(:label_export_to))
-    yield Redmine::Views::OtherFormatsBuilder.new(self)
+    yield Yield::Views::OtherFormatsBuilder.new(self)
     concat('</p>'.html_safe)
   end
 
@@ -535,7 +535,7 @@ module ApplicationHelper
   # Current project name and app_title and automatically appended
   # Exemples:
   #   html_title 'Foo', 'Bar'
-  #   html_title # => 'Foo - Bar - My Project - Redmine'
+  #   html_title # => 'Foo - Bar - My Project - Yield'
   def html_title(*args)
     if args.empty?
       title = @html_title || []
@@ -552,7 +552,7 @@ module ApplicationHelper
   # HTML body.
   def body_css_classes
     css = []
-    if theme = Redmine::Themes.theme(Setting.ui_theme)
+    if theme = Yield::Themes.theme(Setting.ui_theme)
       css << 'theme-' + theme.name
     end
 
@@ -564,7 +564,7 @@ module ApplicationHelper
 
   def accesskey(s)
     @used_accesskeys ||= []
-    key = Redmine::AccessKeys.key_for(s)
+    key = Yield::AccessKeys.key_for(s)
     return nil if @used_accesskeys.include?(key)
     @used_accesskeys << key
     key
@@ -593,7 +593,7 @@ module ApplicationHelper
 
     text = text.dup
     macros = catch_macros(text)
-    text = Redmine::WikiFormatting.to_html(Setting.text_formatting, text, :object => obj, :attribute => attr)
+    text = Yield::WikiFormatting.to_html(Setting.text_formatting, text, :object => obj, :attribute => attr)
 
     @parsed_headings = []
     @heading_anchors = {}
@@ -601,7 +601,7 @@ module ApplicationHelper
 
     parse_sections(text, project, obj, attr, only_path, options)
     text = parse_non_pre_blocks(text, obj, macros) do |text|
-      [:parse_inline_attachments, :parse_wiki_links, :parse_redmine_links].each do |method_name|
+      [:parse_inline_attachments, :parse_wiki_links, :parse_yield_links].each do |method_name|
         send method_name, text, project, obj, attr, only_path, options
       end
     end
@@ -722,7 +722,7 @@ module ApplicationHelper
     end
   end
 
-  # Redmine links
+  # Yield links
   #
   # Examples:
   #   Issues:
@@ -757,7 +757,7 @@ module ApplicationHelper
   #     identifier:document:"Some document"
   #     identifier:version:1.0.0
   #     identifier:source:some/file
-  def parse_redmine_links(text, default_project, obj, attr, only_path, options)
+  def parse_yield_links(text, default_project, obj, attr, only_path, options)
     text.gsub!(%r{([\s\(,\-\[\>]|^)(!)?(([a-z0-9\-_]+):)?(attachment|document|version|forum|news|message|project|commit|source|export)?(((#)|((([a-z0-9\-_]+)\|)?(r)))((\d+)((#note)?-(\d+))?)|(:)([^"\s<>][^\s<>]*?|"[^"]+?"))(?=(?=[[:punct:]][^A-Za-z0-9_/])|,|\s|\]|<|$)}) do |m|
       leading, esc, project_prefix, project_identifier, prefix, repo_prefix, repo_identifier, sep, identifier, comment_suffix, comment_id = $1, $2, $3, $4, $5, $10, $11, $8 || $12 || $18, $14 || $19, $15, $17
       link = nil
@@ -1052,22 +1052,22 @@ module ApplicationHelper
     if args.first.is_a?(Symbol)
       options.merge!(:as => args.shift)
     end
-    options.merge!({:builder => Redmine::Views::LabelledFormBuilder})
+    options.merge!({:builder => Yield::Views::LabelledFormBuilder})
     form_for(*args, &proc)
   end
 
   def labelled_fields_for(*args, &proc)
     args << {} unless args.last.is_a?(Hash)
     options = args.last
-    options.merge!({:builder => Redmine::Views::LabelledFormBuilder})
+    options.merge!({:builder => Yield::Views::LabelledFormBuilder})
     fields_for(*args, &proc)
   end
 
   def labelled_remote_form_for(*args, &proc)
-    ActiveSupport::Deprecation.warn "ApplicationHelper#labelled_remote_form_for is deprecated and will be removed in Redmine 2.2."
+    ActiveSupport::Deprecation.warn "ApplicationHelper#labelled_remote_form_for is deprecated and will be removed in Yield 2.2."
     args << {} unless args.last.is_a?(Hash)
     options = args.last
-    options.merge!({:builder => Redmine::Views::LabelledFormBuilder, :remote => true})
+    options.merge!({:builder => Yield::Views::LabelledFormBuilder, :remote => true})
     form_for(*args, &proc)
   end
 
@@ -1181,7 +1181,7 @@ module ApplicationHelper
       content_for :header_tags do
         start_of_week = Setting.start_of_week
         start_of_week = l(:general_first_day_of_week, :default => '1') if start_of_week.blank?
-        # Redmine uses 1..7 (monday..sunday) in settings and locales
+        # Yield uses 1..7 (monday..sunday) in settings and locales
         # JQuery uses 0..6 (sunday..saturday), 7 needs to be changed to 0
         start_of_week = start_of_week.to_i % 7
         tags << javascript_tag(
@@ -1337,10 +1337,10 @@ module ApplicationHelper
     @included_in_api_response.include?(arg.to_s)
   end
 
-  # Returns options or nil if nometa param or X-Redmine-Nometa header
+  # Returns options or nil if nometa param or X-Yield-Nometa header
   # was set in the request
   def api_meta(options)
-    if params[:nometa].present? || request.headers['X-Redmine-Nometa']
+    if params[:nometa].present? || request.headers['X-Yield-Nometa']
       # compatibility mode for activeresource clients that raise
       # an error when deserializing an array with attributes
       nil
@@ -1352,7 +1352,7 @@ module ApplicationHelper
   private
 
   def wiki_helper
-    helper = Redmine::WikiFormatting.helper_for(Setting.text_formatting)
+    helper = Yield::WikiFormatting.helper_for(Setting.text_formatting)
     extend helper
     return self
   end

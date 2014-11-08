@@ -1,6 +1,6 @@
 # encoding: utf-8
 #
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -20,7 +20,7 @@
 require File.expand_path('../../../test_helper', __FILE__)
 
 class ApplicationHelperTest < ActionView::TestCase
-  include Redmine::I18n
+  include Yield::I18n
   include ERB::Util
   include Rails.application.routes.url_helpers
 
@@ -245,7 +245,7 @@ RAW
       # no multiline link text
       "This is a double quote \"on the first line\nand another on a second line\":test" => "This is a double quote \"on the first line<br />and another on a second line\":test",
       # mailto link
-      "\"system administrator\":mailto:sysadmin@example.com?subject=redmine%20permissions" => "<a href=\"mailto:sysadmin@example.com?subject=redmine%20permissions\">system administrator</a>",
+      "\"system administrator\":mailto:sysadmin@example.com?subject=yield%20permissions" => "<a href=\"mailto:sysadmin@example.com?subject=yield%20permissions\">system administrator</a>",
       # two exclamation marks
       '"a link":http://example.net/path!602815048C7B5C20!302.html' => '<a href="http://example.net/path!602815048C7B5C20!302.html" class="external">a link</a>',
       # escaping
@@ -266,7 +266,7 @@ RAW
     puts 'Skipping test_textile_external_links_with_non_ascii_characters, unsupported ruby version'
   end
 
-  def test_redmine_links
+  def test_yield_links
     issue_link = link_to('#3', {:controller => 'issues', :action => 'show', :id => 3},
                                :class => Issue.find(3).css_classes, :title => 'Error 281 when updating a recipe (New)')
     note_link = link_to('#3-14', {:controller => 'issues', :action => 'show', :id => 3, :anchor => 'note-14'},
@@ -292,7 +292,7 @@ RAW
     board_url = {:controller => 'boards', :action => 'show', :id => 2, :project_id => 'ecookbook'}
 
     message_url = {:controller => 'messages', :action => 'show', :board_id => 1, :id => 4}
-    
+
     news_url = {:controller => 'news', :action => 'show', :id => 1}
 
     project_url = {:controller => 'projects', :action => 'show', :id => 'subproject1'}
@@ -374,7 +374,7 @@ RAW
     to_test.each { |text, result| assert_equal "<p>#{result}</p>", textilizable(text), "#{text} failed" }
   end
 
-  def test_redmine_links_with_a_different_project_before_current_project
+  def test_yield_links_with_a_different_project_before_current_project
     vp1 = Version.generate!(:project_id => 1, :name => '1.4.4')
     vp3 = Version.generate!(:project_id => 3, :name => '1.4.4')
     @project = Project.find(3)
@@ -384,7 +384,7 @@ RAW
                  textilizable("ecookbook:version:1.4.4 version:1.4.4")
   end
 
-  def test_escaped_redmine_links_should_not_be_parsed
+  def test_escaped_yield_links_should_not_be_parsed
     to_test = [
       '#3.',
       '#3-14.',
@@ -401,7 +401,7 @@ RAW
     to_test.each { |text| assert_equal "<p>#{text}</p>", textilizable("!" + text), "#{text} failed" }
   end
 
-  def test_cross_project_redmine_links
+  def test_cross_project_yield_links
     source_link = link_to('ecookbook:source:/some/file',
                           {:controller => 'repositories', :action => 'entry',
                            :id => 'ecookbook', :path => ['some', 'file']},
@@ -437,7 +437,7 @@ RAW
     end
   end
 
-  def test_redmine_links_by_name_should_work_with_html_escaped_characters
+  def test_yield_links_by_name_should_work_with_html_escaped_characters
     v = Version.generate!(:name => "Test & Show.txt", :project_id => 1)
     link = link_to("Test & Show.txt", "/versions/#{v.id}", :class => "version")
 
@@ -480,7 +480,7 @@ RAW
     assert_equal result, str
   end
 
-  def test_multiple_repositories_redmine_links
+  def test_multiple_repositories_yield_links
     svn = Repository::Subversion.create!(:project_id => 1, :identifier => 'svn_repo-1', :url => 'file:///foo/hg')
     Changeset.create!(:repository => svn, :committed_on => Time.now, :revision => '123')
     hg = Repository::Mercurial.create!(:project_id => 1, :identifier => 'hg1', :url => '/foo/hg')
@@ -512,7 +512,7 @@ RAW
     to_test.each { |text, result| assert_equal "<p>#{result}</p>", textilizable(text), "#{text} failed" }
   end
 
-  def test_cross_project_multiple_repositories_redmine_links
+  def test_cross_project_multiple_repositories_yield_links
     svn = Repository::Subversion.create!(:project_id => 1, :identifier => 'svn1', :url => 'file:///foo/hg')
     Changeset.create!(:repository => svn, :committed_on => Time.now, :revision => '123')
     hg = Repository::Mercurial.create!(:project_id => 1, :identifier => 'hg1', :url => '/foo/hg')
@@ -546,7 +546,7 @@ RAW
     to_test.each { |text, result| assert_equal "<p>#{result}</p>", textilizable(text), "#{text} failed" }
   end
 
-  def test_redmine_links_git_commit
+  def test_yield_links_git_commit
     changeset_link = link_to('abcd',
                                {
                                  :controller => 'repositories',
@@ -571,7 +571,7 @@ RAW
   end
 
   # TODO: Bazaar commit id contains mail address, so it contains '@' and '_'.
-  def test_redmine_links_darcs_commit
+  def test_yield_links_darcs_commit
     changeset_link = link_to('20080308225258-98289-abcd456efg.gz',
                                {
                                  :controller => 'repositories',
@@ -597,7 +597,7 @@ RAW
     to_test.each { |text, result| assert_equal "<p>#{result}</p>", textilizable(text) }
   end
 
-  def test_redmine_links_mercurial_commit
+  def test_yield_links_mercurial_commit
     changeset_link_rev = link_to('r123',
                                   {
                                      :controller => 'repositories',
@@ -931,15 +931,15 @@ EXPECTED
     assert_equal expected.gsub(%r{[\r\n\t]}, ''), textilizable(raw).gsub(%r{[\r\n\t]}, '')
   end
 
-  def test_pre_content_should_not_parse_wiki_and_redmine_links
+  def test_pre_content_should_not_parse_wiki_and_yield_links
     raw = <<-RAW
 [[CookBook documentation]]
-  
+
 #1
 
 <pre>
 [[CookBook documentation]]
-  
+
 #1
 </pre>
 RAW
@@ -1096,7 +1096,7 @@ h3. Subtitle with @inline code@
 
 h1. Another title
 
-h3. An "Internet link":http://www.redmine.org/ inside subtitle
+h3. An "Internet link":http://www.yield.org/ inside subtitle
 
 h2. "Project Name !/attachments/1234/logo_small.gif! !/attachments/5678/logo_2.png!":/projects/projectname/issues
 
@@ -1408,7 +1408,7 @@ RAW
   end
 
   def test_image_tag_should_pick_the_theme_image_if_it_exists
-    theme = Redmine::Themes.themes.last
+    theme = Yield::Themes.themes.last
     theme.images << 'image.png'
 
     with_settings :ui_theme => theme.id do
@@ -1442,18 +1442,18 @@ RAW
   end
 
   def test_html_title_should_app_title_if_not_set
-    assert_equal 'Redmine', html_title
+    assert_equal 'Yield', html_title
   end
 
   def test_html_title_should_join_items
     html_title 'Foo', 'Bar'
-    assert_equal 'Foo - Bar - Redmine', html_title
+    assert_equal 'Foo - Bar - Yield', html_title
   end
 
   def test_html_title_should_append_current_project_name
     @project = Project.find(1)
     html_title 'Foo', 'Bar'
-    assert_equal 'Foo - Bar - eCookbook - Redmine', html_title
+    assert_equal 'Foo - Bar - eCookbook - Yield', html_title
   end
 
   def test_title_should_return_a_h2_tag
@@ -1462,17 +1462,17 @@ RAW
 
   def test_title_should_set_html_title
     title('Foo')
-    assert_equal 'Foo - Redmine', html_title
+    assert_equal 'Foo - Yield', html_title
   end
 
   def test_title_should_turn_arrays_into_links
     assert_equal '<h2><a href="/foo">Foo</a></h2>', title(['Foo', '/foo'])
-    assert_equal 'Foo - Redmine', html_title
+    assert_equal 'Foo - Yield', html_title
   end
 
   def test_title_should_join_items
     assert_equal '<h2>Foo &#187; Bar</h2>', title('Foo', 'Bar')
-    assert_equal 'Bar - Foo - Redmine', html_title
+    assert_equal 'Bar - Foo - Yield', html_title
   end
 
   def test_favicon_path
@@ -1480,10 +1480,10 @@ RAW
   end
 
   def test_favicon_path_with_suburi
-    Redmine::Utils.relative_url_root = '/foo'
+    Yield::Utils.relative_url_root = '/foo'
     assert_match %r{^/foo/favicon\.ico}, favicon_path
   ensure
-    Redmine::Utils.relative_url_root = ''
+    Yield::Utils.relative_url_root = ''
   end
 
   def test_favicon_url
@@ -1491,10 +1491,10 @@ RAW
   end
 
   def test_favicon_url_with_suburi
-    Redmine::Utils.relative_url_root = '/foo'
+    Yield::Utils.relative_url_root = '/foo'
     assert_match %r{^http://test\.host/foo/favicon\.ico}, favicon_url
   ensure
-    Redmine::Utils.relative_url_root = ''
+    Yield::Utils.relative_url_root = ''
   end
 
   def test_truncate_single_line

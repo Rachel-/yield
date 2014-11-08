@@ -1,4 +1,4 @@
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -17,7 +17,7 @@
 
 require File.expand_path('../../../test_helper', __FILE__)
 
-class Redmine::ApiTest::AuthenticationTest < Redmine::ApiTest::Base
+class Yield::ApiTest::AuthenticationTest < Yield::ApiTest::Base
   fixtures :users
 
   def setup
@@ -43,7 +43,7 @@ class Redmine::ApiTest::AuthenticationTest < Redmine::ApiTest::Base
   def test_invalid_utf8_credentials_should_not_trigger_an_error
     invalid_utf8 = "\x82"
     if invalid_utf8.respond_to?(:force_encoding)
-      invalid_utf8.force_encoding('UTF-8') 
+      invalid_utf8.force_encoding('UTF-8')
       assert !invalid_utf8.valid_encoding?
     end
     assert_nothing_raised do
@@ -65,14 +65,14 @@ class Redmine::ApiTest::AuthenticationTest < Redmine::ApiTest::Base
     user = User.find(1)
     su = User.find(4)
 
-    get '/users/current', {}, {'X-Redmine-API-Key' => user.api_key, 'X-Redmine-Switch-User' => su.login}
+    get '/users/current', {}, {'X-Yield-API-Key' => user.api_key, 'X-Yield-Switch-User' => su.login}
     assert_response :success
     assert_equal su, assigns(:user)
     assert_equal su, User.current
   end
 
   def test_api_should_respond_with_412_when_trying_to_switch_to_a_invalid_user
-    get '/users/current', {}, {'X-Redmine-API-Key' => User.find(1).api_key, 'X-Redmine-Switch-User' => 'foobar'}
+    get '/users/current', {}, {'X-Yield-API-Key' => User.find(1).api_key, 'X-Yield-Switch-User' => 'foobar'}
     assert_response 412
   end
 
@@ -80,7 +80,7 @@ class Redmine::ApiTest::AuthenticationTest < Redmine::ApiTest::Base
     user = User.find(5)
     assert user.locked?
 
-    get '/users/current', {}, {'X-Redmine-API-Key' => User.find(1).api_key, 'X-Redmine-Switch-User' => user.login}
+    get '/users/current', {}, {'X-Yield-API-Key' => User.find(1).api_key, 'X-Yield-Switch-User' => user.login}
     assert_response 412
   end
 
@@ -88,7 +88,7 @@ class Redmine::ApiTest::AuthenticationTest < Redmine::ApiTest::Base
     user = User.find(2)
     su = User.find(4)
 
-    get '/users/current', {}, {'X-Redmine-API-Key' => user.api_key, 'X-Redmine-Switch-User' => su.login}
+    get '/users/current', {}, {'X-Yield-API-Key' => user.api_key, 'X-Yield-Switch-User' => su.login}
     assert_response :success
     assert_equal user, assigns(:user)
     assert_equal user, User.current

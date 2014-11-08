@@ -1,4 +1,4 @@
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -16,7 +16,7 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 class CustomField < ActiveRecord::Base
-  include Redmine::SubclassFactory
+  include Yield::SubclassFactory
 
   has_many :custom_values, :dependent => :delete_all
   has_and_belongs_to_many :roles, :join_table => "#{table_name_prefix}custom_fields_roles#{table_name_suffix}", :foreign_key => "custom_field_id"
@@ -27,7 +27,7 @@ class CustomField < ActiveRecord::Base
   validates_presence_of :name, :field_format
   validates_uniqueness_of :name, :scope => :type
   validates_length_of :name, :maximum => 30
-  validates_inclusion_of :field_format, :in => Proc.new { Redmine::FieldFormat.available_formats }
+  validates_inclusion_of :field_format, :in => Proc.new { Yield::FieldFormat.available_formats }
   validate :validate_custom_field
 
   before_validation :set_searchable
@@ -62,7 +62,7 @@ class CustomField < ActiveRecord::Base
   end
 
   def format
-    @format ||= Redmine::FieldFormat.find(field_format)
+    @format ||= Yield::FieldFormat.find(field_format)
   end
 
   def field_format=(arg)
@@ -279,4 +279,4 @@ class CustomField < ActiveRecord::Base
   end
 end
 
-require_dependency 'redmine/field_format'
+require_dependency 'yield/field_format'

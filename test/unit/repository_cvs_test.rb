@@ -1,4 +1,4 @@
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -20,10 +20,10 @@ require 'pp'
 class RepositoryCvsTest < ActiveSupport::TestCase
   fixtures :projects
 
-  include Redmine::I18n
+  include Yield::I18n
 
   REPOSITORY_PATH = Rails.root.join('tmp/test/cvs_repository').to_s
-  REPOSITORY_PATH.gsub!(/\//, "\\") if Redmine::Platform.mswin?
+  REPOSITORY_PATH.gsub!(/\//, "\\") if Yield::Platform.mswin?
   # CVS module
   MODULE_NAME    = 'test'
   CHANGESETS_NUM = 7
@@ -160,7 +160,7 @@ class RepositoryCvsTest < ActiveSupport::TestCase
       @project.reload
       assert_equal CHANGESETS_NUM, @repository.changesets.count
       entries = @repository.entries('', '3')
-      assert_kind_of Redmine::Scm::Adapters::Entries, entries
+      assert_kind_of Yield::Scm::Adapters::Entries, entries
       assert_equal 3, entries.size
       assert_equal entries[2].name, "README"
       assert_equal entries[2].lastrev.time, Time.gm(2007, 12, 13, 16, 27, 22)

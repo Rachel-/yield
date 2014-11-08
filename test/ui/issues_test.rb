@@ -1,4 +1,4 @@
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -17,7 +17,7 @@
 
 require File.expand_path('../base', __FILE__)
 
-class Redmine::UiTest::IssuesTest < Redmine::UiTest::Base
+class Yield::UiTest::IssuesTest < Yield::UiTest::Base
   fixtures :projects, :users, :roles, :members, :member_roles,
            :trackers, :projects_trackers, :enabled_modules, :issue_statuses, :issues,
            :enumerations, :custom_fields, :custom_values, :custom_fields_trackers,
@@ -49,7 +49,7 @@ class Redmine::UiTest::IssuesTest < Redmine::UiTest::Base
     # check issue attributes
     assert_equal 'jsmith', issue.author.login
     assert_equal 1, issue.project.id
-    assert_equal IssueStatus.find_by_name('New'), issue.status 
+    assert_equal IssueStatus.find_by_name('New'), issue.status
     assert_equal Tracker.find_by_name('Bug'), issue.tracker
     assert_equal IssuePriority.find_by_name('Low'), issue.priority
     assert_equal 'Value for field 2', issue.custom_field_value(CustomField.find_by_name('Searchable field'))

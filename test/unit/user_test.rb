@@ -1,4 +1,4 @@
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -617,11 +617,11 @@ class UserTest < ActiveSupport::TestCase
       context "binding with user's account" do
         setup do
           @auth_source = AuthSourceLdap.find(1)
-          @auth_source.account = "uid=$login,ou=Person,dc=redmine,dc=org"
+          @auth_source.account = "uid=$login,ou=Person,dc=yield,dc=org"
           @auth_source.account_password = ''
           @auth_source.save!
 
-          @ldap_user = User.new(:mail => 'example1@redmine.org', :firstname => 'LDAP', :lastname => 'user', :auth_source_id => 1)
+          @ldap_user = User.new(:mail => 'example1@yield.org', :firstname => 'LDAP', :lastname => 'user', :auth_source_id => 1)
           @ldap_user.login = 'example1'
           @ldap_user.save!
         end
@@ -668,7 +668,7 @@ class UserTest < ActiveSupport::TestCase
         context "binding with user's account" do
           setup do
             @auth_source = AuthSourceLdap.find(1)
-            @auth_source.account = "uid=$login,ou=Person,dc=redmine,dc=org"
+            @auth_source.account = "uid=$login,ou=Person,dc=yield,dc=org"
             @auth_source.account_password = ''
             @auth_source.save!
           end
@@ -859,7 +859,7 @@ class UserTest < ActiveSupport::TestCase
 
   def test_roles_for_project_with_non_member_with_public_project_should_return_no_roles
     Project.find(1).update_attribute :is_public, false
-  
+
     roles = User.find(8).roles_for_project(Project.find(1))
     assert_equal [], roles.map(&:name)
   end
@@ -871,7 +871,7 @@ class UserTest < ActiveSupport::TestCase
 
   def test_roles_for_project_with_anonymous_with_public_project_should_return_no_roles
     Project.find(1).update_attribute :is_public, false
-  
+
     roles = User.anonymous.roles_for_project(Project.find(1))
     assert_equal [], roles.map(&:name)
   end

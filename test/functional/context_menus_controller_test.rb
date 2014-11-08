@@ -1,4 +1,4 @@
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -270,7 +270,7 @@ class ContextMenusControllerTest < ActionController::TestCase
   def test_time_entries_context_menu_without_edit_permission
     @request.session[:user_id] = 2
     Role.find_by_name('Manager').remove_permission! :edit_time_entries
-    
+
     get :time_entries, :ids => [1, 2]
     assert_response :success
     assert_template 'context_menus/time_entries'

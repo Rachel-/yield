@@ -1,4 +1,4 @@
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -27,8 +27,8 @@ class Change < ActiveRecord::Base
   end
 
   def replace_invalid_utf8_of_path
-    self.path      = Redmine::CodesetUtil.replace_invalid_utf8(self.path)
-    self.from_path = Redmine::CodesetUtil.replace_invalid_utf8(self.from_path)
+    self.path      = Yield::CodesetUtil.replace_invalid_utf8(self.path)
+    self.from_path = Yield::CodesetUtil.replace_invalid_utf8(self.from_path)
   end
 
   def init_path

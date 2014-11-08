@@ -1,0 +1,5 @@
+Description:
+    Generates a plugin model.
+
+Examples:
+    ./script/rails generate yield_plugin_model meetings pool

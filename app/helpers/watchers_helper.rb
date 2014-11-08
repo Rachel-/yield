@@ -1,6 +1,6 @@
 # encoding: utf-8
 #
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -20,7 +20,7 @@
 module WatchersHelper
 
   def watcher_tag(object, user, options={})
-    ActiveSupport::Deprecation.warn "#watcher_tag is deprecated and will be removed in Redmine 3.0. Use #watcher_link instead."
+    ActiveSupport::Deprecation.warn "#watcher_tag is deprecated and will be removed in Yield 3.0. Use #watcher_link instead."
     watcher_link(object, user)
   end
 

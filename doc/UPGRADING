@@ -1,8 +1,8 @@
-== Redmine upgrade
+== Yield upgrade
 
-Redmine - project management software
+Yield - project management software
 Copyright (C) 2006-2014  Jean-Philippe Lang
-http://www.redmine.org/
+http://www.yield.org/
 
 
 == Upgrading
@@ -12,18 +12,18 @@ http://www.redmine.org/
 2. Copy your database settings (RAILS_ROOT/config/database.yml)
    and your configuration file (RAILS_ROOT/config/configuration.yml)
    into the new config directory
-   Note: before Redmine 1.2, SMTP configuration was stored in
-   config/email.yml. It should now be stored in config/configuration.yml. 
+   Note: before Yield 1.2, SMTP configuration was stored in
+   config/email.yml. It should now be stored in config/configuration.yml.
 
 3. Copy the RAILS_ROOT/files directory content into your new installation
    This directory contains all the attached files.
 
 4. Copy the folders of the installed plugins and themes into new installation
-   Plugins must be stored in the [redmine_root]/plugins directory
-   Themes must be stored in the [redmine_root]/public/themes directory
+   Plugins must be stored in the [yield_root]/plugins directory
+   Themes must be stored in the [yield_root]/public/themes directory
 
-   WARNING: plugins from your previous Redmine version may not be compatible
-   with the Redmine version you're upgrading to.
+   WARNING: plugins from your previous Yield version may not be compatible
+   with the Yield version you're upgrading to.
 
 5. Install the required gems by running:
      bundle install --without development test
@@ -38,16 +38,16 @@ http://www.redmine.org/
    forget to re-run `bundle install` when you change config/database.yml for using
    other database adapters.
 
-   If you need to load some gems that are not required by Redmine core (eg. fcgi),
-   you can create a file named Gemfile.local at the root of your redmine directory.
+   If you need to load some gems that are not required by Yield core (eg. fcgi),
+   you can create a file named Gemfile.local at the root of your yield directory.
    It will be loaded automatically when running `bundle install`.
 
 6. Generate a session store secret
-   
-   Redmine stores session data in cookies by default, which requires
+
+   Yield stores session data in cookies by default, which requires
    a secret to be generated. Under the new application directory run:
      rake generate_secret_token
-   
+
    DO NOT REPLACE OR EDIT ANY OTHER FILES.
 
 7. Migrate your database
@@ -56,15 +56,15 @@ http://www.redmine.org/
    need to upgrade the plugin migrations before running the plugin migrations
    using:
      rake db:migrate:upgrade_plugin_migrations RAILS_ENV="production"
-   
+
    Please make a backup before doing this! Under the new application
    directory run:
      rake db:migrate RAILS_ENV="production"
-   
+
    If you have installed any plugins, you should also run their database
    migrations using:
      rake db:migrate_plugins RAILS_ENV="production"
-   
+
 8. Clear the cache and the existing sessions by running:
      rake tmp:cache:clear
      rake tmp:sessions:clear
@@ -76,4 +76,4 @@ http://www.redmine.org/
 
 == References
 
-* http://www.redmine.org/wiki/redmine/RedmineUpgrade
+* http://www.yield.org/wiki/yield/YieldUpgrade

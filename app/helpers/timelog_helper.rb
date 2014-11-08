@@ -1,6 +1,6 @@
 # encoding: utf-8
 #
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -110,13 +110,13 @@ module TimelogHelper
       headers = report.criteria.collect {|criteria| l(report.available_criteria[criteria][:label]) }
       headers += report.periods
       headers << l(:label_total_time)
-      csv << headers.collect {|c| Redmine::CodesetUtil.from_utf8(
+      csv << headers.collect {|c| Yield::CodesetUtil.from_utf8(
                                     c.to_s,
                                     l(:general_csv_encoding) ) }
       # Content
       report_criteria_to_csv(csv, report.available_criteria, report.columns, report.criteria, report.periods, report.hours)
       # Total row
-      str_total = Redmine::CodesetUtil.from_utf8(l(:label_total_time), l(:general_csv_encoding))
+      str_total = Yield::CodesetUtil.from_utf8(l(:label_total_time), l(:general_csv_encoding))
       row = [ str_total ] + [''] * (report.criteria.size - 1)
       total = 0
       report.periods.each do |period|
@@ -136,7 +136,7 @@ module TimelogHelper
       hours_for_value = select_hours(hours, criteria[level], value)
       next if hours_for_value.empty?
       row = [''] * level
-      row << Redmine::CodesetUtil.from_utf8(
+      row << Yield::CodesetUtil.from_utf8(
                         format_criteria_value(available_criteria[criteria[level]], value).to_s,
                         l(:general_csv_encoding) )
       row += [''] * (criteria.length - level - 1)

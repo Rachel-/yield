@@ -1,4 +1,4 @@
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -139,7 +139,7 @@ class SettingsControllerTest < ActionController::TestCase
   def test_get_plugin_settings
     Setting.stubs(:plugin_foo).returns({'sample_setting' => 'Plugin setting value'})
     ActionController::Base.append_view_path(File.join(Rails.root, "test/fixtures/plugins"))
-    Redmine::Plugin.register :foo do
+    Yield::Plugin.register :foo do
       settings :partial => "foo_plugin/foo_plugin_settings"
     end
 
@@ -150,7 +150,7 @@ class SettingsControllerTest < ActionController::TestCase
       :descendant => {:tag => 'input', :attributes => {:name => 'settings[sample_setting]', :value => 'Plugin setting value'}}
 
   ensure
-    Redmine::Plugin.unregister(:foo)
+    Yield::Plugin.unregister(:foo)
   end
 
   def test_get_invalid_plugin_settings
@@ -159,18 +159,18 @@ class SettingsControllerTest < ActionController::TestCase
   end
 
   def test_get_non_configurable_plugin_settings
-    Redmine::Plugin.register(:foo) {}
+    Yield::Plugin.register(:foo) {}
 
     get :plugin, :id => 'foo'
     assert_response 404
 
   ensure
-    Redmine::Plugin.unregister(:foo)
+    Yield::Plugin.unregister(:foo)
   end
 
   def test_post_plugin_settings
     Setting.expects(:plugin_foo=).with({'sample_setting' => 'Value'}).returns(true)
-    Redmine::Plugin.register(:foo) do
+    Yield::Plugin.register(:foo) do
       settings :partial => 'not blank' # so that configurable? is true
     end
 
@@ -179,12 +179,12 @@ class SettingsControllerTest < ActionController::TestCase
   end
 
   def test_post_non_configurable_plugin_settings
-    Redmine::Plugin.register(:foo) {}
+    Yield::Plugin.register(:foo) {}
 
     post :plugin, :id => 'foo', :settings => {'sample_setting' => 'Value'}
     assert_response 404
 
   ensure
-    Redmine::Plugin.unregister(:foo)
+    Yield::Plugin.unregister(:foo)
   end
 end

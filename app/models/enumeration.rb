@@ -1,4 +1,4 @@
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -16,7 +16,7 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 class Enumeration < ActiveRecord::Base
-  include Redmine::SubclassFactory
+  include Yield::SubclassFactory
 
   default_scope :order => "#{Enumeration.table_name}.position ASC"
 
@@ -103,9 +103,9 @@ class Enumeration < ActiveRecord::Base
     subclasses
   end
 
-  # TODO: remove in Redmine 3.0
+  # TODO: remove in Yield 3.0
   def self.overridding_change?(new, previous)
-    ActiveSupport::Deprecation.warn "Enumeration#overridding_change? is deprecated and will be removed in Redmine 3.0. Please use #overriding_change?."
+    ActiveSupport::Deprecation.warn "Enumeration#overridding_change? is deprecated and will be removed in Yield 3.0. Please use #overriding_change?."
     overriding_change?(new, previous)
   end
 

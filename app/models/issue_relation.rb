@@ -1,4 +1,4 @@
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -18,7 +18,7 @@
 class IssueRelation < ActiveRecord::Base
   # Class used to represent the relations of an issue
   class Relations < Array
-    include Redmine::I18n
+    include Yield::I18n
 
     def initialize(issue, *args)
       @issue = issue

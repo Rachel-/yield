@@ -1,4 +1,4 @@
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -160,7 +160,7 @@ class ProjectNestedSetTest < ActiveSupport::TestCase
         assert project.rgt < project.parent.rgt, "rgt=#{project.rgt} was not < parent.rgt=#{project.parent.rgt} for project #{project.name}"
       end
       # no overlapping lft/rgt values
-      overlapping = projects.detect {|other| 
+      overlapping = projects.detect {|other|
         other != project && (
           (other.lft > project.lft && other.lft < project.rgt && other.rgt > project.rgt) ||
           (other.rgt > project.lft && other.rgt < project.rgt && other.lft < project.lft)

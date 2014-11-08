@@ -1,4 +1,4 @@
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -38,7 +38,7 @@ class WikiControllerTest < ActionController::TestCase
                            :child => { :tag => 'a', :attributes => { :href => '/projects/ecookbook/wiki/Page_with_an_inline_image' },
                                                     :content => 'Page with an inline image' } }
   end
-  
+
   def test_export_link
     Role.anonymous.add_permission! :export_wiki_pages
     get :show, :project_id => 'ecookbook'
@@ -116,7 +116,7 @@ class WikiControllerTest < ActionController::TestCase
     assert_tag :tag => 'div', :attributes => {:id => 'sidebar'},
                               :content => /Side bar content for test_show_with_sidebar/
   end
-  
+
   def test_show_should_display_section_edit_links
     @request.session[:user_id] = 2
     get :show, :project_id => 1, :id => 'Page with sections'
@@ -257,9 +257,9 @@ class WikiControllerTest < ActionController::TestCase
 
     assert_response :success
     assert_template 'edit'
-    
+
     page = WikiPage.find_by_title('Page_with_sections')
-    section, hash = Redmine::WikiFormatting::Textile::Formatter.new(page.content.text).get_section(2)
+    section, hash = Yield::WikiFormatting::Textile::Formatter.new(page.content.text).get_section(2)
 
     assert_tag 'textarea',
       :attributes => { :name => 'content[text]' },
@@ -443,7 +443,7 @@ class WikiControllerTest < ActionController::TestCase
   def test_update_section
     @request.session[:user_id] = 2
     page = WikiPage.find_by_title('Page_with_sections')
-    section, hash = Redmine::WikiFormatting::Textile::Formatter.new(page.content.text).get_section(2)
+    section, hash = Yield::WikiFormatting::Textile::Formatter.new(page.content.text).get_section(2)
     text = page.content.text
 
     assert_no_difference 'WikiPage.count' do
@@ -460,13 +460,13 @@ class WikiControllerTest < ActionController::TestCase
       end
     end
     assert_redirected_to '/projects/ecookbook/wiki/Page_with_sections#section-2'
-    assert_equal Redmine::WikiFormatting::Textile::Formatter.new(text).update_section(2, "New section content"), page.reload.content.text
+    assert_equal Yield::WikiFormatting::Textile::Formatter.new(text).update_section(2, "New section content"), page.reload.content.text
   end
 
   def test_update_section_should_allow_stale_page_update
     @request.session[:user_id] = 2
     page = WikiPage.find_by_title('Page_with_sections')
-    section, hash = Redmine::WikiFormatting::Textile::Formatter.new(page.content.text).get_section(2)
+    section, hash = Yield::WikiFormatting::Textile::Formatter.new(page.content.text).get_section(2)
     text = page.content.text
 
     assert_no_difference 'WikiPage.count' do
@@ -484,7 +484,7 @@ class WikiControllerTest < ActionController::TestCase
     end
     assert_redirected_to '/projects/ecookbook/wiki/Page_with_sections#section-2'
     page.reload
-    assert_equal Redmine::WikiFormatting::Textile::Formatter.new(text).update_section(2, "New section content"), page.content.text
+    assert_equal Yield::WikiFormatting::Textile::Formatter.new(text).update_section(2, "New section content"), page.content.text
     assert_equal 4, page.content.version
   end
 
@@ -613,7 +613,7 @@ class WikiControllerTest < ActionController::TestCase
     # Line 5
     assert_tag :tag => 'tr', :child => {
       :tag => 'th', :attributes => {:class => 'line-num'}, :content => '5', :sibling => {
-        :tag => 'td', :attributes => {:class => 'author'}, :content => /Redmine Admin/, :sibling => {
+        :tag => 'td', :attributes => {:class => 'author'}, :content => /Yield Admin/, :sibling => {
           :tag => 'td', :content => /Some updated \[\[documentation\]\] here/
         }
       }

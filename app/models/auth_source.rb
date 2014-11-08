@@ -1,4 +1,4 @@
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -21,8 +21,8 @@ class AuthSourceException < Exception; end
 class AuthSourceTimeoutException < AuthSourceException; end
 
 class AuthSource < ActiveRecord::Base
-  include Redmine::SubclassFactory
-  include Redmine::Ciphering
+  include Yield::SubclassFactory
+  include Yield::Ciphering
 
   has_many :users
 

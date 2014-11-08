@@ -13,8 +13,8 @@
 /db/*.sqlite3
 /db/schema.rb
 /files/*
-/lib/redmine/scm/adapters/mercurial/redminehelper.pyc
-/lib/redmine/scm/adapters/mercurial/redminehelper.pyo
+/lib/yield/scm/adapters/mercurial/yieldhelper.pyc
+/lib/yield/scm/adapters/mercurial/yieldhelper.pyo
 /log/*.log*
 /log/mongrel_debug
 /plugins/*

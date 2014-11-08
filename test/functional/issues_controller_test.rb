@@ -1,4 +1,4 @@
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -45,7 +45,7 @@ class IssuesControllerTest < ActionController::TestCase
            :repositories,
            :changesets
 
-  include Redmine::I18n
+  include Yield::I18n
 
   def setup
     User.current = nil
@@ -482,8 +482,8 @@ class IssuesControllerTest < ActionController::TestCase
       end
       issue = Issue.generate!(:subject => str_utf8)
 
-      get :index, :project_id => 1, 
-                  :f => ['subject'], 
+      get :index, :project_id => 1,
+                  :f => ['subject'],
                   :op => '=', :values => [str_utf8],
                   :format => 'csv'
       assert_equal 'text/csv; header=present', @response.content_type
@@ -505,8 +505,8 @@ class IssuesControllerTest < ActionController::TestCase
       end
       issue = Issue.generate!(:subject => str_utf8)
 
-      get :index, :project_id => 1, 
-                  :f => ['subject'], 
+      get :index, :project_id => 1,
+                  :f => ['subject'],
                   :op => '=', :values => [str_utf8],
                   :c => ['status', 'subject'],
                   :format => 'csv',
@@ -536,8 +536,8 @@ class IssuesControllerTest < ActionController::TestCase
       str1  = "test_index_csv_tw"
       issue = Issue.generate!(:subject => str1, :estimated_hours => '1234.5')
 
-      get :index, :project_id => 1, 
-                  :f => ['subject'], 
+      get :index, :project_id => 1,
+                  :f => ['subject'],
                   :op => '=', :values => [str1],
                   :c => ['estimated_hours', 'subject'],
                   :format => 'csv',
@@ -553,8 +553,8 @@ class IssuesControllerTest < ActionController::TestCase
       str1  = "test_index_csv_fr"
       issue = Issue.generate!(:subject => str1, :estimated_hours => '1234.5')
 
-      get :index, :project_id => 1, 
-                  :f => ['subject'], 
+      get :index, :project_id => 1,
+                  :f => ['subject'],
                   :op => '=', :values => [str1],
                   :c => ['estimated_hours', 'subject'],
                   :format => 'csv',
@@ -631,7 +631,7 @@ class IssuesControllerTest < ActionController::TestCase
     Setting.issue_list_default_columns = %w(subject author)
     get :index, :sort => 'tracker'
   end
-  
+
   def test_index_sort_by_assigned_to
     get :index, :sort => 'assigned_to'
     assert_response :success
@@ -639,7 +639,7 @@ class IssuesControllerTest < ActionController::TestCase
     assert_equal assignees.sort, assignees
     assert_select 'table.issues.sort-by-assigned-to.sort-asc'
   end
-  
+
   def test_index_sort_by_assigned_to_desc
     get :index, :sort => 'assigned_to:desc'
     assert_response :success
@@ -647,31 +647,31 @@ class IssuesControllerTest < ActionController::TestCase
     assert_equal assignees.sort.reverse, assignees
     assert_select 'table.issues.sort-by-assigned-to.sort-desc'
   end
-  
+
   def test_index_group_by_assigned_to
     get :index, :group_by => 'assigned_to', :sort => 'priority'
     assert_response :success
   end
-  
+
   def test_index_sort_by_author
     get :index, :sort => 'author'
     assert_response :success
     authors = assigns(:issues).collect(&:author)
     assert_equal authors.sort, authors
   end
-  
+
   def test_index_sort_by_author_desc
     get :index, :sort => 'author:desc'
     assert_response :success
     authors = assigns(:issues).collect(&:author)
     assert_equal authors.sort.reverse, authors
   end
-  
+
   def test_index_group_by_author
     get :index, :group_by => 'author', :sort => 'priority'
     assert_response :success
   end
-  
+
   def test_index_sort_by_spent_hours
     get :index, :sort => 'spent_hours:desc'
     assert_response :success
@@ -887,7 +887,7 @@ class IssuesControllerTest < ActionController::TestCase
         assert_select 'textarea[name=?]', 'issue[notes]'
       end
     end
-    assert_select 'title', :text => "Bug #1: #{ESCAPED_UCANT} print recipes - eCookbook - Redmine"
+    assert_select 'title', :text => "Bug #1: #{ESCAPED_UCANT} print recipes - eCookbook - Yield"
   end
 
   def test_show_by_manager
@@ -1181,7 +1181,7 @@ class IssuesControllerTest < ActionController::TestCase
 
   def test_show_should_display_prev_next_links_with_query_and_sort_on_association
     @request.session[:query] = {:filters => {'status_id' => {:values => [''], :operator => 'o'}}, :project_id => nil}
-    
+
     %w(project tracker status priority author assigned_to category fixed_version).each do |assoc_sort|
       @request.session['issues_index_sort'] = assoc_sort
 
@@ -1399,7 +1399,7 @@ class IssuesControllerTest < ActionController::TestCase
   end
 
   def test_show_export_to_pdf
-    issue = Issue.find(3) 
+    issue = Issue.find(3)
     assert issue.relations.select{|r| r.other_issue(issue).visible?}.present?
     get :show, :id => 3, :format => 'pdf'
     assert_response :success
@@ -2642,7 +2642,7 @@ class IssuesControllerTest < ActionController::TestCase
   def test_get_edit_should_display_the_time_entry_form_with_log_time_permission
     @request.session[:user_id] = 2
     Role.find_by_name('Manager').update_attribute :permissions, [:view_issues, :edit_issues, :log_time]
-    
+
     get :edit, :id => 1
     assert_select 'input[name=?]', 'time_entry[hours]'
   end
@@ -2650,7 +2650,7 @@ class IssuesControllerTest < ActionController::TestCase
   def test_get_edit_should_not_display_the_time_entry_form_without_log_time_permission
     @request.session[:user_id] = 2
     Role.find_by_name('Manager').remove_permission! :log_time
-    
+
     get :edit, :id => 1
     assert_select 'input[name=?]', 'time_entry[hours]', 0
   end
@@ -3266,17 +3266,17 @@ class IssuesControllerTest < ActionController::TestCase
 
       assert_select 'select[name=?]', 'issue[project_id]'
       assert_select 'input[name=?]', 'issue[parent_issue_id]'
-  
+
       # Project specific custom field, date type
       field = CustomField.find(9)
       assert !field.is_for_all?
       assert_equal 'date', field.field_format
       assert_select 'input[name=?]', 'issue[custom_field_values][9]'
-  
+
       # System wide custom field
       assert CustomField.find(1).is_for_all?
       assert_select 'select[name=?]', 'issue[custom_field_values][1]'
-  
+
       # Be sure we don't display inactive IssuePriorities
       assert ! IssuePriority.find(15).active?
       assert_select 'select[name=?]', 'issue[priority_id]' do
@@ -3740,7 +3740,7 @@ class IssuesControllerTest < ActionController::TestCase
                     :assigned_to_id => 3)
     ]
     assert_difference 'Issue.count', issues.size do
-      post :bulk_update, :ids => issues.map(&:id), :copy => '1', 
+      post :bulk_update, :ids => issues.map(&:id), :copy => '1',
            :issue => {
              :project_id => '', :tracker_id => '', :assigned_to_id => '',
              :status_id => '', :start_date => '', :due_date => ''
@@ -3768,7 +3768,7 @@ class IssuesControllerTest < ActionController::TestCase
     @request.session[:user_id] = 2
     assert_difference 'Issue.count', 2 do
       assert_no_difference 'Project.find(1).issues.count' do
-        post :bulk_update, :ids => [1, 2], :copy => '1', 
+        post :bulk_update, :ids => [1, 2], :copy => '1',
              :issue => {
                :project_id => '2', :tracker_id => '', :assigned_to_id => '4',
                :status_id => '1', :start_date => '2009-12-01', :due_date => '2009-12-31'
@@ -3839,7 +3839,7 @@ class IssuesControllerTest < ActionController::TestCase
 
     assert_difference 'Issue.count', 2 do
       assert_difference 'IssueRelation.count', 2 do
-        post :bulk_update, :ids => [1, 3], :copy => '1', 
+        post :bulk_update, :ids => [1, 3], :copy => '1',
              :issue => {
                :project_id => '1'
              }

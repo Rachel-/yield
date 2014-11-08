@@ -1,4 +1,4 @@
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -288,7 +288,7 @@ class Setup < ActiveRecord::Migration
     user = User.create :login => "admin",
                        :hashed_password => "d033e22ae348aeb5660fc2140aec35850c4da997",
                        :admin => true,
-                       :firstname => "Redmine",
+                       :firstname => "Yield",
                        :lastname => "Admin",
                        :mail => "admin@example.net",
                        :mail_notification => true,

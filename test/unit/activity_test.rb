@@ -1,4 +1,4 @@
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -69,7 +69,7 @@ class ActivityTest < ActiveSupport::TestCase
 
   def test_user_activity
     user = User.find(2)
-    events = Redmine::Activity::Fetcher.new(User.anonymous, :author => user).events(nil, nil, :limit => 10)
+    events = Yield::Activity::Fetcher.new(User.anonymous, :author => user).events(nil, nil, :limit => 10)
 
     assert(events.size > 0)
     assert(events.size <= 10)
@@ -77,7 +77,7 @@ class ActivityTest < ActiveSupport::TestCase
   end
 
   def test_files_activity
-    f = Redmine::Activity::Fetcher.new(User.anonymous, :project => Project.find(1))
+    f = Yield::Activity::Fetcher.new(User.anonymous, :project => Project.find(1))
     f.scope = ['files']
     events = f.events
 
@@ -124,6 +124,6 @@ class ActivityTest < ActiveSupport::TestCase
   private
 
   def find_events(user, options={})
-    Redmine::Activity::Fetcher.new(user, options).events(Date.today - 30, Date.today + 1)
+    Yield::Activity::Fetcher.new(user, options).events(Date.today - 30, Date.today + 1)
   end
 end

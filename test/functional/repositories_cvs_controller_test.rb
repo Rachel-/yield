@@ -1,4 +1,4 @@
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -24,7 +24,7 @@ class RepositoriesCvsControllerTest < ActionController::TestCase
            :repositories, :enabled_modules
 
   REPOSITORY_PATH = Rails.root.join('tmp/test/cvs_repository').to_s
-  REPOSITORY_PATH.gsub!(/\//, "\\") if Redmine::Platform.mswin?
+  REPOSITORY_PATH.gsub!(/\//, "\\") if Yield::Platform.mswin?
   # CVS module
   MODULE_NAME = 'test'
   PRJ_ID = 3

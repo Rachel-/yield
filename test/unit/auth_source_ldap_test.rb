@@ -1,4 +1,4 @@
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -18,7 +18,7 @@
 require File.expand_path('../../test_helper', __FILE__)
 
 class AuthSourceLdapTest < ActiveSupport::TestCase
-  include Redmine::I18n
+  include Yield::I18n
   fixtures :auth_sources
 
   def setup
@@ -49,11 +49,11 @@ class AuthSourceLdapTest < ActiveSupport::TestCase
     set_language_if_valid 'en'
 
     a = AuthSourceLdap.new(:name => 'My LDAP', :host => 'ldap.example.net', :port => 389, :attr_login => 'sn')
-    a.filter = "(mail=*@redmine.org"
+    a.filter = "(mail=*@yield.org"
     assert !a.valid?
     assert_include "LDAP filter is invalid", a.errors.full_messages
 
-    a.filter = "(mail=*@redmine.org)"
+    a.filter = "(mail=*@yield.org)"
     assert a.valid?
   end
 
@@ -66,7 +66,7 @@ class AuthSourceLdapTest < ActiveSupport::TestCase
       assert attributes.is_a?(Hash), "An hash was not returned"
       assert_equal 'Example', attributes[:firstname]
       assert_equal 'One', attributes[:lastname]
-      assert_equal 'example1@redmine.org', attributes[:mail]
+      assert_equal 'example1@yield.org', attributes[:mail]
       assert_equal auth.id, attributes[:auth_source_id]
       attributes.keys.each do |attribute|
         assert User.new.respond_to?("#{attribute}="), "Unexpected :#{attribute} attribute returned"
@@ -96,7 +96,7 @@ class AuthSourceLdapTest < ActiveSupport::TestCase
 
     test '#authenticate with filter should return user who matches the filter only' do
       auth = AuthSourceLdap.find(1)
-      auth.filter = "(mail=*@redmine.org)"
+      auth.filter = "(mail=*@yield.org)"
 
       assert auth.authenticate('example1','123456')
       assert_nil auth.authenticate('edavis', '123456')
@@ -120,7 +120,7 @@ class AuthSourceLdapTest < ActiveSupport::TestCase
       assert_equal "example1", result[:login]
       assert_equal "Example", result[:firstname]
       assert_equal "One", result[:lastname]
-      assert_equal "example1@redmine.org", result[:mail]
+      assert_equal "example1@yield.org", result[:mail]
       assert_equal 1, result[:auth_source_id]
     end
 

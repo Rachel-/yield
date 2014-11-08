@@ -1,4 +1,4 @@
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -16,7 +16,7 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 class Comment < ActiveRecord::Base
-  include Redmine::SafeAttributes
+  include Yield::SafeAttributes
   belongs_to :commented, :polymorphic => true, :counter_cache => true
   belongs_to :author, :class_name => 'User', :foreign_key => 'author_id'
 

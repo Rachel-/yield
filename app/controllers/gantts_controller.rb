@@ -1,4 +1,4 @@
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -28,10 +28,10 @@ class GanttsController < ApplicationController
   include QueriesHelper
   helper :sort
   include SortHelper
-  include Redmine::Export::PDF
+  include Yield::Export::PDF
 
   def show
-    @gantt = Redmine::Helpers::Gantt.new(params)
+    @gantt = Yield::Helpers::Gantt.new(params)
     @gantt.project = @project
     retrieve_query
     @query.group_by = nil

@@ -1,4 +1,4 @@
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -18,8 +18,8 @@
 class ScmFetchError < Exception; end
 
 class Repository < ActiveRecord::Base
-  include Redmine::Ciphering
-  include Redmine::SafeAttributes
+  include Yield::Ciphering
+  include Yield::SafeAttributes
 
   # Maximum length for repository identifiers
   IDENTIFIER_MAX_LENGTH = 255
@@ -304,7 +304,7 @@ class Repository < ActiveRecord::Base
     end
   end
 
-  # Returns the Redmine User corresponding to the given +committer+
+  # Returns the Yield User corresponding to the given +committer+
   # It will return nil if the committer is not yet mapped and if no User
   # with the same username or email was found
   def find_committer_user(committer)
@@ -340,7 +340,7 @@ class Repository < ActiveRecord::Base
       project.repositories.each do |repository|
         begin
           repository.fetch_changesets
-        rescue Redmine::Scm::Adapters::CommandFailed => e
+        rescue Yield::Scm::Adapters::CommandFailed => e
           logger.error "scm: error during fetching changesets: #{e.message}"
         end
       end

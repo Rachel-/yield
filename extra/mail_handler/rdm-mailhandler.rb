@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -38,7 +38,7 @@ module Net
   end
 end
 
-class RedmineMailHandler
+class YieldMailHandler
   VERSION = '0.2.3'
 
   attr_accessor :verbose, :issue_attributes, :allow_override, :unknown_user, :default_group, :no_permission_check,
@@ -48,18 +48,18 @@ class RedmineMailHandler
     self.issue_attributes = {}
 
     optparse = OptionParser.new do |opts|
-      opts.banner = "Usage: rdm-mailhandler.rb [options] --url=<Redmine URL> --key=<API key>"
+      opts.banner = "Usage: rdm-mailhandler.rb [options] --url=<Yield URL> --key=<API key>"
       opts.separator("")
-      opts.separator("Reads an email from standard input and forwards it to a Redmine server through a HTTP request.")
+      opts.separator("Reads an email from standard input and forwards it to a Yield server through a HTTP request.")
       opts.separator("")
       opts.separator("Required arguments:")
-      opts.on("-u", "--url URL",              "URL of the Redmine server") {|v| self.url = v}
-      opts.on("-k", "--key KEY",              "Redmine API key") {|v| self.key = v}
+      opts.on("-u", "--url URL",              "URL of the Yield server") {|v| self.url = v}
+      opts.on("-k", "--key KEY",              "Yield API key") {|v| self.key = v}
       opts.separator("")
       opts.separator("General options:")
       opts.on("--no-permission-check",        "disable permission checking when receiving",
                                               "the email") {self.no_permission_check = '1'}
-      opts.on("--key-file FILE",              "full path to a file that contains your Redmine",
+      opts.on("--key-file FILE",              "full path to a file that contains your Yield",
                                               "API key (use this option instead of --key if",
                                               "you don't want the key to appear in the command",
                                               "line)") {|v| read_key_from_file(v)}
@@ -93,11 +93,11 @@ class RedmineMailHandler
       opts.separator("")
       opts.separator("Examples:")
       opts.separator("No project specified, emails MUST contain the 'Project' keyword:")
-      opts.separator("  rdm-mailhandler.rb --url http://redmine.domain.foo --key secret")
+      opts.separator("  rdm-mailhandler.rb --url http://yield.domain.foo --key secret")
       opts.separator("")
       opts.separator("Fixed project and default tracker specified, but emails can override")
       opts.separator("both tracker and priority attributes using keywords:")
-      opts.separator("  rdm-mailhandler.rb --url https://domain.foo/redmine --key secret \\")
+      opts.separator("  rdm-mailhandler.rb --url https://domain.foo/yield --key secret \\")
       opts.separator("    --project foo \\")
       opts.separator("    --tracker bug \\")
       opts.separator("    --allow-override tracker,priority")
@@ -115,7 +115,7 @@ class RedmineMailHandler
   def submit(email)
     uri = url.gsub(%r{/*$}, '') + '/mail_handler'
 
-    headers = { 'User-Agent' => "Redmine mail handler/#{VERSION}" }
+    headers = { 'User-Agent' => "Yield mail handler/#{VERSION}" }
 
     data = { 'key' => key, 'email' => email,
                            'allow_override' => allow_override,
@@ -130,25 +130,25 @@ class RedmineMailHandler
     begin
       response = Net::HTTPS.post_form(URI.parse(uri), data, headers, :no_check_certificate => no_check_certificate)
     rescue SystemCallError => e # connection refused, etc.
-      warn "An error occured while contacting your Redmine server: #{e.message}"
+      warn "An error occured while contacting your Yield server: #{e.message}"
       return 75 # temporary failure
     end
     debug "Response received: #{response.code}"
 
     case response.code.to_i
       when 403
-        warn "Request was denied by your Redmine server. " +
+        warn "Request was denied by your Yield server. " +
              "Make sure that 'WS for incoming emails' is enabled in application settings and that you provided the correct API key."
         return 77
       when 422
-        warn "Request was denied by your Redmine server. " +
+        warn "Request was denied by your Yield server. " +
              "Possible reasons: email is sent from an invalid email address or is missing some information."
         return 77
       when 400..499
-        warn "Request was denied by your Redmine server (#{response.code})."
+        warn "Request was denied by your Yield server (#{response.code})."
         return 77
       when 500..599
-        warn "Failed to contact your Redmine server (#{response.code})."
+        warn "Failed to contact your Yield server (#{response.code})."
         return 75
       when 201
         debug "Proccessed successfully"
@@ -174,5 +174,5 @@ class RedmineMailHandler
   end
 end
 
-handler = RedmineMailHandler.new
+handler = YieldMailHandler.new
 exit(handler.submit(STDIN.read))

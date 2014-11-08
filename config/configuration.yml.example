@@ -1,4 +1,4 @@
-# = Redmine configuration file
+# = Yield configuration file
 #
 # Each environment has it's own configuration options.  If you are only
 # running in production, only the production block needs to be configured.
@@ -48,7 +48,7 @@ default:
   #
   # ==== SMTP server at using TLS (GMail)
   # This might require some additional configuration. See the guides at:
-  # http://www.redmine.org/projects/redmine/wiki/EmailConfiguration
+  # http://www.yield.org/projects/yield/wiki/EmailConfiguration
   #
   #  email_delivery:
   #    delivery_method: :smtp
@@ -67,12 +67,12 @@ default:
   #    delivery_method: :sendmail
 
   # Absolute path to the directory where attachments are stored.
-  # The default is the 'files' directory in your Redmine instance.
-  # Your Redmine instance needs to have write permission on this
+  # The default is the 'files' directory in your Yield instance.
+  # Your Yield instance needs to have write permission on this
   # directory.
   # Examples:
-  # attachments_storage_path: /var/redmine/files
-  # attachments_storage_path: D:/redmine/files
+  # attachments_storage_path: /var/yield/files
+  # attachments_storage_path: D:/yield/files
   attachments_storage_path:
 
   # Configuration of the autologin cookie.
@@ -109,9 +109,9 @@ default:
   scm_darcs_command:
 
   # Absolute path to the SCM commands errors (stderr) log file.
-  # The default is to log in the 'log' directory of your Redmine instance.
+  # The default is to log in the 'log' directory of your Yield instance.
   # Example:
-  # scm_stderr_log_file: /var/log/redmine_scm_stderr.log
+  # scm_stderr_log_file: /var/log/yield_scm_stderr.log
   scm_stderr_log_file:
 
   # Key used to encrypt sensitive data in the database (SCM and LDAP passwords).
@@ -129,8 +129,8 @@ default:
   database_cipher_key:
 
   # Set this to false to disable plugins' assets mirroring on startup.
-  # You can use `rake redmine:plugins:assets` to manually mirror assets
-  # to public/plugin_assets when you install/upgrade a Redmine plugin.
+  # You can use `rake yield:plugins:assets` to manually mirror assets
+  # to public/plugin_assets when you install/upgrade a Yield plugin.
   #
   #mirror_plugins_assets_on_startup: false
 
@@ -139,7 +139,7 @@ default:
   # secret is at least 30 characters and all random, no regular words or
   # you'll be exposed to dictionary attacks.
   #
-  # If you have a load-balancing Redmine cluster, you have to use the
+  # If you have a load-balancing Yield cluster, you have to use the
   # same secret token on each machine.
   #secret_token: 'change it to a long random string'
 
@@ -149,7 +149,7 @@ default:
 
   # Configuration of RMagcik font.
   #
-  # Redmine uses RMagcik in order to export gantt png.
+  # Yield uses RMagcik in order to export gantt png.
   # You don't need this setting if you don't install RMagcik.
   #
   # In CJK (Chinese, Japanese and Korean),

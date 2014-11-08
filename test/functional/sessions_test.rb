@@ -1,4 +1,4 @@
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -32,7 +32,7 @@ class SessionStartTest < ActionController::TestCase
 end
 
 class SessionsTest < ActionController::TestCase
-  include Redmine::I18n
+  include Yield::I18n
   tests WelcomeController
 
   fixtures :users

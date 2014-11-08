@@ -1,4 +1,4 @@
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -51,12 +51,12 @@ class RoutingQueriesTest < ActionController::IntegrationTest
 
   def test_queries_scoped_under_project
     assert_routing(
-        { :method => 'get', :path => "/projects/redmine/queries/new" },
-        { :controller => 'queries', :action => 'new', :project_id => 'redmine' }
+        { :method => 'get', :path => "/projects/yield/queries/new" },
+        { :controller => 'queries', :action => 'new', :project_id => 'yield' }
       )
     assert_routing(
-        { :method => 'post', :path => "/projects/redmine/queries" },
-        { :controller => 'queries', :action => 'create', :project_id => 'redmine' }
+        { :method => 'post', :path => "/projects/yield/queries" },
+        { :controller => 'queries', :action => 'create', :project_id => 'yield' }
       )
   end
 end

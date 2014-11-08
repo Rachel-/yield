@@ -1,4 +1,4 @@
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -53,7 +53,7 @@ class JournalsController < ApplicationController
       @detail = @journal.details.detect {|d| d.prop_key == 'description'}
     end
     (render_404; return false) unless @issue && @detail
-    @diff = Redmine::Helpers::Diff.new(@detail.value, @detail.old_value)
+    @diff = Yield::Helpers::Diff.new(@detail.value, @detail.old_value)
   end
 
   def new

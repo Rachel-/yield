@@ -1,4 +1,4 @@
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -16,7 +16,7 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 class Project < ActiveRecord::Base
-  include Redmine::SafeAttributes
+  include Yield::SafeAttributes
 
   # Project statuses
   STATUS_ACTIVE     = 1
@@ -169,7 +169,7 @@ class Project < ActiveRecord::Base
   # * :with_subprojects => limit the condition to project and its subprojects
   # * :member => limit the condition to the user projects
   def self.allowed_to_condition(user, permission, options={})
-    perm = Redmine::AccessControl.permission(permission)
+    perm = Yield::AccessControl.permission(permission)
     base_statement = (perm && perm.read? ? "#{Project.table_name}.status <> #{Project::STATUS_ARCHIVED}" : "#{Project.table_name}.status = #{Project::STATUS_ACTIVE}")
     if perm && perm.project_module
       # If the permission belongs to a project module, make sure the module is enabled
@@ -620,7 +620,7 @@ class Project < ActiveRecord::Base
       # No action allowed on archived projects
       return false
     end
-    unless active? || Redmine::AccessControl.read_action?(action)
+    unless active? || Yield::AccessControl.read_action?(action)
       # No write action allowed on closed projects
       return false
     end
@@ -736,7 +736,7 @@ class Project < ActiveRecord::Base
         to_be_copied.each do |name|
           send "copy_#{name}", project
         end
-        Redmine::Hook.call_hook(:model_project_copy_before_save, :source_project => project, :destination_project => self)
+        Yield::Hook.call_hook(:model_project_copy_before_save, :source_project => project, :destination_project => self)
         save
       end
     end
@@ -980,12 +980,12 @@ class Project < ActiveRecord::Base
   def allowed_permissions
     @allowed_permissions ||= begin
       module_names = enabled_modules.loaded? ? enabled_modules.map(&:name) : enabled_modules.pluck(:name)
-      Redmine::AccessControl.modules_permissions(module_names).collect {|p| p.name}
+      Yield::AccessControl.modules_permissions(module_names).collect {|p| p.name}
     end
   end
 
   def allowed_actions
-    @actions_allowed ||= allowed_permissions.inject([]) { |actions, permission| actions += Redmine::AccessControl.allowed_actions(permission) }.flatten
+    @actions_allowed ||= allowed_permissions.inject([]) { |actions, permission| actions += Yield::AccessControl.allowed_actions(permission) }.flatten
   end
 
   # Returns all the active Systemwide and project specific activities

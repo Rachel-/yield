@@ -1,4 +1,4 @@
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -16,7 +16,7 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 class Document < ActiveRecord::Base
-  include Redmine::SafeAttributes
+  include Yield::SafeAttributes
   belongs_to :project
   belongs_to :category, :class_name => "DocumentCategory", :foreign_key => "category_id"
   acts_as_attachable :delete_permission => :delete_documents

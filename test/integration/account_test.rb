@@ -1,4 +1,4 @@
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -69,9 +69,9 @@ class AccountTest < ActionController::IntegrationTest
 
   def test_autologin_should_use_autologin_cookie_name
     Token.delete_all
-    Redmine::Configuration.stubs(:[]).with('autologin_cookie_name').returns('custom_autologin')
-    Redmine::Configuration.stubs(:[]).with('autologin_cookie_path').returns('/')
-    Redmine::Configuration.stubs(:[]).with('autologin_cookie_secure').returns(false)
+    Yield::Configuration.stubs(:[]).with('autologin_cookie_name').returns('custom_autologin')
+    Yield::Configuration.stubs(:[]).with('autologin_cookie_path').returns('/')
+    Yield::Configuration.stubs(:[]).with('autologin_cookie_secure').returns(false)
 
     with_settings :autologin => '7' do
       assert_difference 'Token.count' do

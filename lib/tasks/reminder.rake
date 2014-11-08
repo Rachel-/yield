@@ -1,4 +1,4 @@
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -25,10 +25,10 @@ Available options:
   * users    => comma separated list of user/group ids who should be reminded
 
 Example:
-  rake redmine:send_reminders days=7 users="1,23, 56" RAILS_ENV="production"
+  rake yield:send_reminders days=7 users="1,23, 56" RAILS_ENV="production"
 END_DESC
 
-namespace :redmine do
+namespace :yield do
   task :send_reminders => :environment do
     options = {}
     options[:days] = ENV['days'].to_i if ENV['days']

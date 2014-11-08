@@ -1,4 +1,4 @@
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -264,8 +264,8 @@ class AccountController < ApplicationController
     cookie_options = {
       :value => token.value,
       :expires => 1.year.from_now,
-      :path => (Redmine::Configuration['autologin_cookie_path'] || '/'),
-      :secure => (Redmine::Configuration['autologin_cookie_secure'] ? true : false),
+      :path => (Yield::Configuration['autologin_cookie_path'] || '/'),
+      :secure => (Yield::Configuration['autologin_cookie_secure'] ? true : false),
       :httponly => true
     }
     cookies[autologin_cookie_name] = cookie_options

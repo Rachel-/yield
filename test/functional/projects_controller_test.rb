@@ -1,4 +1,4 @@
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -52,7 +52,7 @@ class ProjectsControllerTest < ActionController::TestCase
     get :index, :format => 'atom'
     assert_response :success
     assert_template 'common/feed'
-    assert_select 'feed>title', :text => 'Redmine: Latest projects'
+    assert_select 'feed>title', :text => 'Yield: Latest projects'
     assert_select 'feed>entry', :count => Project.visible(User.current).count
   end
 

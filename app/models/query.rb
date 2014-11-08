@@ -1,4 +1,4 @@
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -17,7 +17,7 @@
 
 class QueryColumn
   attr_accessor :name, :sortable, :groupable, :default_order
-  include Redmine::I18n
+  include Yield::I18n
 
   def initialize(name, options={})
     self.name = name

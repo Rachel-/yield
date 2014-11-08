@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -27,7 +27,7 @@ class TimeEntryReportsControllerTest < ActionController::TestCase
            :projects_trackers, :custom_fields_trackers,
            :custom_fields_projects
 
-  include Redmine::I18n
+  include Yield::I18n
 
   def setup
     Setting.default_language = "en"
@@ -268,7 +268,7 @@ class TimeEntryReportsControllerTest < ActionController::TestCase
         :criteria => ["user"], :format => "csv"
     assert_response :success
     assert_equal 'text/csv; header=present', @response.content_type
-    lines = @response.body.chomp.split("\n")    
+    lines = @response.body.chomp.split("\n")
     # Headers
     s1 = "\xa5\xce\xa4\xe1,2011-11-11,\xa4u\xae\xc9\xc1`\xadp"
     s2 = "\xa4u\xae\xc9\xc1`\xadp"
@@ -319,7 +319,7 @@ class TimeEntryReportsControllerTest < ActionController::TestCase
         :criteria => ["user"], :format => "csv"
     assert_response :success
     assert_equal 'text/csv; header=present', @response.content_type
-    lines = @response.body.chomp.split("\n")    
+    lines = @response.body.chomp.split("\n")
     # Headers
     s1 = "\xa5\xce\xa4\xe1,2011-11-11,\xa4u\xae\xc9\xc1`\xadp"
     if s1.respond_to?(:force_encoding)
@@ -360,7 +360,7 @@ class TimeEntryReportsControllerTest < ActionController::TestCase
           :criteria => ["user"], :format => "csv"
       assert_response :success
       assert_equal 'text/csv; header=present', @response.content_type
-      lines = @response.body.chomp.split("\n")    
+      lines = @response.body.chomp.split("\n")
       # Headers
       s1 = "Utilisateur;2011-11-11;Temps total"
       s2 = "Temps total"

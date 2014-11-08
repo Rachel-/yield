@@ -1,4 +1,4 @@
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -62,7 +62,7 @@ class UsersController < ApplicationController
     # show projects based on current user visibility
     @memberships = @user.memberships.where(Project.visible_condition(User.current)).all
 
-    events = Redmine::Activity::Fetcher.new(User.current, :author => @user).events(nil, nil, :limit => 10)
+    events = Yield::Activity::Fetcher.new(User.current, :author => @user).events(nil, nil, :limit => 10)
     @events_by_day = events.group_by(&:event_date)
 
     unless User.current.admin?

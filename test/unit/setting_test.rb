@@ -1,4 +1,4 @@
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -24,7 +24,7 @@ class SettingTest < ActiveSupport::TestCase
   end
 
   def test_read_default
-    assert_equal "Redmine", Setting.app_title
+    assert_equal "Yield", Setting.app_title
     assert Setting.self_registration?
     assert !Setting.login_required?
   end

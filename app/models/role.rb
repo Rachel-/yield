@@ -1,4 +1,4 @@
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -158,9 +158,9 @@ class Role < ActiveRecord::Base
 
   # Return all the permissions that can be given to the role
   def setable_permissions
-    setable_permissions = Redmine::AccessControl.permissions - Redmine::AccessControl.public_permissions
-    setable_permissions -= Redmine::AccessControl.members_only_permissions if self.builtin == BUILTIN_NON_MEMBER
-    setable_permissions -= Redmine::AccessControl.loggedin_only_permissions if self.builtin == BUILTIN_ANONYMOUS
+    setable_permissions = Yield::AccessControl.permissions - Yield::AccessControl.public_permissions
+    setable_permissions -= Yield::AccessControl.members_only_permissions if self.builtin == BUILTIN_NON_MEMBER
+    setable_permissions -= Yield::AccessControl.loggedin_only_permissions if self.builtin == BUILTIN_ANONYMOUS
     setable_permissions
   end
 
@@ -184,11 +184,11 @@ class Role < ActiveRecord::Base
 private
 
   def allowed_permissions
-    @allowed_permissions ||= permissions + Redmine::AccessControl.public_permissions.collect {|p| p.name}
+    @allowed_permissions ||= permissions + Yield::AccessControl.public_permissions.collect {|p| p.name}
   end
 
   def allowed_actions
-    @actions_allowed ||= allowed_permissions.inject([]) { |actions, permission| actions += Redmine::AccessControl.allowed_actions(permission) }.flatten
+    @actions_allowed ||= allowed_permissions.inject([]) { |actions, permission| actions += Yield::AccessControl.allowed_actions(permission) }.flatten
   end
 
   def check_deletable

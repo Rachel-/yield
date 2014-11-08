@@ -898,7 +898,7 @@ cs:
   text_enumeration_destroy_question: "Několik (%{count}) objektů je přiřazeno k této hodnotě."
   text_enumeration_category_reassign_to: 'Přeřadit je do této:'
   text_email_delivery_not_configured: "Doručování e-mailů není nastaveno a odesílání notifikací je zakázáno.\nNastavte Váš SMTP server v souboru config/configuration.yml a restartujte aplikaci."
-  text_repository_usernames_mapping: "Vybrat nebo upravit mapování mezi Redmine uživateli a uživatelskými jmény nalezenými v logu repozitáře.\nUživatelé se shodným Redmine uživatelským jménem a uživatelským jménem v repozitáři jsou mapováni automaticky."
+  text_repository_usernames_mapping: "Vybrat nebo upravit mapování mezi Yield uživateli a uživatelskými jmény nalezenými v logu repozitáře.\nUživatelé se shodným Yield uživatelským jménem a uživatelským jménem v repozitáři jsou mapováni automaticky."
   text_diff_truncated: '... Rozdílový soubor je zkrácen, protože jeho délka přesahuje max. limit.'
   text_custom_field_possible_values_info: 'Každá hodnota na novém řádku'
   text_wiki_page_destroy_question: Tato stránka má %{descendants} podstránek a potomků. Co chcete udělat?
@@ -1080,8 +1080,8 @@ cs:
   label_in_the_next_days: v přístích
   label_in_the_past_days: v minulých
   label_attribute_of_user: "%{name} uživatel(e/ky)"
-  text_turning_multiple_off: Jestliže zakážete více hodnot, 
-    hodnoty budou smazány za účelem rezervace pouze jediné hodnoty na položku.    
+  text_turning_multiple_off: Jestliže zakážete více hodnot,
+    hodnoty budou smazány za účelem rezervace pouze jediné hodnoty na položku.
   label_attribute_of_issue: "%{name} úkolu"
   permission_add_documents: Přidat dokument
   permission_edit_documents: Upravit dokumenty
@@ -1093,7 +1093,7 @@ cs:
   field_generate_password: Generovat heslo
   setting_default_projects_tracker_ids: Výchozí fronta pro nové projekty
   label_total_time: Celkem
-  notice_account_not_activated_yet: Neaktivovali jste si dosud Váš účet. 
+  notice_account_not_activated_yet: Neaktivovali jste si dosud Váš účet.
     Pro opětovné zaslání aktivačního emailu <a href="%{url}">klikněte na tento odkaz</a>, prosím.
   notice_account_locked: Váš účet je uzamčen.
   label_hidden: Skrytý
@@ -1104,8 +1104,8 @@ cs:
   notice_new_password_must_be_different: Nové heslo se musí lišit od stávajícího
   setting_mail_handler_excluded_filenames: Vyřadit přílohy podle jména
   text_convert_available: ImageMagick convert k dispozici (volitelné)
-  label_link: Odkaz 
-  label_only: jenom 
+  label_link: Odkaz
+  label_only: jenom
   label_drop_down_list: rozbalovací seznam
   label_checkboxes: zaškrtávátka
   label_link_values_to: Propojit hodnoty s URL

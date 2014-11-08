@@ -1,13 +1,17 @@
 source 'https://rubygems.org'
 
-gem "rails", "3.2.19"
-gem "jquery-rails", "~> 3.1.1"
+gem "rails", "3.2.20"
 gem "coderay", "~> 1.1.0"
 gem "fastercsv", "~> 1.5.0", :platforms => [:mri_18, :mingw_18, :jruby]
 gem "builder", ">= 3.0.4"
 gem "request_store", "1.0.5"
 gem "mime-types"
 gem "rbpdf", "~> 1.18.1"
+gem "uglifier", ">= 2.5.3"
+gem "sass-rails", ">= 3.2"
+gem "coffee-rails", ">= 3.2"
+gem "jquery-rails", "~> 3.1.1"
+gem 'bootstrap-sass', "~> 3.3.0"
 
 # Optional gem for LDAP authentication
 group :ldap do
@@ -44,8 +48,8 @@ end
 
 # Include database gems for the adapters found in the database
 # configuration file
-require 'erb'
-require 'yaml'
+require "erb"
+require "yaml"
 database_file = File.join(File.dirname(__FILE__), "config/database.yml")
 if File.exist?(database_file)
   database_config = YAML::load(ERB.new(IO.read(database_file)).result)
@@ -53,10 +57,10 @@ if File.exist?(database_file)
   if adapters.any?
     adapters.each do |adapter|
       case adapter
-      when 'mysql2'
+      when "mysql2"
         gem "mysql2", "~> 0.3.11", :platforms => [:mri, :mingw]
         gem "activerecord-jdbcmysql-adapter", :platforms => :jruby
-      when 'mysql'
+      when "mysql"
         gem "mysql", "~> 2.8.1", :platforms => [:mri, :mingw]
         gem "activerecord-jdbcmysql-adapter", :platforms => :jruby
       when /postgresql/

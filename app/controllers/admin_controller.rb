@@ -1,4 +1,4 @@
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -26,7 +26,7 @@ class AdminController < ApplicationController
   include SortHelper
 
   def index
-    @no_configuration_data = Redmine::DefaultData::Loader::no_data?
+    @no_configuration_data = Yield::DefaultData::Loader::no_data?
   end
 
   def projects
@@ -40,7 +40,7 @@ class AdminController < ApplicationController
   end
 
   def plugins
-    @plugins = Redmine::Plugin.all
+    @plugins = Yield::Plugin.all
   end
 
   # Loads the default configuration
@@ -48,7 +48,7 @@ class AdminController < ApplicationController
   def default_configuration
     if request.post?
       begin
-        Redmine::DefaultData::Loader::load(params[:lang])
+        Yield::DefaultData::Loader::load(params[:lang])
         flash[:notice] = l(:notice_default_data_loaded)
       rescue Exception => e
         flash[:error] = l(:error_can_t_load_default_data, e.message)
@@ -65,7 +65,7 @@ class AdminController < ApplicationController
       @test = Mailer.test_email(User.current).deliver
       flash[:notice] = l(:notice_email_sent, User.current.mail)
     rescue Exception => e
-      flash[:error] = l(:notice_email_error, Redmine::CodesetUtil.replace_invalid_utf8(e.message.dup))
+      flash[:error] = l(:notice_email_error, Yield::CodesetUtil.replace_invalid_utf8(e.message.dup))
     end
     ActionMailer::Base.raise_delivery_errors = raise_delivery_errors
     redirect_to settings_path(:tab => 'notifications')
@@ -76,9 +76,9 @@ class AdminController < ApplicationController
     @checklist = [
       [:text_default_administrator_account_changed, User.default_admin_account_changed?],
       [:text_file_repository_writable, File.writable?(Attachment.storage_path)],
-      [:text_plugin_assets_writable,   File.writable?(Redmine::Plugin.public_directory)],
+      [:text_plugin_assets_writable,   File.writable?(Yield::Plugin.public_directory)],
       [:text_rmagick_available,        Object.const_defined?(:Magick)],
-      [:text_convert_available,        Redmine::Thumbnail.convert_available?]
+      [:text_convert_available,        Yield::Thumbnail.convert_available?]
     ]
   end
 end

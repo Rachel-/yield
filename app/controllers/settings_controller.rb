@@ -1,4 +1,4 @@
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -29,7 +29,7 @@ class SettingsController < ApplicationController
   end
 
   def edit
-    @notifiables = Redmine::Notifiable.all
+    @notifiables = Yield::Notifiable.all
     if request.post? && params[:settings] && params[:settings].is_a?(Hash)
       settings = (params[:settings] || {}).dup.symbolize_keys
       settings.each do |name, value|
@@ -44,17 +44,17 @@ class SettingsController < ApplicationController
       @deliveries = ActionMailer::Base.perform_deliveries
 
       @guessed_host_and_path = request.host_with_port.dup
-      @guessed_host_and_path << ('/'+ Redmine::Utils.relative_url_root.gsub(%r{^\/}, '')) unless Redmine::Utils.relative_url_root.blank?
+      @guessed_host_and_path << ('/'+ Yield::Utils.relative_url_root.gsub(%r{^\/}, '')) unless Yield::Utils.relative_url_root.blank?
 
       @commit_update_keywords = Setting.commit_update_keywords.dup
       @commit_update_keywords = [{}] unless @commit_update_keywords.is_a?(Array) && @commit_update_keywords.any?
 
-      Redmine::Themes.rescan
+      Yield::Themes.rescan
     end
   end
 
   def plugin
-    @plugin = Redmine::Plugin.find(params[:id])
+    @plugin = Yield::Plugin.find(params[:id])
     unless @plugin.configurable?
       render_404
       return
@@ -68,7 +68,7 @@ class SettingsController < ApplicationController
       @partial = @plugin.settings[:partial]
       @settings = Setting.send "plugin_#{@plugin.id}"
     end
-  rescue Redmine::PluginNotFound
+  rescue Yield::PluginNotFound
     render_404
   end
 end

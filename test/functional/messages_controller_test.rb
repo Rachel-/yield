@@ -1,4 +1,4 @@
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -32,7 +32,7 @@ class MessagesControllerTest < ActionController::TestCase
     assert_not_nil assigns(:project)
     assert_not_nil assigns(:topic)
   end
-  
+
   def test_show_should_contain_reply_field_tags_for_quoting
     @request.session[:user_id] = 2
     get :show, :board_id => 1, :id => 1

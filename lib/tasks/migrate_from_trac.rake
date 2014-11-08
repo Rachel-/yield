@@ -1,4 +1,4 @@
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -19,7 +19,7 @@ require 'active_record'
 require 'iconv' if RUBY_VERSION < '1.9'
 require 'pp'
 
-namespace :redmine do
+namespace :yield do
   desc 'Trac migration script'
   task :migrate_from_trac => :environment do
 
@@ -287,12 +287,12 @@ namespace :redmine do
         #      [ticket:234 Text],[ticket:234 This is a test]
         text = text.gsub(/\[ticket\:([^\ ]+)\ (.+?)\]/, '"\2":/issues/show/\1')
         #      ticket:1234
-        #      #1 is working cause Redmine uses the same syntax.
+        #      #1 is working cause Yield uses the same syntax.
         text = text.gsub(/ticket\:([^\ ]+)/, '#\1')
         # Milestone links:
         #      [milestone:"0.1.0 Mercury" Milestone 0.1.0 (Mercury)]
         #      The text "Milestone 0.1.0 (Mercury)" is not converted,
-        #      cause Redmine's wiki does not support this.
+        #      cause Yield's wiki does not support this.
         text = text.gsub(/\[milestone\:\"([^\"]+)\"\ (.+?)\]/, 'version:"\1"')
         #      [milestone:"0.1.0 Mercury"]
         text = text.gsub(/\[milestone\:\"([^\"]+)\"\]/, 'version:"\1"')
@@ -438,9 +438,9 @@ namespace :redmine do
         TracTicketCustom.find_by_sql("SELECT DISTINCT name FROM #{TracTicketCustom.table_name}").each do |field|
           print '.'
           STDOUT.flush
-          # Redmine custom field name
+          # Yield custom field name
           field_name = encode(field.name[0, limit_for(IssueCustomField, 'name')]).humanize
-          # Find if the custom already exists in Redmine
+          # Find if the custom already exists in Yield
           f = IssueCustomField.find_by_name(field_name)
           # Or create a new one
           f ||= IssueCustomField.create(:name => encode(field.name[0, limit_for(IssueCustomField, 'name')]).humanize,
@@ -453,7 +453,7 @@ namespace :redmine do
         end
         puts
 
-        # Trac 'resolution' field as a Redmine custom field
+        # Trac 'resolution' field as a Yield custom field
         r = IssueCustomField.where(:name => "Resolution").first
         r = IssueCustomField.new(:name => 'Resolution',
                                  :field_format => 'list',
@@ -679,7 +679,7 @@ namespace :redmine do
           project.enabled_module_names = ['issue_tracking', 'wiki']
         else
           puts
-          puts "This project already exists in your Redmine database."
+          puts "This project already exists in your Yield database."
           print "Are you sure you want to append data to this project ? [Y/n] "
           STDOUT.flush
           exit if STDIN.gets.match(/^n$/i)
@@ -725,15 +725,15 @@ namespace :redmine do
     end
 
     puts
-    if Redmine::DefaultData::Loader.no_data?
-      puts "Redmine configuration need to be loaded before importing data."
+    if Yield::DefaultData::Loader.no_data?
+      puts "Yield configuration need to be loaded before importing data."
       puts "Please, run this first:"
       puts
-      puts "  rake redmine:load_default_data RAILS_ENV=\"#{ENV['RAILS_ENV']}\""
+      puts "  rake yield:load_default_data RAILS_ENV=\"#{ENV['RAILS_ENV']}\""
       exit
     end
 
-    puts "WARNING: a new project will be added to Redmine during this process."
+    puts "WARNING: a new project will be added to Yield during this process."
     print "Are you sure you want to continue ? [y/N] "
     STDOUT.flush
     break unless STDIN.gets.match(/^y$/i)

@@ -1,4 +1,4 @@
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -139,7 +139,7 @@ class IssuesControllerTransactionTest < ActionController::TestCase
     assert_equal 1, assigns(:conflict_journals).size
     assert_equal 2, assigns(:conflict_journals).first.id
     assert_tag 'div', :attributes => {:class => 'conflict'},
-      :descendant => {:content => /Some notes with Redmine links/}
+      :descendant => {:content => /Some notes with Yield links/}
   end
 
   def test_update_stale_issue_without_previous_journal_should_show_all_journals
@@ -156,7 +156,7 @@ class IssuesControllerTransactionTest < ActionController::TestCase
     assert_not_nil assigns(:conflict_journals)
     assert_equal 2, assigns(:conflict_journals).size
     assert_tag 'div', :attributes => {:class => 'conflict'},
-      :descendant => {:content => /Some notes with Redmine links/}
+      :descendant => {:content => /Some notes with Yield links/}
     assert_tag 'div', :attributes => {:class => 'conflict'},
       :descendant => {:content => /Journal notes/}
   end

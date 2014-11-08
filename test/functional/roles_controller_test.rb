@@ -1,4 +1,4 @@
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -150,7 +150,7 @@ class RolesControllerTest < ActionController::TestCase
   def test_destroy_role_in_use
     delete :destroy, :id => 1
     assert_redirected_to '/roles'
-    assert_equal 'This role is in use and cannot be deleted.', flash[:error] 
+    assert_equal 'This role is in use and cannot be deleted.', flash[:error]
     assert_not_nil Role.find_by_id(1)
   end
 

@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
-<title>RedmineWikiFormatting</title>
+<title>YieldWikiFormatting</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <style type="text/css">
     body { font:80% Verdana,Tahoma,Arial,sans-serif; }
@@ -42,9 +42,9 @@
 
     <h2><a name="2" class="wiki-page"></a>リンク</h2>
 
-        <h3><a name="3" class="wiki-page">Redmine内のリンク</a></h3>
+        <h3><a name="3" class="wiki-page">Yield内のリンク</a></h3>
 
-        <p>RedmineはWiki記法が使える箇所のどこからでも、チケット・チェンジセット・Wikiページなどリソース間へリンクを行うことができます。</p>
+        <p>YieldはWiki記法が使える箇所のどこからでも、チケット・チェンジセット・Wikiページなどリソース間へリンクを行うことができます。</p>
         <ul>
             <li>チケットへのリンク: <strong>#124</strong> (終了したチケットは <del><a href="#" class="issue" title="bulk edit doesn't change the category or fixed version properties (Closed)">#124</a></del> のように取り消し線付きで表示されます)</li>
             <li>チケットの注記へのリンク: <strong>#124-6</strong> または <strong>#124#note-6</strong></li>
@@ -143,7 +143,7 @@
         <p>エスケープ:</p>
 
         <ul>
-            <li>テキストをRedmineのリンクとして解釈させたくない場合は感嘆符 ! を前につけてください。</li>
+            <li>テキストをYieldのリンクとして解釈させたくない場合は感嘆符 ! を前につけてください。</li>
         </ul>
 
 
@@ -152,24 +152,24 @@
         <p>HTTP URLとメールアドレスは自動的にリンクになります:</p>
 
 <pre>
-http://www.redmine.org, someone@foo.bar
+http://www.yield.org, someone@foo.bar
 </pre>
 
-        <p>上記の記述は次のように表示されます: <a class="external" href="http://www.redmine.org">http://www.redmine.org</a>, <a href="mailto:someone@foo.bar" class="email">someone@foo.bar</a></p>
+        <p>上記の記述は次のように表示されます: <a class="external" href="http://www.yield.org">http://www.yield.org</a>, <a href="mailto:someone@foo.bar" class="email">someone@foo.bar</a></p>
 
         <p>URLのかわりに別のテキストを表示させたい場合は、標準的なtextile記法が利用できます:</p>
 
 <pre>
-"Redmine web site":http://www.redmine.org
+"Yield web site":http://www.yield.org
 </pre>
 
-        <p>上記の記述は次のように表示されます: <a href="http://www.redmine.org" class="external">Redmine web site</a></p>
+        <p>上記の記述は次のように表示されます: <a href="http://www.yield.org" class="external">Yield web site</a></p>
 
 
     <h2><a name="5" class="wiki-page"></a>テキストの書式</h2>
 
 
-    <p>見出し、太字、テーブル、リスト等は、RedmineはTextile記法での記述に対応しています。Textile記法の詳細は <a class="external" href="http://en.wikipedia.org/wiki/Textile_%28markup_language%29">http://en.wikipedia.org/wiki/Textile_(markup_language)</a> を参照してください。Textileの一例を以下に示しますが、実際にはここで取り上げた以外の記法にも対応しています。</p>
+    <p>見出し、太字、テーブル、リスト等は、YieldはTextile記法での記述に対応しています。Textile記法の詳細は <a class="external" href="http://en.wikipedia.org/wiki/Textile_%28markup_language%29">http://en.wikipedia.org/wiki/Textile_(markup_language)</a> を参照してください。Textileの一例を以下に示しますが、実際にはここで取り上げた以外の記法にも対応しています。</p>
 
         <h3><a name="6" class="wiki-page"></a>文字の書式</h3>
 
@@ -207,7 +207,7 @@ h2. Subheading
 h3. Subsubheading
 </pre>
 
-        <p>Redmineは見出しにアンカーを設定するので、"#Heading", "#Subheading"などを指定してリンクが行えます。</p>
+        <p>Yieldは見出しにアンカーを設定するので、"#Heading", "#Subheading"などを指定してリンクが行えます。</p>
 
 
         <h3><a name="9" class="wiki-page"></a>段落</h3>
@@ -251,7 +251,7 @@ To go live, all you need to add is a database and a web server.
 
     <h2><a name="12" class="wiki-page"></a>マクロ</h2>
 
-    <p>Redmineには以下の組み込みマクロが用意されています:</p>
+    <p>Yieldには以下の組み込みマクロが用意されています:</p>
 
     <p>
     <dl>
@@ -288,7 +288,7 @@ It can be expanded by clicking a link.
 
     <h2><a name="13" class="wiki-page"></a>コードハイライト</h2>
 
-    <p>Redmineのコードハイライトは <a href="http://coderay.rubychan.de/" class="external">CodeRay</a> という、Rubyで記述された高速なライブラリを使用しています。Coderayはc, cpp, css, delphi, groovy, html, java, javascript, json, php, python, rhtml, ruby, scheme, sql, xml, yamlに対応しています。</p>
+    <p>Yieldのコードハイライトは <a href="http://coderay.rubychan.de/" class="external">CodeRay</a> という、Rubyで記述された高速なライブラリを使用しています。Coderayはc, cpp, css, delphi, groovy, html, java, javascript, json, php, python, rhtml, ruby, scheme, sql, xml, yamlに対応しています。</p>
 
     <p>Wikiページでコードハイライトを利用するには次のように記述します:</p>
 

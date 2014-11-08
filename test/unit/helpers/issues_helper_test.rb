@@ -1,4 +1,4 @@
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -18,7 +18,7 @@
 require File.expand_path('../../../test_helper', __FILE__)
 
 class IssuesHelperTest < ActionView::TestCase
-  include Redmine::I18n
+  include Yield::I18n
   include IssuesHelper
   include CustomFieldsHelper
   include ERB::Util
@@ -161,7 +161,7 @@ class IssuesHelperTest < ActionView::TestCase
   test 'show_detail should show old and new values with a assigned to attribute' do
     detail = JournalDetail.new(:property => 'attr', :prop_key => 'assigned_to_id',
                                :old_value => 1, :value => 2)
-    assert_match 'Redmine Admin', show_detail(detail, true)
+    assert_match 'Yield Admin', show_detail(detail, true)
     assert_match 'John Smith', show_detail(detail, true)
   end
 

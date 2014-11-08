@@ -140,7 +140,7 @@ pt:
         cant_link_an_issue_with_a_descendant: "Não é possível ligar uma tarefa a uma sub-tarefa que lhe é pertencente"
         earlier_than_minimum_start_date: "não pode ser antes de %{date} devido a tarefas precedentes"
 
-  
+
   actionview_instancetag_blank_option: Selecione
 
   general_text_No: 'Não'
@@ -790,7 +790,7 @@ pt:
   permission_edit_own_issue_notes: Editar as prórpias notas
   setting_gravatar_enabled: Utilizar ícones Gravatar
   label_example: Exemplo
-  text_repository_usernames_mapping: "Selecionar ou atualizar o utilizador de Redmine mapeado a cada nome de utilizador encontrado no repositório.\nUtilizadores com o mesmo nome de utilizador ou e-mail no Redmine e no repositório são mapeados automaticamente."
+  text_repository_usernames_mapping: "Selecionar ou atualizar o utilizador de Yield mapeado a cada nome de utilizador encontrado no repositório.\nUtilizadores com o mesmo nome de utilizador ou e-mail no Yield e no repositório são mapeados automaticamente."
   permission_edit_own_messages: Editar as próprias mensagens
   permission_delete_own_messages: Apagar as próprias mensagens
   label_user_activity: "Atividade de %{value}"

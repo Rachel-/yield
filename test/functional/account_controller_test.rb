@@ -1,4 +1,4 @@
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -73,11 +73,11 @@ class AccountControllerTest < ActionController::TestCase
 
   def test_login_with_suburi_should_redirect_to_back_url_param
     @relative_url_root = ApplicationController.relative_url_root
-    ApplicationController.relative_url_root = '/redmine'
+    ApplicationController.relative_url_root = '/yield'
 
     back_urls = [
-      'http://test.host/redmine/issues/show/1',
-      '/redmine'
+      'http://test.host/yield/issues/show/1',
+      '/yield'
     ]
     back_urls.each do |back_url|
       post :login, :username => 'jsmith', :password => 'jsmith', :back_url => back_url
@@ -100,15 +100,15 @@ class AccountControllerTest < ActionController::TestCase
 
   def test_login_with_suburi_should_not_redirect_to_another_suburi
     @relative_url_root = ApplicationController.relative_url_root
-    ApplicationController.relative_url_root = '/redmine'
+    ApplicationController.relative_url_root = '/yield'
 
     back_urls = [
       'http://test.host/',
       'http://test.host/fake',
       'http://test.host/fake/issues',
-      'http://test.host/redmine/../fake',
-      'http://test.host/redmine/../fake/issues',
-      'http://test.host/redmine/%2e%2e/fake'
+      'http://test.host/yield/../fake',
+      'http://test.host/yield/../fake/issues',
+      'http://test.host/yield/%2e%2e/fake'
     ]
     back_urls.each do |back_url|
       post :login, :username => 'jsmith', :password => 'jsmith', :back_url => back_url
@@ -260,7 +260,7 @@ class AccountControllerTest < ActionController::TestCase
       assert user.active?
     end
   end
-  
+
   def test_post_register_with_registration_off_should_redirect
     with_settings :self_registration => '0' do
       assert_no_difference 'User.count' do

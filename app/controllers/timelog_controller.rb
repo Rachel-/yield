@@ -1,4 +1,4 @@
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -78,7 +78,7 @@ class TimelogController < ApplicationController
     @query = TimeEntryQuery.build_from_params(params, :project => @project, :name => '_')
     scope = time_entry_scope
 
-    @report = Redmine::Helpers::TimeReport.new(@project, @issue, params[:criteria], params[:columns], scope)
+    @report = Yield::Helpers::TimeReport.new(@project, @issue, params[:criteria], params[:columns], scope)
 
     respond_to do |format|
       format.html { render :layout => !request.xhr? }

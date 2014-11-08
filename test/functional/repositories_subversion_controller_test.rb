@@ -1,4 +1,4 @@
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -134,7 +134,7 @@ class RepositoriesSubversionControllerTest < ActionController::TestCase
       assert_equal %w(6 3 2), changesets.collect(&:revision)
 
       # svn properties displayed with svn >= 1.5 only
-      if Redmine::Scm::Adapters::SubversionAdapter.client_version_above?([1, 5, 0])
+      if Yield::Scm::Adapters::SubversionAdapter.client_version_above?([1, 5, 0])
         assert_not_nil assigns(:properties)
         assert_equal 'native', assigns(:properties)['svn:eol-style']
         assert_tag :ul,
@@ -347,7 +347,7 @@ class RepositoriesSubversionControllerTest < ActionController::TestCase
         diff = assigns(:diff)
         assert_not_nil diff
         # 2 files modified
-        assert_equal 2, Redmine::UnifiedDiff.new(diff).size
+        assert_equal 2, Yield::UnifiedDiff.new(diff).size
         assert_tag :tag => 'h2', :content => /2:6/
       end
     end

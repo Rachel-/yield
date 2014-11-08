@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -26,7 +26,7 @@ class TimelogControllerTest < ActionController::TestCase
            :projects_trackers, :custom_fields_trackers,
            :custom_fields_projects
 
-  include Redmine::I18n
+  include Yield::I18n
 
   def test_new
     @request.session[:user_id] = 3
@@ -359,7 +359,7 @@ class TimelogControllerTest < ActionController::TestCase
     assert_select 'form#bulk_edit_form[action=?]', '/time_entries/bulk_update' do
       # System wide custom field
       assert_select 'select[name=?]', 'time_entry[custom_field_values][10]'
-  
+
       # Activities
       assert_select 'select[name=?]', 'time_entry[activity_id]' do
         assert_select 'option[value=]', :text => '(No change)'
@@ -397,7 +397,7 @@ class TimelogControllerTest < ActionController::TestCase
     @request.session[:user_id] = 2
     # makes user a manager on the other project
     Member.create!(:user_id => 2, :project_id => 3, :role_ids => [1])
-    
+
     # update time entry activity
     post :bulk_update, :ids => [1, 2, 4], :time_entry => { :activity_id => 9 }
 
@@ -662,7 +662,7 @@ class TimelogControllerTest < ActionController::TestCase
   end
 
   def test_index_at_project_level_should_include_csv_export_dialog
-    get :index, :project_id => 'ecookbook', 
+    get :index, :project_id => 'ecookbook',
       :f => ['spent_on'],
       :op => {'spent_on' => '>='},
       :v => {'spent_on' => ['2007-04-01']},

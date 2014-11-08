@@ -1,4 +1,4 @@
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -17,7 +17,7 @@
 
 require File.expand_path('../../../test_helper', __FILE__)
 
-class Redmine::ApiTest::JsonpTest < Redmine::ApiTest::Base
+class Yield::ApiTest::JsonpTest < Yield::ApiTest::Base
   fixtures :trackers
 
   def test_should_ignore_jsonp_callback_with_jsonp_disabled

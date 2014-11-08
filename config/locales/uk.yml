@@ -781,7 +781,7 @@ uk:
   permission_edit_own_issue_notes: Edit own notes
   setting_gravatar_enabled: Use Gravatar user icons
   label_example: Example
-  text_repository_usernames_mapping: "Select ou update the Redmine user mapped to each username found in the repository log.\nUsers with the same Redmine and repository username or email are automatically mapped."
+  text_repository_usernames_mapping: "Select ou update the Yield user mapped to each username found in the repository log.\nUsers with the same Yield and repository username or email are automatically mapped."
   permission_edit_own_messages: Edit own messages
   permission_delete_own_messages: Delete own messages
   label_user_activity: "%{value}'s activity"
@@ -1015,10 +1015,10 @@ uk:
   permission_manage_related_issues: Manage related issues
   field_auth_source_ldap_filter: LDAP filter
   label_search_for_watchers: Search for watchers to add
-  notice_account_deleted: "Ваш обліковій запис повністю видалений" 
-  setting_unsubscribe: "Дозволити користувачам видаляти свої облікові записи" 
-  button_delete_my_account: "Видалити мій обліковий запис" 
-  text_account_destroy_confirmation: "Ваш обліковий запис буде повністю видалений без можливості відновлення.\nВи певні, что бажаете продовжити?" 
+  notice_account_deleted: "Ваш обліковій запис повністю видалений"
+  setting_unsubscribe: "Дозволити користувачам видаляти свої облікові записи"
+  button_delete_my_account: "Видалити мій обліковий запис"
+  text_account_destroy_confirmation: "Ваш обліковий запис буде повністю видалений без можливості відновлення.\nВи певні, что бажаете продовжити?"
   error_session_expired: Your session has expired. Please login again.
   text_session_expiration_settings: "Warning: changing these settings may expire the current sessions including yours."
   setting_session_lifetime: Session maximum lifetime

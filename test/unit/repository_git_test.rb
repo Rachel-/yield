@@ -1,4 +1,4 @@
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -20,10 +20,10 @@ require File.expand_path('../../test_helper', __FILE__)
 class RepositoryGitTest < ActiveSupport::TestCase
   fixtures :projects, :repositories, :enabled_modules, :users, :roles
 
-  include Redmine::I18n
+  include Yield::I18n
 
   REPOSITORY_PATH = Rails.root.join('tmp/test/git_repository').to_s
-  REPOSITORY_PATH.gsub!(/\//, "\\") if Redmine::Platform.mswin?
+  REPOSITORY_PATH.gsub!(/\//, "\\") if Yield::Platform.mswin?
 
   NUM_REV = 28
   NUM_HEAD = 6
@@ -33,7 +33,7 @@ class RepositoryGitTest < ActiveSupport::TestCase
 
   ## Git, Mercurial and CVS path encodings are binary.
   ## Subversion supports URL encoding for path.
-  ## Redmine Mercurial adapter and extension use URL encoding.
+  ## Yield Mercurial adapter and extension use URL encoding.
   ## Git accepts only binary path in command line parameter.
   ## So, there is no way to use binary command line parameter in JRuby.
   JRUBY_SKIP     = (RUBY_PLATFORM == 'java')
@@ -85,8 +85,8 @@ class RepositoryGitTest < ActiveSupport::TestCase
     ## Git for Windows (msysGit) changed internal API from ANSI to Unicode in 1.7.10
     ## http://code.google.com/p/msysgit/issues/detail?id=80
     ## So, Latin-1 path tests fail on Japanese Windows
-    WINDOWS_PASS = (Redmine::Platform.mswin? &&
-                         Redmine::Scm::Adapters::GitAdapter.client_version_above?([1, 7, 10]))
+    WINDOWS_PASS = (Yield::Platform.mswin? &&
+                         Yield::Scm::Adapters::GitAdapter.client_version_above?([1, 7, 10]))
     WINDOWS_SKIP_STR = "TODO: This test fails in Git for Windows above 1.7.10"
 
     def test_scm_available
@@ -99,7 +99,7 @@ class RepositoryGitTest < ActiveSupport::TestCase
 
     def test_entries
       entries = @repository.entries
-      assert_kind_of Redmine::Scm::Adapters::Entries, entries
+      assert_kind_of Yield::Scm::Adapters::Entries, entries
     end
 
     def test_fetch_changesets_from_scratch

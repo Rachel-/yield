@@ -1,4 +1,4 @@
-desc "Run the Continuous Integration tests for Redmine"
+desc "Run the Continuous Integration tests for Yield"
 task :ci do
   # RAILS_ENV and ENV[] can diverge so force them both to test
   ENV['RAILS_ENV'] = 'test'
@@ -9,7 +9,7 @@ task :ci do
 end
 
 namespace :ci do
-  desc "Setup Redmine for a new build"
+  desc "Setup Yield for a new build"
   task :setup do
     Rake::Task["tmp:clear"].invoke
     Rake::Task["log:clear"].invoke
@@ -26,7 +26,7 @@ namespace :ci do
     Rake::Task["test:scm:update"].invoke
   end
 
-  desc "Build Redmine"
+  desc "Build Yield"
   task :build do
     if test_suite = ENV['TEST_SUITE']
       Rake::Task["test:#{test_suite}"].invoke

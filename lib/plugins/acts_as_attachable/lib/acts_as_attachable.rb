@@ -1,4 +1,4 @@
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -15,7 +15,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-module Redmine
+module Yield
   module Acts
     module Attachable
       def self.included(base)
@@ -32,7 +32,7 @@ module Redmine
           has_many :attachments, options.merge(:as => :container,
                                                :order => "#{Attachment.table_name}.created_on ASC, #{Attachment.table_name}.id ASC",
                                                :dependent => :destroy)
-          send :include, Redmine::Acts::Attachable::InstanceMethods
+          send :include, Yield::Acts::Attachable::InstanceMethods
           before_save :attach_saved_attachments
         end
       end

@@ -1,4 +1,4 @@
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -30,13 +30,13 @@ class IssueStatusesControllerTest < ActionController::TestCase
     assert_response :success
     assert_template 'index'
   end
-  
+
   def test_index_by_anonymous_should_redirect_to_login_form
     @request.session[:user_id] = nil
     get :index
     assert_redirected_to '/login?back_url=http%3A%2F%2Ftest.host%2Fissue_statuses'
   end
-  
+
   def test_index_by_user_should_respond_with_406
     @request.session[:user_id] = 2
     get :index

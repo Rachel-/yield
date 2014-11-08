@@ -1,6 +1,6 @@
 # encoding: utf-8
 #
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -22,7 +22,7 @@ require File.expand_path('../../test_helper', __FILE__)
 class BoardTest < ActiveSupport::TestCase
   fixtures :projects, :boards, :messages, :attachments, :watchers
 
-  include Redmine::I18n
+  include Yield::I18n
 
   def setup
     @project = Project.find(1)

@@ -1,6 +1,6 @@
 # encoding: utf-8
 #
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -90,7 +90,7 @@ module QueriesHelper
       column_value(column, issue, value)
     end
   end
-  
+
   def column_value(column, issue, value)
     case column.name
     when :id
@@ -145,10 +145,10 @@ module QueriesHelper
 
     export = FCSV.generate(:col_sep => l(:general_csv_separator)) do |csv|
       # csv header fields
-      csv << columns.collect {|c| Redmine::CodesetUtil.from_utf8(c.caption.to_s, encoding) }
+      csv << columns.collect {|c| Yield::CodesetUtil.from_utf8(c.caption.to_s, encoding) }
       # csv lines
       items.each do |item|
-        csv << columns.collect {|c| Redmine::CodesetUtil.from_utf8(csv_content(c, item), encoding) }
+        csv << columns.collect {|c| Yield::CodesetUtil.from_utf8(csv_content(c, item), encoding) }
       end
     end
     export

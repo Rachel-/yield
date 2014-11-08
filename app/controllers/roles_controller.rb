@@ -1,4 +1,4 @@
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -87,7 +87,7 @@ class RolesController < ApplicationController
 
   def permissions
     @roles = Role.sorted.all
-    @permissions = Redmine::AccessControl.permissions.select { |p| !p.public? }
+    @permissions = Yield::AccessControl.permissions.select { |p| !p.public? }
     if request.post?
       @roles.each do |role|
         role.permissions = params[:permissions][role.id.to_s]

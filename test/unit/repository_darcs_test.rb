@@ -1,4 +1,4 @@
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -20,7 +20,7 @@ require File.expand_path('../../test_helper', __FILE__)
 class RepositoryDarcsTest < ActiveSupport::TestCase
   fixtures :projects
 
-  include Redmine::I18n
+  include Yield::I18n
 
   REPOSITORY_PATH = Rails.root.join('tmp/test/darcs_repository').to_s
   NUM_REV = 6
@@ -91,7 +91,7 @@ class RepositoryDarcsTest < ActiveSupport::TestCase
 
     def test_entries
       entries = @repository.entries
-      assert_kind_of Redmine::Scm::Adapters::Entries, entries
+      assert_kind_of Yield::Scm::Adapters::Entries, entries
     end
 
     def test_entries_invalid_revision

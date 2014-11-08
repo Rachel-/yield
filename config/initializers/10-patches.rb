@@ -2,7 +2,7 @@ require 'active_record'
 
 module ActiveRecord
   class Base
-    include Redmine::I18n
+    include Yield::I18n
     # Translate attribute names for validation errors display
     def self.human_attribute_name(attr, *args)
       attr = attr.to_s.sub(/_id$/, '')
@@ -12,7 +12,7 @@ module ActiveRecord
   end
 
   # Undefines private Kernel#open method to allow using `open` scopes in models.
-  # See Defect #11545 (http://www.redmine.org/issues/11545) for details.
+  # See Defect #11545 (http://www.yield.org/issues/11545) for details.
   class Base
     class << self
       undef open
@@ -193,7 +193,7 @@ end
 module ActionController
   class Base
     # Displays an explicit message instead of a NoMethodError exception
-    # when trying to start Redmine with an old session_store.rb
+    # when trying to start Yield with an old session_store.rb
     # TODO: remove it in a later version
     def self.session=(*args)
       $stderr.puts "Please remove config/initializers/session_store.rb and run `rake generate_secret_token`.\n" +

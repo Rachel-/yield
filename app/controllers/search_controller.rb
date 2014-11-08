@@ -1,4 +1,4 @@
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -45,7 +45,7 @@ class SearchController < ApplicationController
       return
     end
 
-    @object_types = Redmine::Search.available_search_types.dup
+    @object_types = Yield::Search.available_search_types.dup
     if projects_to_search.is_a? Project
       # don't search projects
       @object_types.delete('projects')

@@ -1,4 +1,4 @@
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -15,7 +15,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-module Redmine
+module Yield
   module Acts
     module Searchable
       def self.included(base)
@@ -30,7 +30,7 @@ module Redmine
         # * :sort_order - name of the column used to sort results (default to :date_column or created_on)
         # * :permission - permission required to search the model (default to :view_"objects")
         def acts_as_searchable(options = {})
-          return if self.included_modules.include?(Redmine::Acts::Searchable::InstanceMethods)
+          return if self.included_modules.include?(Yield::Acts::Searchable::InstanceMethods)
 
           cattr_accessor :searchable_options
           self.searchable_options = options
@@ -48,7 +48,7 @@ module Redmine
           # Should we search custom fields on this model ?
           searchable_options[:search_custom_fields] = !reflect_on_association(:custom_values).nil?
 
-          send :include, Redmine::Acts::Searchable::InstanceMethods
+          send :include, Yield::Acts::Searchable::InstanceMethods
         end
       end
 

@@ -1,4 +1,4 @@
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -53,7 +53,7 @@ class SysControllerTest < ActionController::TestCase
     r = Project.find(4).repository
     assert r.is_a?(Repository::Subversion)
     assert_equal 'file:///create/project/repository/subproject2', r.url
-    
+
     assert_tag 'repository-subversion',
       :child => {
         :tag => 'id', :content => r.id.to_s,

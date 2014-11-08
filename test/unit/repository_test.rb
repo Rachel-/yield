@@ -1,4 +1,4 @@
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -34,7 +34,7 @@ class RepositoryTest < ActiveSupport::TestCase
            :roles,
            :enumerations
 
-  include Redmine::I18n
+  include Yield::I18n
 
   def setup
     @repository = Project.find(1).repository
@@ -250,9 +250,9 @@ class RepositoryTest < ActiveSupport::TestCase
                     :project => Project.find( 4 ),
                     :url => '/foo/bar/baz' )
     comment = <<-COMMENT
-    This is a loooooooooooooooooooooooooooong comment                                                   
-                                                                                                       
-                                                                                            
+    This is a loooooooooooooooooooooooooooong comment
+
+
     COMMENT
     changeset = Changeset.new(
       :comments => comment, :commit_date => Time.now,

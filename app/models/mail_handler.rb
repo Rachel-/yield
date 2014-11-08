@@ -1,4 +1,4 @@
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -17,7 +17,7 @@
 
 class MailHandler < ActionMailer::Base
   include ActionView::Helpers::SanitizeHelper
-  include Redmine::I18n
+  include Yield::I18n
 
   class UnauthorizedAction < StandardError; end
   class MissingInformation < StandardError; end
@@ -85,7 +85,7 @@ class MailHandler < ActionMailer::Base
     # Ignore emails received from the application emission address to avoid hell cycles
     if sender_email.downcase == Setting.mail_from.to_s.strip.downcase
       if logger
-        logger.info  "MailHandler: ignoring email from Redmine emission address [#{sender_email}]"
+        logger.info  "MailHandler: ignoring email from Yield emission address [#{sender_email}]"
       end
       return false
     end
@@ -144,7 +144,7 @@ class MailHandler < ActionMailer::Base
 
   private
 
-  MESSAGE_ID_RE = %r{^<?redmine\.([a-z0-9_]+)\-(\d+)\.\d+(\.[a-f0-9]+)?@}
+  MESSAGE_ID_RE = %r{^<?yield\.([a-z0-9_]+)\-(\d+)\.\d+(\.[a-f0-9]+)?@}
   ISSUE_REPLY_SUBJECT_RE = %r{\[[^\]]*#(\d+)\]}
   MESSAGE_REPLY_SUBJECT_RE = %r{\[[^\]]*msg(\d+)\]}
 
@@ -200,7 +200,7 @@ class MailHandler < ActionMailer::Base
     issue.description = cleaned_up_text_body
     issue.start_date ||= Date.today if Setting.default_issue_start_date_to_creation_date?
 
-    # add To and Cc as watchers before saving so the watchers can reply to Redmine
+    # add To and Cc as watchers before saving so the watchers can reply to Yield
     add_watchers(issue)
     issue.save!
     add_attachments(issue)
@@ -423,7 +423,7 @@ class MailHandler < ActionMailer::Base
     @plain_text_body = parts.map do |p|
       body_charset = Mail::RubyVer.respond_to?(:pick_encoding) ?
                        Mail::RubyVer.pick_encoding(p.charset).to_s : p.charset
-      Redmine::CodesetUtil.to_utf8(p.body.decoded, body_charset)
+      Yield::CodesetUtil.to_utf8(p.body.decoded, body_charset)
     end.join("\r\n")
 
     # strip html tags and remove doctype directive
@@ -471,7 +471,7 @@ class MailHandler < ActionMailer::Base
     user.mail_notification = 'only_my_events'
 
     unless user.valid?
-      user.login = "user#{Redmine::Utils.random_hex(6)}" unless user.errors[:login].blank?
+      user.login = "user#{Yield::Utils.random_hex(6)}" unless user.errors[:login].blank?
       user.firstname = "-" unless user.errors[:firstname].blank?
       (puts user.errors[:lastname];user.lastname  = "-") unless user.errors[:lastname].blank?
     end

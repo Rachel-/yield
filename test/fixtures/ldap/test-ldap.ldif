@@ -1,9 +1,9 @@
-dn: dc=redmine,dc=org
+dn: dc=yield,dc=org
 objectClass: top
 objectClass: dcObject
 objectClass: organization
-o: redmine.org
-dc: redmine
+o: yield.org
+dc: yield
 structuralObjectClass: organization
 entryUUID: 886f5fca-0a87-102e-8d06-67c361d9bd2d
 creatorsName:
@@ -12,7 +12,7 @@ entryCSN: 20090721211642.955188Z#000000#000#000000
 modifiersName:
 modifyTimestamp: 20090721211642Z
 
-dn: cn=admin,dc=redmine,dc=org
+dn: cn=admin,dc=yield,dc=org
 objectClass: simpleSecurityObject
 objectClass: organizationalRole
 cn: admin
@@ -26,19 +26,19 @@ entryCSN: 20090721211642.961418Z#000000#000#000000
 modifiersName:
 modifyTimestamp: 20090721211642Z
 
-dn: ou=Person,dc=redmine,dc=org
+dn: ou=Person,dc=yield,dc=org
 ou: Person
 objectClass: top
 objectClass: organizationalUnit
 structuralObjectClass: organizationalUnit
 entryUUID: d39dd388-0c84-102e-82fa-dff86c63a7d6
-creatorsName: cn=admin,dc=redmine,dc=org
+creatorsName: cn=admin,dc=yield,dc=org
 createTimestamp: 20090724100222Z
 entryCSN: 20090724100222.924226Z#000000#000#000000
-modifiersName: cn=admin,dc=redmine,dc=org
+modifiersName: cn=admin,dc=yield,dc=org
 modifyTimestamp: 20090724100222Z
 
-dn: uid=example1,ou=Person,dc=redmine,dc=org
+dn: uid=example1,ou=Person,dc=yield,dc=org
 objectClass: posixAccount
 objectClass: top
 objectClass: inetOrgPerson
@@ -50,16 +50,16 @@ homeDirectory: /home/example1
 cn: Example One
 structuralObjectClass: inetOrgPerson
 entryUUID: 285d304e-0c8a-102e-82fc-dff86c63a7d6
-creatorsName: cn=admin,dc=redmine,dc=org
+creatorsName: cn=admin,dc=yield,dc=org
 createTimestamp: 20090724104032Z
 uidNumber: 0
-mail: example1@redmine.org
+mail: example1@yield.org
 userPassword:: e1NIQX1mRXFOQ2NvM1lxOWg1WlVnbEQzQ1pKVDRsQnM9
 entryCSN: 20090724105945.375801Z#000000#000#000000
-modifiersName: cn=admin,dc=redmine,dc=org
+modifiersName: cn=admin,dc=yield,dc=org
 modifyTimestamp: 20090724105945Z
 
-dn: uid=edavis,ou=Person,dc=redmine,dc=org
+dn: uid=edavis,ou=Person,dc=yield,dc=org
 objectClass: posixAccount
 objectClass: top
 objectClass: inetOrgPerson
@@ -70,13 +70,13 @@ uid: edavis
 mail: edavis@littlestreamsoftware.com
 structuralObjectClass: inetOrgPerson
 entryUUID: 9c5f0502-0c8b-102e-82fe-dff86c63a7d6
-creatorsName: cn=admin,dc=redmine,dc=org
+creatorsName: cn=admin,dc=yield,dc=org
 createTimestamp: 20090724105056Z
 homeDirectory: /home/edavis
 cn: Eric Davis
 uidNumber: 0
 userPassword:: e1NIQX1mRXFOQ2NvM1lxOWg1WlVnbEQzQ1pKVDRsQnM9
 entryCSN: 20090724105937.734480Z#000000#000#000000
-modifiersName: cn=admin,dc=redmine,dc=org
+modifiersName: cn=admin,dc=yield,dc=org
 modifyTimestamp: 20090724105937Z
 

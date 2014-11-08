@@ -1,4 +1,4 @@
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -76,7 +76,7 @@ class Setting < ActiveRecord::Base
 
   cattr_accessor :available_settings
   @@available_settings = YAML::load(File.open("#{Rails.root}/config/settings.yml"))
-  Redmine::Plugin.all.each do |plugin|
+  Yield::Plugin.all.each do |plugin|
     next unless plugin.settings
     @@available_settings["plugin_#{plugin.id}"] = {'default' => plugin.settings[:default], 'serialized' => true}
   end
@@ -195,21 +195,21 @@ END_SRC
   end
 
   def self.commit_fix_keywords
-    ActiveSupport::Deprecation.warn "Setting.commit_fix_keywords is deprecated and will be removed in Redmine 3"
+    ActiveSupport::Deprecation.warn "Setting.commit_fix_keywords is deprecated and will be removed in Yield 3"
     if commit_update_keywords.is_a?(Array)
       commit_update_keywords.first && commit_update_keywords.first['keywords']
     end
   end
 
   def self.commit_fix_status_id
-    ActiveSupport::Deprecation.warn "Setting.commit_fix_status_id is deprecated and will be removed in Redmine 3"
+    ActiveSupport::Deprecation.warn "Setting.commit_fix_status_id is deprecated and will be removed in Yield 3"
     if commit_update_keywords.is_a?(Array)
       commit_update_keywords.first && commit_update_keywords.first['status_id']
     end
   end
 
   def self.commit_fix_done_ratio
-    ActiveSupport::Deprecation.warn "Setting.commit_fix_done_ratio is deprecated and will be removed in Redmine 3"
+    ActiveSupport::Deprecation.warn "Setting.commit_fix_done_ratio is deprecated and will be removed in Yield 3"
     if commit_update_keywords.is_a?(Array)
       commit_update_keywords.first && commit_update_keywords.first['done_ratio']
     end

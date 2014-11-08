@@ -1,4 +1,4 @@
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -40,7 +40,7 @@ class CustomFieldsControllerTest < ActionController::TestCase
 
   def test_new_should_work_for_each_customized_class_and_format
     custom_field_classes.each do |klass|
-      Redmine::FieldFormat.available_formats.each do |format_name|
+      Yield::FieldFormat.available_formats.each do |format_name|
         get :new, :type => klass.name, :custom_field => {:field_format => format_name}
         assert_response :success
         assert_template 'new'

@@ -1,6 +1,6 @@
 # encoding: utf-8
 #
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -32,7 +32,7 @@ class MailHandlerTest < ActiveSupport::TestCase
 
   def setup
     ActionMailer::Base.deliveries.clear
-    Setting.notified_events = Redmine::Notifiable.all.collect(&:name)
+    Setting.notified_events = Yield::Notifiable.all.collect(&:name)
   end
 
   def teardown
@@ -743,7 +743,7 @@ class MailHandlerTest < ActiveSupport::TestCase
 
     assert_difference 'Journal.count' do
       journal = submit_email('ticket_reply.eml') do |email|
-        email.sub! %r{^In-Reply-To:.*$}, "In-Reply-To: <redmine.journal-#{private_journal.id}.20060719210421@osiris>"
+        email.sub! %r{^In-Reply-To:.*$}, "In-Reply-To: <yield.journal-#{private_journal.id}.20060719210421@osiris>"
       end
 
       assert_kind_of Journal, journal

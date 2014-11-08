@@ -1,6 +1,6 @@
 # encoding: utf-8
 #
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -304,14 +304,14 @@ class AttachmentsControllerTest < ActionController::TestCase
     end
 
     def test_thumbnail_should_not_exceed_maximum_size
-      Redmine::Thumbnail.expects(:generate).with {|source, target, size| size == 800}
+      Yield::Thumbnail.expects(:generate).with {|source, target, size| size == 800}
 
       @request.session[:user_id] = 2
       get :thumbnail, :id => 16, :size => 2000
     end
 
     def test_thumbnail_should_round_size
-      Redmine::Thumbnail.expects(:generate).with {|source, target, size| size == 250}
+      Yield::Thumbnail.expects(:generate).with {|source, target, size| size == 250}
 
       @request.session[:user_id] = 2
       get :thumbnail, :id => 16, :size => 260

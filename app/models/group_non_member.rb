@@ -1,4 +1,4 @@
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -23,7 +23,7 @@ class GroupNonMember < GroupBuiltin
   def builtin_type
     "non_member"
   end
-  
+
   def self.instance_id
     @@instance_id ||= load_instance.id
   end

@@ -2,12 +2,12 @@ begin
   require "rubygems"
   require "bundler"
 rescue LoadError
-  $stderr.puts "Redmine requires Bundler. Please install it with `gem install bundler`."
+  $stderr.puts "Yield requires Bundler. Please install it with `gem install bundler`."
   exit 1
 end
 
 if Gem::Version.new(Bundler::VERSION) < Gem::Version.new("1.0.21")
-  $stderr.puts "Redmine requires Bundler 1.0.21 (you're using #{Bundler::VERSION}).\nPlease install a newer version with `gem install bundler`."
+  $stderr.puts "Yield requires Bundler 1.0.21 (you're using #{Bundler::VERSION}).\nPlease install a newer version with `gem install bundler`."
   exit 1
 end
 

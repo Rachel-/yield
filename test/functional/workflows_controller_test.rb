@@ -1,4 +1,4 @@
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -92,7 +92,7 @@ class WorkflowsControllerTest < ActionController::TestCase
 
   def test_post_edit_with_additional_transitions
     WorkflowTransition.delete_all
-  
+
     post :edit, :role_id => 2, :tracker_id => 1,
       :transitions => {
         '4' => {'5' => {'always' => '1', 'author' => '0', 'assignee' => '0'}},
@@ -330,7 +330,7 @@ class WorkflowsControllerTest < ActionController::TestCase
         :source_tracker_id => '', :source_role_id => '2',
         :target_tracker_ids => ['2', '3'], :target_role_ids => ['1', '3']
       assert_response 200
-      assert_select 'div.flash.error', :text => 'Please select a source tracker or role' 
+      assert_select 'div.flash.error', :text => 'Please select a source tracker or role'
     end
   end
 

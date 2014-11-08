@@ -1,4 +1,4 @@
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -24,7 +24,7 @@ class RepositoriesGitControllerTest < ActionController::TestCase
            :repositories, :enabled_modules
 
   REPOSITORY_PATH = Rails.root.join('tmp/test/git_repository').to_s
-  REPOSITORY_PATH.gsub!(/\//, "\\") if Redmine::Platform.mswin?
+  REPOSITORY_PATH.gsub!(/\//, "\\") if Yield::Platform.mswin?
   PRJ_ID     = 3
   CHAR_1_HEX = "\xc3\x9c"
   FELIX_HEX  = "Felix Sch\xC3\xA4fer"
@@ -32,7 +32,7 @@ class RepositoriesGitControllerTest < ActionController::TestCase
 
   ## Git, Mercurial and CVS path encodings are binary.
   ## Subversion supports URL encoding for path.
-  ## Redmine Mercurial adapter and extension use URL encoding.
+  ## Yield Mercurial adapter and extension use URL encoding.
   ## Git accepts only binary path in command line parameter.
   ## So, there is no way to use binary command line parameter in JRuby.
   JRUBY_SKIP     = (RUBY_PLATFORM == 'java')
@@ -92,8 +92,8 @@ class RepositoriesGitControllerTest < ActionController::TestCase
     ## Git for Windows (msysGit) changed internal API from ANSI to Unicode in 1.7.10
     ## http://code.google.com/p/msysgit/issues/detail?id=80
     ## So, Latin-1 path tests fail on Japanese Windows
-    WINDOWS_PASS = (Redmine::Platform.mswin? &&
-                         Redmine::Scm::Adapters::GitAdapter.client_version_above?([1, 7, 10]))
+    WINDOWS_PASS = (Yield::Platform.mswin? &&
+                         Yield::Scm::Adapters::GitAdapter.client_version_above?([1, 7, 10]))
     WINDOWS_SKIP_STR = "TODO: This test fails in Git for Windows above 1.7.10"
 
     def test_get_new
@@ -393,7 +393,7 @@ class RepositoriesGitControllerTest < ActionController::TestCase
       assert_not_nil diff
       assert_tag :tag => "form",
                  :attributes => {
-                   :action => "/projects/subproject1/repository/test-diff-path/" + 
+                   :action => "/projects/subproject1/repository/test-diff-path/" +
                                 "revisions/61b685fbe55ab05b/diff"
                  }
       assert_tag :tag => 'input',

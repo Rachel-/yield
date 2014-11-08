@@ -1,0 +1,5 @@
+Description:
+    Generates a plugin controller.
+
+Example:
+    ./script/rails generate yield_plugin_controller meetings pools index show vote

@@ -1,9 +1,9 @@
-desc 'Load Redmine default configuration data. Language is chosen interactively or by setting REDMINE_LANG environment variable.'
+desc 'Load Yield default configuration data. Language is chosen interactively or by setting REDMINE_LANG environment variable.'
 
-namespace :redmine do
+namespace :yield do
   task :load_default_data => :environment do
     require 'custom_field'
-    include Redmine::I18n
+    include Yield::I18n
     set_language_if_valid('en')
 
     envlang = ENV['REDMINE_LANG']
@@ -24,9 +24,9 @@ namespace :redmine do
     end
 
     begin
-      Redmine::DefaultData::Loader.load(current_language)
+      Yield::DefaultData::Loader.load(current_language)
       puts "Default configuration data loaded."
-    rescue Redmine::DefaultData::DataAlreadyLoaded => error
+    rescue Yield::DefaultData::DataAlreadyLoaded => error
       puts error.message
     rescue => error
       puts "Error: " + error.message

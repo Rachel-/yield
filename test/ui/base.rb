@@ -1,4 +1,4 @@
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -24,7 +24,7 @@ Capybara.register_driver :selenium do |app|
   # (also requires chromedriver to be in PATH)
   # Capybara::Selenium::Driver.new(app, :browser => :chrome)
   # Add :switches => %w[--lang=en] to force default browser locale to English
-  # Default for Selenium remote driver is to connect to local host on port 4444 
+  # Default for Selenium remote driver is to connect to local host on port 4444
   # This can be change using :url => 'http://localhost:9195' if necessary
   # PhantomJS 1.8 now directly supports Webdriver Wire API,
   # simply run it with `phantomjs --webdriver 4444`
@@ -36,7 +36,7 @@ end
 # default: 2
 Capybara.default_wait_time = 2
 
-module Redmine
+module Yield
   module UiTest
     # Base class for UI tests
     class Base < ActionDispatch::IntegrationTest
@@ -47,7 +47,7 @@ module Redmine
       # uses a separate server thread, which the transactions would be hidden
       self.use_transactional_fixtures = false
 
-      # Should not depend on locale since Redmine displays login page
+      # Should not depend on locale since Yield displays login page
       # using default browser locale which depend on system locale for "real" browsers drivers
       def log_user(login, password)
         visit '/my/page'

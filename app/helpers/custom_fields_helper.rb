@@ -1,6 +1,6 @@
 # encoding: utf-8
 #
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -114,7 +114,7 @@ module CustomFieldsHelper
 
   # Return an array of custom field formats which can be used in select_tag
   def custom_field_formats_for_select(custom_field)
-    Redmine::FieldFormat.as_select(custom_field.class.customized_class.name)
+    Yield::FieldFormat.as_select(custom_field.class.customized_class.name)
   end
 
   # Renders the custom_values in api views

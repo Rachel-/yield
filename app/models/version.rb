@@ -1,4 +1,4 @@
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -16,7 +16,7 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 class Version < ActiveRecord::Base
-  include Redmine::SafeAttributes
+  include Yield::SafeAttributes
   after_update :update_issues_from_sharing_change
   belongs_to :project
   has_many :fixed_issues, :class_name => 'Issue', :foreign_key => 'fixed_version_id', :dependent => :nullify
@@ -123,9 +123,9 @@ class Version < ActiveRecord::Base
     end
   end
 
-  # TODO: remove in Redmine 3.0
+  # TODO: remove in Yield 3.0
   def completed_pourcent
-    ActiveSupport::Deprecation.warn "Version#completed_pourcent is deprecated and will be removed in Redmine 3.0. Please use #completed_percent instead."
+    ActiveSupport::Deprecation.warn "Version#completed_pourcent is deprecated and will be removed in Yield 3.0. Please use #completed_percent instead."
     completed_percent
   end
 
@@ -138,9 +138,9 @@ class Version < ActiveRecord::Base
     end
   end
 
-  # TODO: remove in Redmine 3.0
+  # TODO: remove in Yield 3.0
   def closed_pourcent
-    ActiveSupport::Deprecation.warn "Version#closed_pourcent is deprecated and will be removed in Redmine 3.0. Please use #closed_percent instead."
+    ActiveSupport::Deprecation.warn "Version#closed_pourcent is deprecated and will be removed in Yield 3.0. Please use #closed_percent instead."
     closed_percent
   end
 

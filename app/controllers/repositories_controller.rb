@@ -1,4 +1,4 @@
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -18,7 +18,7 @@
 require 'SVG/Graph/Bar'
 require 'SVG/Graph/BarHorizontal'
 require 'digest/sha1'
-require 'redmine/scm/adapters'
+require 'yield/scm/adapters'
 
 class ChangesetNotFound < Exception; end
 class InvalidRevisionParam < Exception; end
@@ -35,10 +35,10 @@ class RepositoriesController < ApplicationController
   before_filter :authorize
   accept_rss_auth :revisions
 
-  rescue_from Redmine::Scm::Adapters::CommandFailed, :with => :show_error_command_failed
+  rescue_from Yield::Scm::Adapters::CommandFailed, :with => :show_error_command_failed
 
   def new
-    scm = params[:repository_scm] || (Redmine::Scm::Base.all & Setting.enabled_scm).first
+    scm = params[:repository_scm] || (Yield::Scm::Base.all & Setting.enabled_scm).first
     @repository = Repository.factory(scm)
     @repository.is_default = @project.repository.nil?
     @repository.project = @project
@@ -175,9 +175,9 @@ class RepositoriesController < ApplicationController
          ! is_entry_text_data?(@content, @path)
       # Force the download
       send_opt = { :filename => filename_for_content_disposition(@path.split('/').last) }
-      send_type = Redmine::MimeType.of(@path)
+      send_type = Yield::MimeType.of(@path)
       send_opt[:type] = send_type.to_s if send_type
-      send_opt[:disposition] = (Redmine::MimeType.is_type?('image', @path) && !is_raw ? 'inline' : 'attachment')
+      send_opt[:disposition] = (Yield::MimeType.is_type?('image', @path) && !is_raw ? 'inline' : 'attachment')
       send_data @content, send_opt
     else
       # Prevent empty lines when displaying a file with Windows style eol
@@ -193,7 +193,7 @@ class RepositoriesController < ApplicationController
     # UTF-16 contains "\x00".
     # It is very strict that file contains less than 30% of ascii symbols
     # in non Western Europe.
-    return true if Redmine::MimeType.is_type?('text', path)
+    return true if Yield::MimeType.is_type?('text', path)
     # Ruby 1.8.6 has a bug of integer divisions.
     # http://apidock.com/ruby/v1_8_6_287/String/is_binary_data%3F
     return false if ent.is_binary_data?
@@ -344,7 +344,7 @@ class RepositoriesController < ApplicationController
     render_error :message => l(:error_scm_not_found), :status => 404
   end
 
-  # Handler for Redmine::Scm::Adapters::CommandFailed exception
+  # Handler for Yield::Scm::Adapters::CommandFailed exception
   def show_error_command_failed(exception)
     render_error l(:error_scm_command_failed, exception.message)
   end

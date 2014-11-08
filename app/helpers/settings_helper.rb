@@ -1,6 +1,6 @@
 # encoding: utf-8
 #
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -82,7 +82,7 @@ module SettingsHelper
     label != false ? label_tag("settings_#{setting}", l(label || "setting_#{setting}"), options[:label_options]).html_safe : ''
   end
 
-  # Renders a notification field for a Redmine::Notifiable option
+  # Renders a notification field for a Yield::Notifiable option
   def notification_field(notifiable)
     tag_data = notifiable.parent.present? ?
       {:parent_notifiable => notifiable.parent} :

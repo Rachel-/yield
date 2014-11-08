@@ -1,4 +1,4 @@
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -17,7 +17,7 @@
 
 require File.expand_path('../../../test_helper', __FILE__)
 
-class Redmine::ApiTest::IssuesTest < Redmine::ApiTest::Base
+class Yield::ApiTest::IssuesTest < Yield::ApiTest::Base
   fixtures :projects,
     :users,
     :roles,
@@ -91,7 +91,7 @@ class Redmine::ApiTest::IssuesTest < Redmine::ApiTest::Base
 
     context "with nometa header" do
       should "not contain metadata" do
-        get '/issues.xml', {}, {'X-Redmine-Nometa' => '1'}
+        get '/issues.xml', {}, {'X-Yield-Nometa' => '1'}
 
         assert_tag :tag => 'issues',
           :attributes => {

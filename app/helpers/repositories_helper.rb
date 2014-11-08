@@ -1,6 +1,6 @@
 # encoding: utf-8
 #
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -129,7 +129,7 @@ module RepositoriesHelper
 
   def scm_select_tag(repository)
     scm_options = [["--- #{l(:actionview_instancetag_blank_option)} ---", '']]
-    Redmine::Scm::Base.all.each do |scm|
+    Yield::Scm::Base.all.each do |scm|
     if Setting.enabled_scm.include?(scm) ||
           (repository && repository.class.name.demodulize == scm)
         scm_options << ["Repository::#{scm}".constantize.scm_name, scm]
@@ -266,7 +266,7 @@ module RepositoriesHelper
       }
     end
     heads.sort! { |head1, head2| head1.to_s <=> head2.to_s }
-    space = nil  
+    space = nil
     heads.each do |head|
       if commits_by_scmid.include? head.scmid
         space = index_head((space || -1) + 1, head, commits_by_scmid)

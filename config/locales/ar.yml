@@ -303,7 +303,7 @@ ar:
   field_watcher: مراقب
   field_identity_url: افتح الرابط الخاص بالهوية الشخصية
   field_content: المحتويات
-  field_group_by: تصنيف النتائج بواسطة 
+  field_group_by: تصنيف النتائج بواسطة
   field_sharing: مشاركة
   field_parent_issue: بند العمل الأصلي
   field_member_of_group: "مجموعة المحال"
@@ -999,8 +999,8 @@ ar:
   text_rmagick_available: RMagick available (optional)
   text_wiki_page_destroy_question: This page has %{descendants} child page(s) and descendant(s). What do you want to do?
   text_repository_usernames_mapping: |-
-    Select or update the Redmine user mapped to each username found in the repository log.
-    Users with the same Redmine and repository username or email are automatically mapped.
+    Select or update the Yield user mapped to each username found in the repository log.
+    Users with the same Yield and repository username or email are automatically mapped.
   notice_failed_to_save_time_entries: "Failed to save %{count} time entrie(s) on %{total} selected: %{ids}."
   label_x_issues:
     zero: لا يوجد بنود عمل

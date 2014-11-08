@@ -1,4 +1,4 @@
-# Redmine - project management software
+# Yield - project management software
 # Copyright (C) 2006-2014  Jean-Philippe Lang
 #
 # This program is free software; you can redistribute it and/or
@@ -38,7 +38,7 @@ class CalendarsController < ApplicationController
     @year ||= Date.today.year
     @month ||= Date.today.month
 
-    @calendar = Redmine::Helpers::Calendar.new(Date.civil(@year, @month, 1), current_language, :month)
+    @calendar = Yield::Helpers::Calendar.new(Date.civil(@year, @month, 1), current_language, :month)
     retrieve_query
     @query.group_by = nil
     if @query.valid?
