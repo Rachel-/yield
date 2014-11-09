@@ -282,8 +282,11 @@ module ApplicationHelper
           end
         end
         classes = (ancestors.empty? ? 'root' : 'child')
-        s << "<div class='panel panel-primary #{classes}'><div class='panel-body #{classes}'>"
-        s << h(block_given? ? yield(project) : project.name)
+        s << "<div class='panel panel-primary #{classes}'><div class='panel-heading #{classes}'>"
+        s << project.name
+        s << "</div>\n"
+        s << "<div class='panel-body #{classes}'>"
+        s << h(block_given? ? yield(project) : 'No description')
         s << "</div>\n"
         ancestors << project
       end
