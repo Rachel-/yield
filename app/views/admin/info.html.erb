@@ -1,8 +1,13 @@
-<h2><%=l(:label_information_plural)%></h2>
+<div class="page-header">
+	<h2><%=l(:label_information_plural)%></h2>
+</div>
 
-<p><strong><%= Yield::Info.versioned_name %></strong></p>
+<div class="panel panel-info">
+	<div class="panel-heading"><%=l(:label_information_plural)%></div>
+	<div class="panel-body" style="white-space:pre"><%= Yield::Info.environment %></div>
+</div>
 
-<table class="list">
+<table class="table">
 <% @checklist.each do |label, result| %>
   <tr class="<%= cycle 'odd', 'even' %>">
     <td class="name"><%= l(label) %></td>
@@ -11,9 +16,5 @@
   </tr>
 <% end %>
 </table>
-<br />
-<div class="box">
-<pre><%= Yield::Info.environment %></pre>
-</div>
 
 <% html_title(l(:label_information_plural)) -%>

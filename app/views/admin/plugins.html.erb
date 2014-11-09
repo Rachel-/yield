@@ -1,7 +1,21 @@
-<%= title l(:label_plugins) %>
+<div class="page-header">
+  <h2>
+    <%= l(:label_plugins) %>
+  </h2>
+</div>
 
 <% if @plugins.any? %>
-<table class="list plugins">
+<p><a href="#" id="check-for-updates" class="btn btn-success"><i class="glyphicon glyphicon-repeat"></i> <%= l(:label_check_for_updates) %></a></p>
+
+<table class="table plugins">
+    <thead>
+      <tr>
+        <th><%=h l(:label_plugins) %></th>
+        <th><%=h l(:label_plugins) %></th>
+        <th><%=h l(:label_plugins) %></th>
+        <th><%=h l(:label_plugins) %></th>
+      </tr>
+    </thead>
     <% @plugins.each do |plugin| %>
         <tr id="plugin-<%= plugin.id %>" class="<%= cycle('odd', 'even') %>">
         <td class="name"><span class="name"><%=h plugin.name %></span>
@@ -14,9 +28,8 @@
         </tr>
     <% end %>
 </table>
-<p><a href="#" id="check-for-updates"><%= l(:label_check_for_updates) %></a></p>
 <% else %>
-<p class="nodata"><%= l(:label_no_data) %></p>
+<div class="nodata alert alert-warning"><%= l(:label_no_data) %></div>
 <% end %>
 
 <%= javascript_tag do %>
@@ -25,7 +38,7 @@ $(document).ready(function(){
     e.preventDefault();
     $.ajax({
       dataType: "jsonp",
-      url: "http://www.yield.org/plugins/check_updates",
+      url: "http://www.redmine.org/plugins/check_updates",
       data: <%= raw_json plugin_data_for_updates(@plugins) %>,
       timeout: 3000,
       beforeSend: function(){
@@ -55,7 +68,7 @@ $(document).ready(function(){
       },
       error: function(){
         $('#ajax-indicator').hide();
-        alert("Unable to retrieve plugin informations from www.yield.org");
+        alert("Unable to retrieve plugin informations from www.redmine.org");
       }
     });
   });

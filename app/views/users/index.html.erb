@@ -1,8 +1,7 @@
-<div class="contextual">
-<%= link_to l(:label_user_new), new_user_path, :class => 'icon icon-add' %>
+<div class="page-header">
+  <%= link_to l(:label_user_new), new_user_path, :class => 'btn btn-default pull-right' %>
+  <h2><%=l(:label_user_plural)%></h2>
 </div>
-
-<h2><%=l(:label_user_plural)%></h2>
 
 <%= form_tag(users_path, :method => :get) do %>
 <fieldset><legend><%= l(:label_filter_plural) %></legend>
@@ -22,8 +21,7 @@
 <% end %>
 &nbsp;
 
-<div class="autoscroll">
-<table class="list">
+<table class="table">
   <thead><tr>
   <%= sort_header_tag('login', :caption => l(:field_login)) %>
   <%= sort_header_tag('firstname', :caption => l(:field_firstname)) %>
@@ -52,7 +50,7 @@
 <% end -%>
   </tbody>
 </table>
-</div>
+
 <p class="pagination"><%= pagination_links_full @user_pages, @user_count %></p>
 
 <% html_title(l(:label_user_plural)) -%>

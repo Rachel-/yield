@@ -1,10 +1,10 @@
-<div class="contextual">
-<%= link_to l(:label_group_new), new_group_path, :class => 'icon icon-add' %>
+<div class="page-header">
+  <%= link_to l(:label_group_new), new_group_path, :class => 'btn btn-default pull-right' %>
+  <h2><%= l(:label_group_plural) %></h2>
 </div>
 
-<%= title l(:label_group_plural) %>
 <% if @groups.any? %>
-<table class="list groups">
+<table class="table groups">
   <thead><tr>
   <th><%=l(:label_group)%></th>
   <th><%=l(:label_user_plural)%></th>

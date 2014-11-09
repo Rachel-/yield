@@ -1,11 +1,12 @@
-<div class="contextual">
-<%= link_to l(:label_role_new), new_role_path, :class => 'icon icon-add' %>
-<%= link_to l(:label_permissions_report), permissions_roles_path, :class => 'icon icon-summary' %>
+<div class="page-header">
+  <div class="btn-group pull-right">
+    <%= link_to l(:label_role_new), new_role_path, :class => 'btn btn-default' %>
+    <%= link_to l(:label_permissions_report), permissions_roles_path, :class => 'btn btn-default' %>
+  </div>
+  <h2><%=l(:label_role_plural)%></h2>
 </div>
 
-<h2><%=l(:label_role_plural)%></h2>
-
-<table class="list">
+<table class="table">
   <thead><tr>
     <th><%=l(:label_role)%></th>
     <th><%=l(:button_sort)%></th>

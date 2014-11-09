@@ -1,39 +1,43 @@
-<h2><%= l(:label_home) %></h2>
-
-<div class="splitcontentleft">
-  <%= textilizable Setting.welcome_text %>
-  <% if @news.any? %>
-  <div class="news box">
-  <h3><%=l(:label_news_latest)%></h3>
-    <%= render :partial => 'news/news', :collection => @news %>
-    <%= link_to l(:label_news_view_all), :controller => 'news' %>
-  </div>
-  <% end %>
-  <%= call_hook(:view_welcome_index_left, :projects => @projects) %>
+<div class="page-header">
+  <h2><%= l(:label_home) %></h2>
 </div>
 
-<div class="splitcontentright">
-    <% if @projects.any? %>
-  <div class="projects box">
-  <h3><%=l(:label_project_latest)%></h3>
-    <ul>
-    <% for project in @projects %>
-      <% @project = project %>
-      <li>
-      <%= link_to_project project %> (<%= format_time(project.created_on) %>)
-      <%= textilizable project.short_description, :project => project %>
-      </li>
+<div id="home-widgets" class="widgets-board row">
+  <div class="widgets-column col-md-6 col-sm-12">
+    <%= textilizable Setting.welcome_text %>
+    <% if @news.any? %>
+    <div class="news box">
+    <h3><%=l(:label_news_latest)%></h3>
+      <%= render :partial => 'news/news', :collection => @news %>
+      <%= link_to l(:label_news_view_all), :controller => 'news' %>
+    </div>
     <% end %>
-    <% @project = nil %>
-    </ul>
+    <%= call_hook(:view_welcome_index_left, :projects => @projects) %>
   </div>
-  <% end %>
+
+  <div class="widgets-column col-md-6 col-sm-12">
+    <% if @projects.any? %>
+      <div class="projects panel panel-primary">
+        <div class="panel-heading">
+          <%=l(:label_project_latest)%>
+        </div>
+        <div class="panel-body">
+          <% for project in @projects %>
+            <% @project = project %>
+            <p>
+              <%= link_to_project project %> (<%= format_time(project.created_on) %>)
+              <%= textilizable project.short_description, :project => project %>
+            </p>
+          <% end %>
+          <% @project = nil %>
+        </div>
+      </div>
+    <% end %>
     <%= call_hook(:view_welcome_index_right, :projects => @projects) %>
+  </div>
 </div>
 
 <% content_for :header_tags do %>
-<%= auto_discovery_link_tag(:atom, {:controller => 'news', :action => 'index', :key => User.current.rss_key, :format => 'atom'},
-                                   :title => "#{Setting.app_title}: #{l(:label_news_latest)}") %>
-<%= auto_discovery_link_tag(:atom, {:controller => 'activities', :action => 'index', :key => User.current.rss_key, :format => 'atom'},
-                                   :title => "#{Setting.app_title}: #{l(:label_activity)}") %>
+<%= auto_discovery_link_tag(:atom, {:controller => 'news', :action => 'index', :key => User.current.rss_key, :format => 'atom'}, :title => "#{Setting.app_title}: #{l(:label_news_latest)}") %>
+<%= auto_discovery_link_tag(:atom, {:controller => 'activities', :action => 'index', :key => User.current.rss_key, :format => 'atom'}, :title => "#{Setting.app_title}: #{l(:label_activity)}") %>
 <% end %>

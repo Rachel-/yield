@@ -1,7 +1,7 @@
 # encoding: utf-8
 #
 # Yield - project management software
-# Copyright (C) 2006-2014  Jean-Philippe Lang
+# Copyright (C) 2014  Hardpixel
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -49,16 +49,16 @@ module ProjectsHelper
   def render_project_action_links
     links = []
     if User.current.allowed_to?(:add_project, nil, :global => true)
-      links << link_to(l(:label_project_new), new_project_path, :class => 'icon icon-add')
+      links << link_to(l(:label_project_new), new_project_path, :class => 'btn btn-default')
     end
     if User.current.allowed_to?(:view_issues, nil, :global => true)
-      links << link_to(l(:label_issue_view_all), issues_path)
+      links << link_to(l(:label_issue_view_all), issues_path, :class => 'btn btn-default')
     end
     if User.current.allowed_to?(:view_time_entries, nil, :global => true)
-      links << link_to(l(:label_overall_spent_time), time_entries_path)
+      links << link_to(l(:label_overall_spent_time), time_entries_path, :class => 'btn btn-default')
     end
-    links << link_to(l(:label_overall_activity), activity_path)
-    links.join(" | ").html_safe
+    links << link_to(l(:label_overall_activity), activity_path, :class => 'btn btn-default')
+    links.join("").html_safe
   end
 
   # Renders the projects index

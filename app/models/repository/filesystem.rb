@@ -1,5 +1,5 @@
 # Yield - project management software
-# Copyright (C) 2006-2014  Jean-Philippe Lang
+# Copyright (C) 2014  Hardpixel
 #
 # FileSystem adapter
 # File written by Paul Rivier, at Demotera.

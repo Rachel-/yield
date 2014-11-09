@@ -1,10 +1,11 @@
-<div class="contextual">
-<%= link_to l(:label_auth_source_new), {:action => 'new'}, :class => 'icon icon-add' %>
+<div class="page-header">
+  <div class="contextual">
+  <%= link_to l(:label_auth_source_new), {:action => 'new'}, :class => 'btn btn-default pull-right' %>
+  </div>
+  <h2><%= l(:label_auth_source_plural) %></h2>
 </div>
 
-<%= title l(:label_auth_source_plural) %>
-
-<table class="list">
+<table class="table">
   <thead><tr>
     <th><%=l(:field_name)%></th>
     <th><%=l(:field_type)%></th>

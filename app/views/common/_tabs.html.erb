@@ -1,26 +1,26 @@
-<div class="tabs">
-  <ul>
+<!-- Nav tabs -->
+<ul class="nav nav-tabs" role="tablist" id="tabs">
   <% tabs.each do |tab| -%>
-    <li><%= link_to l(tab[:label]), { :tab => tab[:name] },
-                                    :id => "tab-#{tab[:name]}",
-                                    :class => (tab[:name] != selected_tab ? nil : 'selected'),
-                                    :onclick => "showTab('#{tab[:name]}', this.href); this.blur(); return false;" %></li>
+    <li class="<%= tab[:name] != selected_tab ? nil : 'active'%>">
+      <a href="#<%= tab[:name] %>" data-toggle="tab" role="tab">
+        <%= l(tab[:label]) %>
+      </a>
+    </li>
   <% end -%>
-  </ul>
-  <div class="tabs-buttons" style="display:none;">
-    <button class="tab-left" type="button" onclick="moveTabLeft(this);"></button>
-    <button class="tab-right" type="button" onclick="moveTabRight(this);"></button>
-  </div>
+</ul>
+
+<!-- Tab panes -->
+<div class="tab-content">
+  <% tabs.each do |tab| -%>
+    <div id="<%= tab[:name] %>" class="tabpane <%= tab[:name] != selected_tab ? 'tab-pane' : 'tab-pane active' %>" role="tabpanel">
+      <%= render(:partial => tab[:partial], :locals => {:tab => tab} ) %>
+    </div>
+  <% end -%>
 </div>
 
 <script>
-  $(document).ready(displayTabsButtons);
-  $(window).resize(displayTabsButtons);
+  $('#tabs a').click(function (e) {
+    e.preventDefault()
+    $(this).tab('show')
+  })
 </script>
-
-<% tabs.each do |tab| -%>
-  <%= content_tag('div', render(:partial => tab[:partial], :locals => {:tab => tab} ),
-                       :id => "tab-content-#{tab[:name]}",
-                       :style => (tab[:name] != selected_tab ? 'display:none' : nil),
-                       :class => 'tab-content') %>
-<% end -%>

@@ -263,6 +263,8 @@ en:
   field_parent: Subproject of
   field_is_in_roadmap: Issues displayed in roadmap
   field_login: Login
+  field_autologin: Autologin
+  field_username: Username
   field_mail_notification: Email notifications
   field_admin: Administrator
   field_last_login_on: Last connection

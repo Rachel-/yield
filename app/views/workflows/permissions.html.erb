@@ -1,6 +1,7 @@
-<%= render :partial => 'action_menu' %>
-
-<%= title l(:label_workflow) %>
+<div class="page-header">
+  <%= render :partial => 'action_menu' %>
+  <h2><%= l(:label_workflow) %></h2>
+</div>
 
 <div class="tabs">
   <ul>
@@ -36,7 +37,7 @@
     <%= @roles.map {|role| hidden_field_tag 'role_id[]', role.id}.join.html_safe %>
     <%= hidden_field_tag 'used_statuses_only', params[:used_statuses_only] %>
     <div class="autoscroll">
-    <table class="list workflows fields_permissions">
+    <table class="table workflows fields_permissions">
     <thead>
       <tr>
         <th>
@@ -96,7 +97,7 @@
     </tbody>
     </table>
     </div>
-    <%= submit_tag l(:button_save) %>
+    <%= submit_tag l(:button_save), :class => 'btn btn-success' %>
   <% end %>
 <% end %>
 

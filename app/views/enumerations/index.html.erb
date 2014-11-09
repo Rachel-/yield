@@ -1,11 +1,13 @@
-<h2><%=l(:label_enumerations)%></h2>
+<div class="page-header">
+  <h2><%=l(:label_enumerations)%></h2>
+</div>
 
 <% Enumeration.get_subclasses.each do |klass| %>
 <h3><%= l(klass::OptionName) %></h3>
 
 <% enumerations = klass.shared %>
 <% if enumerations.any? %>
-<table class="list"><thead>
+<table class="table"><thead>
 <tr>
     <th><%= l(:field_name) %></th>
     <th><%= l(:field_is_default) %></th>
@@ -26,7 +28,7 @@
 <% reset_cycle %>
 <% end %>
 
-<p><%= link_to l(:label_enumeration_new), new_enumeration_path(:type => klass.name) %></p>
+<p><%= link_to l(:label_enumeration_new), new_enumeration_path(:type => klass.name), :class => 'btn btn-success' %></p>
 <% end %>
 
 <% html_title(l(:label_enumerations)) -%>

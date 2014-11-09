@@ -1,7 +1,7 @@
 # encoding: utf-8
 #
 # Yield - project management software
-# Copyright (C) 2006-2014  Jean-Philippe Lang
+# Copyright (C) 2014  Hardpixel
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -30,7 +30,7 @@ module WatchersHelper
     return '' unless objects.any?
 
     watched = Watcher.any_watched?(objects, user)
-    css = [watcher_css(objects), watched ? 'icon icon-fav' : 'icon icon-fav-off'].join(' ')
+    css = [watcher_css(objects), watched ? 'btn btn-default active' : 'btn btn-default'].join(' ')
     text = watched ? l(:button_unwatch) : l(:button_watch)
     url = watch_path(
       :object_type => objects.first.class.to_s.underscore,

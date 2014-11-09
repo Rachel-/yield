@@ -1,47 +1,62 @@
-<%= call_hook :view_account_login_top %>
-<div id="login-form">
-<%= form_tag(signin_path) do %>
-<%= back_url_hidden_field_tag %>
-<table>
-<tr>
-    <td style="text-align:right;"><label for="username"><%=l(:field_login)%>:</label></td>
-    <td style="text-align:left;"><%= text_field_tag 'username', params[:username], :tabindex => '1' %></td>
-</tr>
-<tr>
-    <td style="text-align:right;"><label for="password"><%=l(:field_password)%>:</label></td>
-    <td style="text-align:left;"><%= password_field_tag 'password', nil, :tabindex => '2' %></td>
-</tr>
-<% if Setting.openid? %>
-<tr>
-  <td style="text-align:right;"><label for="openid_url"><%=l(:field_identity_url)%></label></td>
-  <td style="text-align:left;"><%= text_field_tag "openid_url", nil, :tabindex => '3' %></td>
-</tr>
-<% end %>
-<tr>
-    <td></td>
-    <td style="text-align:left;">
-        <% if Setting.autologin? %>
-        <label for="autologin"><%= check_box_tag 'autologin', 1, false, :tabindex => 4 %> <%= l(:label_stay_logged_in) %></label>
-        <% end %>
-    </td>
-</tr>
-<tr>
-    <td style="text-align:left;">
-        <% if Setting.lost_password? %>
-            <%= link_to l(:label_password_lost), lost_password_path %>
-        <% end %>
-    </td>
-    <td style="text-align:right;">
-        <input type="submit" name="login" value="<%=l(:button_login)%> &#187;" tabindex="5"/>
-    </td>
-</tr>
-</table>
-<% end %>
+<div id="login-form" class="panel panel-default col-sm-12 col-md-4 col-md-offset-4">
+  <div class="panel-body">
+    <%= call_hook :view_account_login_top %>
+    <%= form_tag(signin_path) do %>
+        <%= back_url_hidden_field_tag %>
+        <fieldset>
+          <!-- Form Name -->
+          <legend><%=l(:field_login)%></legend>
+
+          <!-- Text input-->
+          <div class="form-group">
+            <label for="username"><%=l(:field_username)%></label>
+            <%= text_field_tag 'username', params[:username], :tabindex => '1', :class => 'form-control input-md' %>
+            <span class="help-block">Enter your username</span>
+          </div>
+
+          <!-- Password input-->
+          <div class="form-group">
+            <label for="password"><%=l(:field_password)%></label>
+            <%= password_field_tag 'password', nil, :tabindex => '2', :class => 'form-control input-md' %>
+            <span class="help-block">Enter your password</span>
+          </div>
+
+          <!-- Text input-->
+          <% if Setting.openid? %>
+              <div class="form-group">
+                <label for="openid_url"><%=l(:field_identity_url)%></label>
+                <%= text_field_tag "openid_url", nil, :tabindex => '3', :class => 'form-control input-md' %>
+                <span class="help-block">Enter your openid_url</span>
+              </div>
+          <% end %>
+
+          <!-- Multiple Checkboxes (inline) -->
+          <% if Setting.autologin? %>
+              <div class="form-group">
+                <label class="checkbox-inline" for="autologin">
+                  <%= check_box_tag 'autologin', 1, false, :tabindex => 4 %>
+                  <%= l(:label_stay_logged_in) %>
+                </label>
+              </div>
+          <% end %>
+
+          <!-- Button -->
+          <div class="form-group">
+            <button id="login" name="login" class="btn btn-success <%= 'pull-right' if Setting.lost_password? %>">
+                <%=l(:button_login)%>
+            </button>
+            <% if Setting.lost_password? %>
+                <%= link_to l(:label_password_lost), lost_password_path, :class => 'btn btn-info' %>
+            <% end %>
+          </div>
+        </fieldset>
+    <% end %>
+    <%= call_hook :view_account_login_bottom %>
+  </div>
 </div>
-<%= call_hook :view_account_login_bottom %>
 
 <% if params[:username].present? %>
-<%= javascript_tag "$('#password').focus();" %>
+    <%= javascript_tag "$('#password').focus();" %>
 <% else %>
-<%= javascript_tag "$('#username').focus();" %>
+    <%= javascript_tag "$('#username').focus();" %>
 <% end %>

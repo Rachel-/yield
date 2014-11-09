@@ -7,7 +7,7 @@
 <meta name="keywords" content="issue,bug,tracker" />
 <%= csrf_meta_tag %>
 <%= favicon %>
-<%= stylesheet_link_tag 'jquery/jquery-ui-1.11.0', 'application', :media => 'all' %>
+<%= stylesheet_link_tag 'application', :media => 'all' %>
 <%= stylesheet_link_tag 'rtl', :media => 'all' if l(:direction) == 'rtl' %>
 <%= javascript_heads %>
 <%= heads_for_theme %>
@@ -16,65 +16,88 @@
 <%= yield :header_tags -%>
 </head>
 <body class="<%=h body_css_classes %>">
-<div id="wrapper">
-<div id="wrapper2">
-<div id="wrapper3">
-<div id="top-menu">
-    <div id="account">
-        <%= render_menu :account_menu -%>
-    </div>
-    <%= content_tag('div', "#{l(:label_logged_as)} #{link_to_user(User.current, :format => :username)}".html_safe, :id => 'loggedas') if User.current.logged? %>
-    <%= render_menu :top_menu if User.current.logged? || !Setting.login_required? -%>
-</div>
 
-<div id="header">
-    <% if User.current.logged? || !Setting.login_required? %>
-    <div id="quick-search">
-        <%= form_tag({:controller => 'search', :action => 'index', :id => @project}, :method => :get ) do %>
-        <%= hidden_field_tag(controller.default_search_scope, 1, :id => nil) if controller.default_search_scope %>
-        <label for='q'>
-          <%= link_to l(:label_search), {:controller => 'search', :action => 'index', :id => @project}, :accesskey => accesskey(:search) %>:
-        </label>
-        <%= text_field_tag 'q', @question, :size => 20, :class => 'small', :accesskey => accesskey(:quick_search) %>
+  <nav id="top-bar" class="navbar navbar-default navbar-static-top navbar-inverse" role="navigation">
+    <div class="container">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#top-navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+
+        <%= link_to Yield::Info.app_name, '/', :class => "navbar-brand" %>
+
+        <p class="navbar-text"><%= page_header_title %></p>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="top-navbar-collapse">
+
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <%= avatar(User.current, :size => "26") %> <span class="caret"></span>
+            </a>
+            <%= render_menu :account_menu, nil, 'dropdown-menu' -%>
+          </li>
+        </ul>
+
+        <%= render_menu :top_menu, nil, 'nav navbar-nav navbar-right' if User.current.logged? || !Setting.login_required? -%>
+
+        <% if User.current.logged? || !Setting.login_required? %>
+            <%= form_tag({:controller => 'search', :action => 'index', :id => @project}, :method => :get, :class => 'navbar-form navbar-right' ) do %>
+              <div class="form-group">
+                <%= hidden_field_tag(controller.default_search_scope, 1, :id => nil) if controller.default_search_scope %>
+                <%= text_field_tag 'q', @question, :size => 20, :class => 'form-control', :placeholder => l(:label_search), :accesskey => accesskey(:quick_search) %>
+              </div>
+            <% end %>
         <% end %>
-        <%= render_project_jump_box %>
-    </div>
-    <% end %>
 
-    <h1><%= page_header_title %></h1>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
 
-    <% if display_main_menu?(@project) %>
-    <div id="main-menu">
+  <% if display_main_menu?(@project) %>
+    <div id="main-bar">
+      <div class="container">
         <%= render_main_menu(@project) %>
+      </div>
     </div>
-    <% end %>
-</div>
+  <% end %>
 
-<div id="main" class="<%= sidebar_content? ? '' : 'nosidebar' %>">
-    <div id="sidebar">
-        <%= yield :sidebar %>
-        <%= view_layouts_base_sidebar_hook_response %>
+  <div id="main" class="<%= sidebar_content? ? '' : 'nosidebar' %>">
+    <div class="container">
+      <div class="row">
+        <% if sidebar_content? %>
+          <div id="sidebar" class="col-xs-12 col-md-3">
+            <%= yield :sidebar %>
+            <%= view_layouts_base_sidebar_hook_response %>
+          </div>
+        <% end %>
+
+        <div id="content" class="<%= sidebar_content? ? 'col-xs-12 col-md-9' : 'col-xs-12' %>">
+          <%= render_flash_messages %>
+          <%= yield %>
+          <%= call_hook :view_layouts_base_content %>
+        </div>
+      </div>
     </div>
+  </div>
 
-    <div id="content">
-        <%= render_flash_messages %>
-        <%= yield %>
-        <%= call_hook :view_layouts_base_content %>
-        <div style="clear:both;"></div>
+  <div id="footer" class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container">
+      <p class="navbar-text navbar-left">
+        Powered by <%= link_to Yield::Info.app_name, Yield::Info.url %> Project Management
+      </p>
+      <p class="navbar-text navbar-right">
+        &copy; Copyright 2014 Hardpixel
+      </p>
     </div>
-</div>
-</div>
+  </div>
 
-<div id="ajax-indicator" style="display:none;"><span><%= l(:label_loading) %></span></div>
-<div id="ajax-modal" style="display:none;"></div>
-
-<div id="footer">
-  <div class="bgl"><div class="bgr">
-    Powered by <%= link_to Yield::Info.app_name, Yield::Info.url %> &copy; 2006-2014 Jean-Philippe Lang
-  </div></div>
-</div>
-</div>
-</div>
-<%= call_hook :view_layouts_base_body_bottom %>
+  <%= call_hook :view_layouts_base_body_bottom %>
 </body>
 </html>

@@ -1,5 +1,5 @@
 # Yield - project management software
-# Copyright (C) 2006-2014  Jean-Philippe Lang
+# Copyright (C) 2014  Hardpixel
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -77,7 +77,7 @@ module Yield
 
       # Renders the application main menu
       def render_main_menu(project)
-        render_menu((project && !project.new_record?) ? :project_menu : :application_menu, project)
+        render_menu((project && !project.new_record?) ? :project_menu : :application_menu, project, 'nav nav-pills nav-justified')
       end
 
       def display_main_menu?(project)
@@ -85,12 +85,12 @@ module Yield
         Yield::MenuManager.items(menu_name).children.present?
       end
 
-      def render_menu(menu, project=nil)
+      def render_menu(menu, project=nil, css_classes='nav')
         links = []
         menu_items_for(menu, project) do |node|
           links << render_menu_node(node, project)
         end
-        links.empty? ? nil : content_tag('ul', links.join("\n").html_safe)
+        links.empty? ? nil : content_tag('ul', links.join("\n").html_safe, :class => css_classes)
       end
 
       def render_menu_node(node, project=nil)

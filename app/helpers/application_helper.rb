@@ -1,7 +1,7 @@
 # encoding: utf-8
 #
 # Yield - project management software
-# Copyright (C) 2006-2014  Jean-Philippe Lang
+# Copyright (C) 2014  Hardpixel
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -272,22 +272,22 @@ module ApplicationHelper
         # set the project environment to please macros.
         @project = project
         if (ancestors.empty? || project.is_descendant_of?(ancestors.last))
-          s << "<ul class='projects #{ ancestors.empty? ? 'root' : nil}'>\n"
+          s << "<div class='projects #{ ancestors.empty? ? 'root' : nil}'>\n"
         else
           ancestors.pop
-          s << "</li>"
+          s << "</div>"
           while (ancestors.any? && !project.is_descendant_of?(ancestors.last))
             ancestors.pop
-            s << "</ul></li>\n"
+            s << "</div></div>\n"
           end
         end
         classes = (ancestors.empty? ? 'root' : 'child')
-        s << "<li class='#{classes}'><div class='#{classes}'>"
+        s << "<div class='panel panel-primary #{classes}'><div class='panel-body #{classes}'>"
         s << h(block_given? ? yield(project) : project.name)
         s << "</div>\n"
         ancestors << project
       end
-      s << ("</li></ul>\n" * ancestors.size)
+      s << ("</div></div>\n" * ancestors.size)
       @project = original_project
     end
     s.html_safe
@@ -492,9 +492,9 @@ module ApplicationHelper
   end
 
   def other_formats_links(&block)
-    concat('<p class="other-formats">'.html_safe + l(:label_export_to))
+    concat('<div class="row"><div class="other-formats col-xs-12 text-right">'.html_safe + l(:label_export_to))
     yield Yield::Views::OtherFormatsBuilder.new(self)
-    concat('</p>'.html_safe)
+    concat('</div></div>'.html_safe)
   end
 
   def page_header_title
@@ -1076,11 +1076,11 @@ module ApplicationHelper
     objects = objects.map {|o| o.is_a?(String) ? instance_variable_get("@#{o}") : o}.compact
     errors = objects.map {|o| o.errors.full_messages}.flatten
     if errors.any?
-      html << "<div id='errorExplanation'><ul>\n"
+      html << "<div id='errorExplanation' class='alert alert-danger' role='alert'\n"
       errors.each do |error|
-        html << "<li>#{h error}</li>\n"
+        html << "<h5>#{h error}</h5>\n"
       end
-      html << "</ul></div>\n"
+      html << "</div>\n"
     end
     html.html_safe
   end
@@ -1138,13 +1138,10 @@ module ApplicationHelper
     pcts << (100 - pcts[1] - pcts[0])
     width = options[:width] || '100px;'
     legend = options[:legend] || ''
-    content_tag('table',
-      content_tag('tr',
-        (pcts[0] > 0 ? content_tag('td', '', :style => "width: #{pcts[0]}%;", :class => 'closed') : ''.html_safe) +
-        (pcts[1] > 0 ? content_tag('td', '', :style => "width: #{pcts[1]}%;", :class => 'done') : ''.html_safe) +
-        (pcts[2] > 0 ? content_tag('td', '', :style => "width: #{pcts[2]}%;", :class => 'todo') : ''.html_safe)
-      ), :class => "progress progress-#{pcts[0]}", :style => "width: #{width};").html_safe +
-      content_tag('p', legend, :class => 'percent').html_safe
+    content_tag('div',
+        (pcts[0] > 0 ? content_tag('div', legend, :style => "width: #{pcts[0]}%;", :class => 'progress-bar-success progress-bar') : ''.html_safe) +
+        (pcts[1] > 0 ? content_tag('div', legend, :style => "width: #{pcts[1]}%;", :class => 'progress-bar-success progress-bar') : ''.html_safe),
+        :class => "progress progress-#{pcts[0]}", :style => "width: #{width};").html_safe
   end
 
   def checked_image(checked=true)
@@ -1200,58 +1197,58 @@ module ApplicationHelper
     end
   end
 
-  # Overrides Rails' stylesheet_link_tag with themes and plugins support.
-  # Examples:
-  #   stylesheet_link_tag('styles') # => picks styles.css from the current theme or defaults
-  #   stylesheet_link_tag('styles', :plugin => 'foo) # => picks styles.css from plugin's assets
-  #
-  def stylesheet_link_tag(*sources)
-    options = sources.last.is_a?(Hash) ? sources.pop : {}
-    plugin = options.delete(:plugin)
-    sources = sources.map do |source|
-      if plugin
-        "/plugin_assets/#{plugin}/stylesheets/#{source}"
-      elsif current_theme && current_theme.stylesheets.include?(source)
-        current_theme.stylesheet_path(source)
-      else
-        source
-      end
-    end
-    super sources, options
-  end
+  # # Overrides Rails' stylesheet_link_tag with themes and plugins support.
+  # # Examples:
+  # #   stylesheet_link_tag('styles') # => picks styles.css from the current theme or defaults
+  # #   stylesheet_link_tag('styles', :plugin => 'foo) # => picks styles.css from plugin's assets
+  # #
+  # def stylesheet_link_tag(*sources)
+  #   options = sources.last.is_a?(Hash) ? sources.pop : {}
+  #   plugin = options.delete(:plugin)
+  #   sources = sources.map do |source|
+  #     if plugin
+  #       "/plugin_assets/#{plugin}/stylesheets/#{source}"
+  #     elsif current_theme && current_theme.stylesheets.include?(source)
+  #       current_theme.stylesheet_path(source)
+  #     else
+  #       source
+  #     end
+  #   end
+  #   super sources, options
+  # end
 
-  # Overrides Rails' image_tag with themes and plugins support.
-  # Examples:
-  #   image_tag('image.png') # => picks image.png from the current theme or defaults
-  #   image_tag('image.png', :plugin => 'foo) # => picks image.png from plugin's assets
-  #
-  def image_tag(source, options={})
-    if plugin = options.delete(:plugin)
-      source = "/plugin_assets/#{plugin}/images/#{source}"
-    elsif current_theme && current_theme.images.include?(source)
-      source = current_theme.image_path(source)
-    end
-    super source, options
-  end
+  # # Overrides Rails' image_tag with themes and plugins support.
+  # # Examples:
+  # #   image_tag('image.png') # => picks image.png from the current theme or defaults
+  # #   image_tag('image.png', :plugin => 'foo) # => picks image.png from plugin's assets
+  # #
+  # def image_tag(source, options={})
+  #   if plugin = options.delete(:plugin)
+  #     source = "/plugin_assets/#{plugin}/images/#{source}"
+  #   elsif current_theme && current_theme.images.include?(source)
+  #     source = current_theme.image_path(source)
+  #   end
+  #   super source, options
+  # end
 
-  # Overrides Rails' javascript_include_tag with plugins support
-  # Examples:
-  #   javascript_include_tag('scripts') # => picks scripts.js from defaults
-  #   javascript_include_tag('scripts', :plugin => 'foo) # => picks scripts.js from plugin's assets
-  #
-  def javascript_include_tag(*sources)
-    options = sources.last.is_a?(Hash) ? sources.pop : {}
-    if plugin = options.delete(:plugin)
-      sources = sources.map do |source|
-        if plugin
-          "/plugin_assets/#{plugin}/javascripts/#{source}"
-        else
-          source
-        end
-      end
-    end
-    super sources, options
-  end
+  # # Overrides Rails' javascript_include_tag with plugins support
+  # # Examples:
+  # #   javascript_include_tag('scripts') # => picks scripts.js from defaults
+  # #   javascript_include_tag('scripts', :plugin => 'foo) # => picks scripts.js from plugin's assets
+  # #
+  # def javascript_include_tag(*sources)
+  #   options = sources.last.is_a?(Hash) ? sources.pop : {}
+  #   if plugin = options.delete(:plugin)
+  #     sources = sources.map do |source|
+  #       if plugin
+  #         "/plugin_assets/#{plugin}/javascripts/#{source}"
+  #       else
+  #         source
+  #       end
+  #     end
+  #   end
+  #   super sources, options
+  # end
 
   # TODO: remove this in 2.5.0
   def has_content?(name)
@@ -1298,7 +1295,7 @@ module ApplicationHelper
 
   # Returns the javascript tags that are included in the html layout head
   def javascript_heads
-    tags = javascript_include_tag('jquery-1.11.1-ui-1.11.0-ujs-3.1.1', 'application')
+    tags = javascript_include_tag('application')
     unless User.current.pref.warn_on_leaving_unsaved == '0'
       tags << "\n".html_safe + javascript_tag("$(window).load(function(){ warnLeavingUnsaved('#{escape_javascript l(:text_warn_on_leaving_unsaved)}'); });")
     end

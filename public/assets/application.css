@@ -8201,3 +8201,46 @@ button.close {
     display: none !important;
   }
 }
+/* line 6, ../../app/assets/stylesheets/application.css.sass */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+/* line 10, ../../app/assets/stylesheets/application.css.sass */
+body {
+  padding-bottom: 70px;
+}
+
+/* line 13, ../../app/assets/stylesheets/application.css.sass */
+.gravatar {
+  border-radius: 4px;
+}
+
+/* line 20, ../../app/assets/stylesheets/application.css.sass */
+#top-bar .gravatar {
+  position: relative;
+  margin-top: -8px;
+  top: 3px;
+}
+
+/* line 29, ../../app/assets/stylesheets/application.css.sass */
+#main-bar .nav-justified a {
+  white-space: nowrap;
+}
+
+/* line 34, ../../app/assets/stylesheets/application.css.sass */
+#sidebar {
+  padding-top: 0.5em;
+}
+
+/* line 39, ../../app/assets/stylesheets/application.css.sass */
+#footer {
+  position: absolute !important;
+}
+
+/* line 44, ../../app/assets/stylesheets/application.css.sass */
+#login-form, #password-lost-form, #register-form, #recover-password-form {
+  margin-top: 5em;
+  margin-bottom: 5em;
+}

@@ -1,34 +1,77 @@
-<h2><%=l(:label_register)%> <%=link_to l(:label_login_with_open_id_option), signin_url if Setting.openid? %></h2>
+<div id="register-form" class="panel panel-default col-sm-12 col-md-4 col-md-offset-4">
+  <div class="panel-body">
+    <%= labelled_form_for @user, :url => register_path, :class => 'form-horizontal' do |f| %>
 
-<%= labelled_form_for @user, :url => register_path do |f| %>
-<%= error_messages_for 'user' %>
+      <%= error_messages_for 'user' %>
 
-<div class="box tabular">
-<% if @user.auth_source_id.nil? %>
-  <p><%= f.text_field :login, :size => 25, :required => true %></p>
+      <fieldset>
 
-  <p><%= f.password_field :password, :size => 25, :required => true %>
-  <em class="info"><%= l(:text_caracters_minimum, :count => Setting.password_min_length) %></em></p>
+          <!-- Form Name -->
+          <legend><%=l(:label_register)%> <%=link_to l(:label_login_with_open_id_option), signin_url if Setting.openid? %></legend>
 
-  <p><%= f.password_field :password_confirmation, :size => 25, :required => true %></p>
-<% end %>
+          <% if @user.auth_source_id.nil? %>
+            <!-- Text input-->
+            <div class="form-group">
+              <%= f.text_field :login, :size => 25, :required => true, :class => 'form-control input-md' %>
+              <span class="help-block">Enter your username</span>
+            </div>
 
-<p><%= f.text_field :firstname, :required => true %></p>
-<p><%= f.text_field :lastname, :required => true %></p>
-<p><%= f.text_field :mail, :required => true %></p>
+            <!-- Password input-->
+            <div class="form-group">
+                <%= f.password_field :password, :size => 25, :required => true, :class => 'form-control input-md' %>
+                <span class="help-block">Enter your password. <%= l(:text_caracters_minimum, :count => Setting.password_min_length) %></span>
+            </div>
 
-<% unless @user.force_default_language? %>
-<p><%= f.select :language, lang_options_for_select %></p>
-<% end %>
+            <!-- Password input-->
+            <div class="form-group">
+                <%= f.password_field :password_confirmation, :size => 25, :required => true, :class => 'form-control input-md' %>
+                <span class="help-block">Confirm your password</span>
+            </div>
+          <% end %>
 
-<% if Setting.openid? %>
-  <p><%= f.text_field :identity_url  %></p>
-<% end %>
+          <!-- Text input-->
+          <div class="form-group">
+            <%= f.text_field :firstname, :required => true, :class => 'form-control input-md' %>
+            <span class="help-block">Enter your first name</span>
+          </div>
 
-<% @user.custom_field_values.select {|v| v.editable? || v.required?}.each do |value| %>
-  <p><%= custom_field_tag_with_label :user, value %></p>
-<% end %>
+          <!-- Text input-->
+          <div class="form-group">
+            <%= f.text_field :lastname, :required => true, :class => 'form-control input-md' %>
+            <span class="help-block">Enter your last name</span>
+          </div>
+
+          <!-- Select Basic -->
+          <% unless @user.force_default_language? %>
+            <div class="form-group">
+                <%= f.select :language, lang_options_for_select, {}, :class => 'form-control input-md' %>
+                <span class="help-block">Select your language</span>
+            </div>
+          <% end %>
+
+          <!-- Text input-->
+          <% if Setting.openid? %>
+            <div class="form-group">
+              <%= f.text_field :identity_url, :class => 'form-control input-md' %>
+              <span class="help-block">Enter your OpenID</span>
+            </div>
+          <% end %>
+
+          <% @user.custom_field_values.select {|v| v.editable? || v.required?}.each do |value| %>
+            <div class="form-group">
+              <%= custom_field_tag_with_label :user, value, :class => 'form-control input-md' %>
+              <span class="help-block">Enter your OpenID</span>
+            </div>
+          <% end %>
+
+          <!-- Button -->
+          <div class="form-group">
+            <button id="submit" name="submit" class="btn btn-success">
+              <%=l(:button_submit)%>
+            </button>
+          </div>
+
+      </fieldset>
+    <% end %>
+  </div>
 </div>
-
-<%= submit_tag l(:button_submit) %>
-<% end %>

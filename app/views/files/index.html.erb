@@ -1,12 +1,11 @@
-<div class="contextual">
-<%= link_to(l(:label_attachment_new), new_project_file_path(@project), :class => 'icon icon-add') if User.current.allowed_to?(:manage_files, @project) %>
+<div class="page-header">
+  <%= link_to(l(:label_attachment_new), new_project_file_path(@project), :class => 'btn btn-default pull-right') if User.current.allowed_to?(:manage_files, @project) %>
+  <h2><%=l(:label_attachment_plural)%></h2>
 </div>
-
-<h2><%=l(:label_attachment_plural)%></h2>
 
 <% delete_allowed = User.current.allowed_to?(:manage_files, @project) %>
 
-<table class="list files">
+<table class="table files">
   <thead><tr>
     <%= sort_header_tag('filename', :caption => l(:field_filename)) %>
     <%= sort_header_tag('created_on', :caption => l(:label_date), :default_order => 'desc') %>
