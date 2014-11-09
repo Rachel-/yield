@@ -1,8 +1,10 @@
 ---
+yield-logo.svg: yield-logo-89d32bcf54d28cbbcf5f23311506d88b.svg
+yield-logo/index.svg: yield-logo-89d32bcf54d28cbbcf5f23311506d88b.svg
 application.js: application-d7ac08d6d04348dfd592ec697482233b.js
 application/index.js: application-d7ac08d6d04348dfd592ec697482233b.js
-application.css: application-070c72a6a413505db8d0d015cc8923b9.css
-application/index.css: application-070c72a6a413505db8d0d015cc8923b9.css
+application.css: application-5faed185e76e742335ff3db43b776ab5.css
+application/index.css: application-5faed185e76e742335ff3db43b776ab5.css
 jquery.min.map: jquery.min-c5a89be96c8d2def857e2657b2c155c0.map
 jquery/index.min.map: jquery.min-c5a89be96c8d2def857e2657b2c155c0.map
 bootstrap/glyphicons-halflings-regular.eot: bootstrap/glyphicons-halflings-regular-c636642c40bcbf8fadcdc2f0ca5ab4a0.eot

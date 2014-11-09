@@ -370,8 +370,8 @@ th {
 }
 @font-face {
   font-family: 'Glyphicons Halflings';
-  src: url("/assets/bootstrap/glyphicons-halflings-regular.eot");
-  src: url("/assets/bootstrap/glyphicons-halflings-regular.eot?#iefix") format("embedded-opentype"), url("/assets/bootstrap/glyphicons-halflings-regular.woff") format("woff"), url("/assets/bootstrap/glyphicons-halflings-regular.ttf") format("truetype"), url("/assets/bootstrap/glyphicons-halflings-regular.svg#glyphicons_halflingsregular") format("svg");
+  src: url("/assets/bootstrap/glyphicons-halflings-regular-c636642c40bcbf8fadcdc2f0ca5ab4a0.eot");
+  src: url("/assets/bootstrap/glyphicons-halflings-regular.eot?#iefix") format("embedded-opentype"), url("/assets/bootstrap/glyphicons-halflings-regular-50dffd592390711a5df6ac21764a4555.woff") format("woff"), url("/assets/bootstrap/glyphicons-halflings-regular-7ed8eb1cf98ec9cc89d0010ef6ad5910.ttf") format("truetype"), url("/assets/bootstrap/glyphicons-halflings-regular.svg#glyphicons_halflingsregular") format("svg");
 }
 /* line 21, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/_glyphicons.scss */
 .glyphicon {
@@ -8228,34 +8228,24 @@ body {
   border-right: 1px solid rgba(0, 0, 0, 0.3);
   border-left: 1px solid rgba(0, 0, 0, 0.3);
   box-shadow: inset -1px 0 0 rgba(255, 255, 255, 0.15), -1px 0 0 rgba(255, 255, 255, 0.15);
-  position: relative;
-  width: 3.4em;
-}
-/* line 32, ../../app/assets/stylesheets/application.css.sass */
-#top-bar .navbar-brand img {
-  height: 2.4em;
-  position: absolute;
-  top: 0.15em;
-  left: 0.6em;
-  width: auto;
 }
 
-/* line 43, ../../app/assets/stylesheets/application.css.sass */
+/* line 34, ../../app/assets/stylesheets/application.css.sass */
 #main-bar .nav-justified a {
   white-space: nowrap;
 }
 
-/* line 48, ../../app/assets/stylesheets/application.css.sass */
+/* line 39, ../../app/assets/stylesheets/application.css.sass */
 #sidebar {
   padding-top: 0.5em;
 }
 
-/* line 53, ../../app/assets/stylesheets/application.css.sass */
+/* line 44, ../../app/assets/stylesheets/application.css.sass */
 #footer {
   position: absolute !important;
 }
 
-/* line 58, ../../app/assets/stylesheets/application.css.sass */
+/* line 49, ../../app/assets/stylesheets/application.css.sass */
 #login-form, #password-lost-form, #register-form, #recover-password-form {
   margin-top: 5em;
   margin-bottom: 5em;
