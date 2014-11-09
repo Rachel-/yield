@@ -1,53 +1,59 @@
 <div class="page-header">
-  <%= link_to l(:label_project_new), {:controller => 'projects', :action => 'new'}, :class => 'btn btn-success pull-right' %>
+  <%= link_to icon("plus") + " #{l(:label_project_new)}", {:controller => 'projects', :action => 'new'}, :class => 'btn btn-success pull-right' %>
   <h2>
-    <%= l(:label_project_plural) %>
+    <%= icon("cubes") %> <%= l(:label_project_plural) %>
   </h2>
 </div>
 
 <%= form_tag({}, :method => :get) do %>
-  <fieldset>
-
-    <legend><%= l(:label_filter_plural) %></legend>
-
-    <div class="row">
-      <div class="col-lg-5">
-        <label for='status'><%= l(:field_status) %></label>
-        <div class="btn-group">
-          <button type="submit" name="status" class="btn btn-default <%= 'active' if @status.blank? %>">
-            <%= l(:label_all) %>
-          </button>
-          <button type="submit" name="status" class="btn btn-default <%= 'active' if @status == '1' %>" value="1">
-            <%= l(:project_status_active) %>
-          </button>
-          <button type="submit" name="status" class="btn btn-default <%= 'active' if @status == '5' %>" value="5">
-            <%= l(:project_status_closed) %>
-          </button>
-          <button type="submit" name="status" class="btn btn-default <%= 'active' if @status == '9' %>" value="9">
-            <%= l(:project_status_archived) %>
-          </button>
-        </div>
-      </div><!-- /.col-lg-6 -->
-
-      <div class="col-lg-2 pull-right text-right">
-        <%= link_to l(:button_clear), {:controller => 'admin', :action => 'projects'}, :class => 'btn btn-default' %>
-      </div>
-
-      <div class="col-lg-5 pull-right">
-        <div class="input-group">
-          <%= text_field_tag 'name', params[:name], :size => 30, :class => "form-control", :placeholder => l(:label_project) %>
-          <span class="input-group-btn">
-            <%= submit_tag l(:button_apply), :class => "btn btn-default", :name => nil %>
-          </span>
-        </div><!-- /input-group -->
-      </div><!-- /.col-lg-6 -->
+  <!-- Filters Panel Start -->
+  <div id="filters" class="panel panel-default">
+    <div class="panel-heading" role="tab" id="filters-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#filters-collapse" aria-expanded="true" aria-controls="filters-collapse">
+          <%= l(:label_filter_plural) %>
+        </a>
+      </h4>
     </div>
+    <div id="filters-collapse" class="panel-collapse collapse" role="tabpanel" aria-labelledby="filters-heading">
+      <div class="panel-body">
+        <div class="row">
+          <div class="form-group col-xs-12 col-sm-5">
+            <label for="status"><%= l(:field_status) %></label>
+            <div class="btn-group">
+              <button type="submit" name="status" class="btn btn-default <%= 'active' if @status.blank? %>">
+                <%= l(:label_all) %>
+              </button>
+              <button type="submit" name="status" class="btn btn-default <%= 'active' if @status == '1' %>" value="1">
+                <%= l(:project_status_active) %>
+              </button>
+              <button type="submit" name="status" class="btn btn-default <%= 'active' if @status == '5' %>" value="5">
+                <%= l(:project_status_closed) %>
+              </button>
+              <button type="submit" name="status" class="btn btn-default <%= 'active' if @status == '9' %>" value="9">
+                <%= l(:project_status_archived) %>
+              </button>
+            </div>
+          </div>
 
-  </fieldset>
+          <div class="col-sm-2 col-xs-12 pull-right text-right">
+            <%= link_to icon("ban") + " #{l(:button_clear)}", {:controller => 'admin', :action => 'projects'}, :class => 'btn btn-default' %>
+          </div>
+
+          <div class="col-sm-5 col-xs-12 pull-right">
+            <div class="input-group">
+              <%= text_field_tag 'name', params[:name], :size => 30, :class => "form-control", :placeholder => l(:label_project) %>
+              <span class="input-group-btn">
+                <%= submit_tag l(:button_apply), :class => "btn btn-default", :name => nil %>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Filters Panel End -->
 <% end %>
-
-<br>
-<br>
 
 <table class="table">
   <thead>
@@ -62,7 +68,7 @@
     <% project_tree(@projects) do |project, level| %>
       <tr class="<%= cycle("odd", "even") %> <%= project.css_classes %> <%= level > 0 ? "idnt idnt-#{level}" : nil %>">
         <td class="name"><span><%= link_to_project_settings(project, {}, :title => project.short_description) %></span></td>
-        <td><%= checked_image project.is_public? %></td>
+        <td class="text-success"><%= icon('check') if project.is_public? %></td>
         <td><%= format_date(project.created_on) %></td>
         <td class="text-right">
           <%= link_to(l(:button_archive), { :controller => 'projects', :action => 'archive', :id => project, :status => params[:status] }, :data => {:confirm => l(:text_are_you_sure)}, :method => :post, :class => 'btn btn-warning btn-xs') unless project.archived? %>

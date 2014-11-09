@@ -1,15 +1,11 @@
-<p>
-<%= label_tag "user_mail_notification", l(:description_user_mail_notification), :class => "hidden-for-sighted" %>
-<%= select_tag(
-      'user[mail_notification]',
-      options_for_select(
-         user_mail_notification_options(@user), @user.mail_notification),
-      :onchange => 'if (this.value == "selected") {$("#notified-projects").show();} else {$("#notified-projects").hide();}'
-     ) %>
-</p>
+<div class="form-group">
+  <%= label_tag "user_mail_notification", l(:description_user_mail_notification), :class => "hidden-for-sighted" %>
+  <%= select_tag('user[mail_notification]', options_for_select(user_mail_notification_options(@user), @user.mail_notification), :onchange => 'if (this.value == "selected") {$("#notified-projects").show();} else {$("#notified-projects").hide();}', :class => "form-control") %>
+</div>
+
 <%= content_tag 'div', :id => 'notified-projects', :style => (@user.mail_notification == 'selected' ? '' : 'display:none;') do %>
   <%= render_project_nested_lists(@user.projects) do |project|
-        content_tag('label', 
+        content_tag('label',
           check_box_tag(
             'user[notified_project_ids][]',
              project.id,
@@ -23,8 +19,12 @@
 <% end %>
 
 <%= fields_for :pref, @user.pref do |pref_fields| %>
-<p>
-  <%= pref_fields.check_box :no_self_notified %>
-  <label for="pref_no_self_notified"><%= l(:label_user_mail_no_self_notified) %></label>
-</p>
+  <div class="form-group">
+    <div class="checkbox">
+      <label for="pref_no_self_notified">
+        <%= pref_fields.check_box :no_self_notified %>
+        <%= l(:label_user_mail_no_self_notified) %>
+      </label>
+    </div>
+  </div>
 <% end %>

@@ -1,6 +1,6 @@
 <div class="page-header">
-  <%= link_to l(:label_user_new), new_user_path, :class => 'btn btn-default pull-right' %>
-  <h2><%=l(:label_user_plural)%></h2>
+  <%= link_to icon('plus') + " #{l(:label_user_new)}", new_user_path, :class => 'btn btn-success pull-right' %>
+  <h2><%= icon('user') %> <%=l(:label_user_plural)%></h2>
 </div>
 
 <%= form_tag(users_path, :method => :get) do %>

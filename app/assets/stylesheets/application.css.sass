@@ -1,5 +1,8 @@
+@import variables
 @import bootstrap-sprockets
 @import bootstrap
+@import font-awesome-sprockets
+@import font-awesome
 
 // General
 
@@ -13,9 +16,15 @@ body
 .gravatar
 	border-radius: 4px
 
+.checkbox.pref-field input[type="checkbox"]
+	position: absolute
+	left: 0
+	margin-left: 0
+
 // Top Bar
 
 #top-bar
+	margin-bottom: 0
 
 	.gravatar
 		position: relative
@@ -27,18 +36,19 @@ body
 		border-left: 1px solid rgba(black, .3)
 		box-shadow: inset -1px 0 0 rgba(white, .15), -1px 0 0 rgba(white, .15)
 		position: relative
-		width: 3.4em
+		width: 3em
 
 		img
-			height: 2.4em
+			height: 2em
 			position: absolute
-			top: .15em
-			left: .6em
+			top: .4em
+			left: .5em
 			width: auto
 
 // Main bar
 
 #main-bar
+	margin-bottom: 0
 
 	.nav-justified a
 		white-space: nowrap
@@ -47,6 +57,10 @@ body
 
 #sidebar
 	padding-top: .5em
+
+// Content
+
+#content
 
 // Footer
 

@@ -1,9 +1,9 @@
 <div class="page-header">
   <div class="btn-group pull-right">
-    <%= link_to l(:label_role_new), new_role_path, :class => 'btn btn-default' %>
-    <%= link_to l(:label_permissions_report), permissions_roles_path, :class => 'btn btn-default' %>
+    <%= link_to icon('plus') + " #{l(:label_role_new)}", new_role_path, :class => 'btn btn-success' %>
+    <%= link_to icon('file-text') + " #{l(:label_permissions_report)}", permissions_roles_path, :class => 'btn btn-default' %>
   </div>
-  <h2><%=l(:label_role_plural)%></h2>
+  <h2><%= icon('eye') %> <%=l(:label_role_plural)%></h2>
 </div>
 
 <table class="table">
@@ -21,9 +21,9 @@
     <%= reorder_links('role', {:action => 'update', :id => role}, :put) %>
   <% end %>
   </td>
-  <td class="buttons">
-    <%= link_to l(:button_copy), new_role_path(:copy => role), :class => 'icon icon-copy' %>
-    <%= delete_link role_path(role) unless role.builtin? %>
+  <td class="text-right">
+    <%= link_to l(:button_copy), new_role_path(:copy => role), :class => 'btn btn-default btn-xs' %>
+    <%= delete_link role_path(role), :class => 'btn btn-danger btn-xs' unless role.builtin? %>
   </td>
   </tr>
 <% end %>

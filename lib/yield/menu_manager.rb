@@ -77,7 +77,7 @@ module Yield
 
       # Renders the application main menu
       def render_main_menu(project)
-        render_menu((project && !project.new_record?) ? :project_menu : :application_menu, project, 'nav nav-pills nav-justified')
+        render_menu((project && !project.new_record?) ? :project_menu : :application_menu, project, 'nav navbar-nav')
       end
 
       def display_main_menu?(project)

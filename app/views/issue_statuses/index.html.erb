@@ -1,9 +1,9 @@
 <div class="page-header">
   <div class="btn-group pull-right">
-  <%= link_to l(:label_issue_status_new), new_issue_status_path, :class => 'btn btn-default' %>
-  <%= link_to(l(:label_update_issue_done_ratios), update_issue_done_ratio_issue_statuses_path, :class => 'btn btn-default', :method => 'post', :data => {:confirm => l(:text_are_you_sure)}) if Issue.use_status_for_done_ratio? %>
+  <%= link_to icon('plus') + " #{l(:label_issue_status_new)}", new_issue_status_path, :class => 'btn btn-success' %>
+  <%= link_to(icon('tasks') + " #{l(:label_update_issue_done_ratios)}", update_issue_done_ratio_issue_statuses_path, :class => 'btn btn-default', :method => 'post', :data => {:confirm => l(:text_are_you_sure)}) if Issue.use_status_for_done_ratio? %>
   </div>
-  <h2><%=l(:label_issue_status_plural)%></h2>
+  <h2><%= icon('warning') %> <%=l(:label_issue_status_plural)%></h2>
 </div>
 
 <table class="table">

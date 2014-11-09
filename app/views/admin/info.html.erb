@@ -1,20 +1,20 @@
 <div class="page-header">
-	<h2><%=l(:label_information_plural)%></h2>
+  <h2><%= icon('info-circle') %> <%=l(:label_information_plural)%></h2>
 </div>
 
 <div class="panel panel-info">
-	<div class="panel-heading"><%=l(:label_information_plural)%></div>
-	<div class="panel-body" style="white-space:pre"><%= Yield::Info.environment %></div>
+  <div class="panel-heading"><%=l(:label_information_plural)%></div>
+  <div class="panel-body">
+    <strong style="white-space:pre" class="text-info"><%= Yield::Info.environment %></strong>
+  </div>
+  <table class="table">
+    <% @checklist.each do |label, result| %>
+      <tr class="<%= cycle 'odd', 'even' %>">
+        <td class="name"><%= l(label) %></td>
+        <td class="tick"><%= image_tag((result ? 'true.png' : 'exclamation.png'), :style => "vertical-align:bottom;") %></td>
+      </tr>
+    <% end %>
+  </table>
 </div>
-
-<table class="table">
-<% @checklist.each do |label, result| %>
-  <tr class="<%= cycle 'odd', 'even' %>">
-    <td class="name"><%= l(label) %></td>
-    <td class="tick"><%= image_tag((result ? 'true.png' : 'exclamation.png'),
-                                    :style => "vertical-align:bottom;") %></td>
-  </tr>
-<% end %>
-</table>
 
 <% html_title(l(:label_information_plural)) -%>

@@ -1,15 +1,11 @@
-<h3>
-  <%= link_to l(:label_reported_issues),
-        issues_path(:set_filter => 1, :status_id => '*', :author_id => 'me', :sort => 'updated_on:desc') %>
-  (<%= Issue.visible.where(:author_id => User.current.id).count %>)
-</h3>
+<div class="panel-heading">
+  <span class="badge pull-right"><%= Issue.visible.where(:author_id => User.current.id).count %></span>
+  <%= link_to l(:label_reported_issues), issues_path(:set_filter => 1, :status_id => '*', :author_id => 'me', :sort => 'updated_on:desc') %>
+</div>
 
 <% reported_issues = issuesreportedbyme_items %>
 <%= render :partial => 'issues/list_simple', :locals => { :issues => reported_issues } %>
 
 <% content_for :header_tags do %>
-<%= auto_discovery_link_tag(:atom,
-                            {:controller => 'issues', :action => 'index', :set_filter => 1,
-                             :author_id => 'me', :format => 'atom', :key => User.current.rss_key},
-                            {:title => l(:label_reported_issues)}) %>
+  <%= auto_discovery_link_tag(:atom, {:controller => 'issues', :action => 'index', :set_filter => 1, :author_id => 'me', :format => 'atom', :key => User.current.rss_key}, {:title => l(:label_reported_issues), :class => 'label label-primary'}) %>
 <% end %>

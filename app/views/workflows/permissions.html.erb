@@ -1,14 +1,12 @@
 <div class="page-header">
   <%= render :partial => 'action_menu' %>
-  <h2><%= l(:label_workflow) %></h2>
+  <h2><%= icon('columns') %> <%= l(:label_workflow) %></h2>
 </div>
 
-<div class="tabs">
-  <ul>
-    <li><%= link_to l(:label_status_transitions), workflows_edit_path(:role_id => @roles, :tracker_id => @trackers) %></li>
-    <li><%= link_to l(:label_fields_permissions), workflows_permissions_path(:role_id => @roles, :tracker_id => @trackers), :class => 'selected' %></li>
-  </ul>
-</div>
+<ul class="nav nav-pills">
+  <li><%= link_to l(:label_status_transitions), workflows_edit_path(:role_id => @roles, :tracker_id => @trackers) %></li>
+  <li class="active"><%= link_to l(:label_fields_permissions), workflows_permissions_path(:role_id => @roles, :tracker_id => @trackers) %></li>
+</ul>
 
 <p><%=l(:text_workflow_edit)%>:</p>
 

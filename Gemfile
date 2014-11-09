@@ -11,7 +11,8 @@ gem "uglifier", ">= 2.5.3"
 gem "sass-rails", ">= 3.2"
 gem "coffee-rails", ">= 3.2"
 gem "jquery-rails", "~> 3.1.1"
-gem 'bootstrap-sass', "~> 3.3.0"
+gem "bootstrap-sass", "~> 3.3.0"
+gem "font-awesome-sass", "~> 4.2.0"
 
 # Optional gem for LDAP authentication
 group :ldap do

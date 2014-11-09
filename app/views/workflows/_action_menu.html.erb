@@ -1,4 +1,4 @@
 <div class="btn-group pull-right">
-<%= link_to l(:button_copy), {:action => 'copy'}, :class => 'btn btn-default' %>
-<%= link_to l(:field_summary), {:action => 'index'}, :class => 'btn btn-default' %>
+<%= link_to icon('copy') + " #{l(:button_copy)}", {:action => 'copy'}, :class => 'btn btn-default' %>
+<%= link_to icon('file-text') + " #{l(:field_summary)}", {:action => 'index'}, :class => 'btn btn-default' %>
 </div>

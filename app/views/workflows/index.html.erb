@@ -1,10 +1,10 @@
 <%= title [l(:label_workflow), workflows_edit_path], l(:field_summary) %>
 
 <% if @workflow_counts.empty? %>
-<p class="nodata"><%= l(:label_no_data) %></p>
+<p class="nodata alert alert-warning"><%= l(:label_no_data) %></p>
 <% else %>
 <div class="autoscroll">
-<table class="list">
+<table class="table">
 <thead>
     <tr>
     <th></th>

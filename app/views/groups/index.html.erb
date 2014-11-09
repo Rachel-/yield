@@ -1,6 +1,6 @@
 <div class="page-header">
-  <%= link_to l(:label_group_new), new_group_path, :class => 'btn btn-default pull-right' %>
-  <h2><%= l(:label_group_plural) %></h2>
+  <%= link_to icon('plus') + " #{l(:label_group_new)}", new_group_path, :class => 'btn btn-success pull-right' %>
+  <h2><%= icon('group') %> <%= l(:label_group_plural) %></h2>
 </div>
 
 <% if @groups.any? %>

@@ -475,18 +475,18 @@ module ApplicationHelper
   end
 
   def reorder_links(name, url, method = :post)
-    link_to(image_tag('2uparrow.png', :alt => l(:label_sort_highest)),
+    link_to(icon('arrow-circle-up'),
             url.merge({"#{name}[move_to]" => 'highest'}),
-            :method => method, :title => l(:label_sort_highest)) +
-    link_to(image_tag('1uparrow.png',   :alt => l(:label_sort_higher)),
+            :method => method, :title => l(:label_sort_highest), :class => 'btn btn-success btn-xs') + " " +
+    link_to(icon('arrow-circle-o-up'),
             url.merge({"#{name}[move_to]" => 'higher'}),
-           :method => method, :title => l(:label_sort_higher)) +
-    link_to(image_tag('1downarrow.png', :alt => l(:label_sort_lower)),
+           :method => method, :title => l(:label_sort_higher), :class => 'btn btn-default btn-xs') + " " +
+    link_to(icon('arrow-circle-o-down'),
             url.merge({"#{name}[move_to]" => 'lower'}),
-            :method => method, :title => l(:label_sort_lower)) +
-    link_to(image_tag('2downarrow.png', :alt => l(:label_sort_lowest)),
+            :method => method, :title => l(:label_sort_lower), :class => 'btn btn-default btn-xs') + " " +
+    link_to(icon('arrow-circle-down'),
             url.merge({"#{name}[move_to]" => 'lowest'}),
-           :method => method, :title => l(:label_sort_lowest))
+           :method => method, :title => l(:label_sort_lowest), :class => 'btn btn-danger btn-xs')
   end
 
   def breadcrumb(*args)

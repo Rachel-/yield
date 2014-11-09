@@ -49,15 +49,15 @@ module ProjectsHelper
   def render_project_action_links
     links = []
     if User.current.allowed_to?(:add_project, nil, :global => true)
-      links << link_to(l(:label_project_new), new_project_path, :class => 'btn btn-default')
+      links << link_to(icon('plus') + " #{l(:label_project_new)}", new_project_path, :class => 'btn btn-default')
     end
     if User.current.allowed_to?(:view_issues, nil, :global => true)
-      links << link_to(l(:label_issue_view_all), issues_path, :class => 'btn btn-default')
+      links << link_to(icon('tasks') + " #{l(:label_issue_view_all)}", issues_path, :class => 'btn btn-default')
     end
     if User.current.allowed_to?(:view_time_entries, nil, :global => true)
-      links << link_to(l(:label_overall_spent_time), time_entries_path, :class => 'btn btn-default')
+      links << link_to(icon('history') + " #{l(:label_overall_spent_time)}", time_entries_path, :class => 'btn btn-default')
     end
-    links << link_to(l(:label_overall_activity), activity_path, :class => 'btn btn-default')
+    links << link_to(icon('road') + " #{l(:label_overall_activity)}", activity_path, :class => 'btn btn-default')
     links.join("").html_safe
   end
 

@@ -1,36 +1,58 @@
-<div id="query_form_with_buttons" class="hide-when-print">
-<div id="query_form_content">
-  <fieldset id="filters" class="collapsible <%= @query.new_record? ? "" : "collapsed" %>">
-    <legend onclick="toggleFieldset(this);"><%= l(:label_filter_plural) %></legend>
-    <div style="<%= @query.new_record? ? "" : "display: none;" %>">
-      <%= render :partial => 'queries/filters', :locals => {:query => @query} %>
+<div id="query_form_with_buttons" class="row hide-when-print">
+  <div id="query_form_content" class="panel-group col-xs-12" role="tablist" aria-multiselectable="true">
+    <!-- Filters Panel Start -->
+    <div id="filters" class="panel panel-default">
+      <div class="panel-heading" role="tab" id="filters-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#filters-collapse" aria-expanded="true" aria-controls="filters-collapse">
+            <%= l(:label_filter_plural) %>
+          </a>
+        </h4>
+      </div>
+      <div id="filters-collapse" class="panel-collapse collapse" role="tabpanel" aria-labelledby="filters-heading">
+        <div class="panel-body"><%= render :partial => 'queries/filters', :locals => {:query => @query} %></div>
+      </div>
     </div>
-  </fieldset>
-  <fieldset class="collapsible collapsed">
-    <legend onclick="toggleFieldset(this);"><%= l(:label_options) %></legend>
-    <div style="display: none;">
-      <table>
-        <tr>
-          <td><%= l(:field_column_names) %></td>
-          <td><%= render_query_columns_selection(@query) %></td>
-        </tr>
-      </table>
+    <!-- Filters Panel End -->
+    <!-- Options Panel Start -->
+    <div id="options" class="panel panel-default">
+      <div class="panel-heading" role="tab" id="options-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#options-collapse" aria-expanded="true" aria-controls="options-collapse">
+            <%= l(:label_options) %>
+          </a>
+        </h4>
+      </div>
+      <div id="options-collapse" class="panel-collapse collapse" role="tabpanel" aria-labelledby="options-heading">
+        <table class="table">
+          <tr>
+            <td><%= l(:field_column_names) %></td>
+            <td><%= render_query_columns_selection(@query) %></td>
+          </tr>
+        </table>
+      </div>
     </div>
-  </fieldset>
+    <!-- Options Panel End -->
+  </div>
+
+  <div class="col-xs-12">
+    <div class="btn-group pull-right">
+      <%= link_to_function l(:button_apply), 'submit_query_form("query_form")', :class => 'btn btn-success' %>
+      <%= link_to l(:button_clear), {:project_id => @project, :issue_id => @issue}, :class => 'btn btn-default'  %>
+    </div>
+  </div>
 </div>
 
-<p class="buttons">
-  <%= link_to_function l(:button_apply), 'submit_query_form("query_form")', :class => 'icon icon-checked' %>
-  <%= link_to l(:button_clear), {:project_id => @project, :issue_id => @issue}, :class => 'icon icon-reload'  %>
-</p>
-</div>
-
-<div class="tabs hide-when-print">
-<% query_params = params.slice(:f, :op, :v, :sort) %>
-<ul>
-    <li><%= link_to(l(:label_details), _time_entries_path(@project, @issue, query_params),
-                                       :class => (action_name == 'index' ? 'selected' : nil)) %></li>
-    <li><%= link_to(l(:label_report), _report_time_entries_path(@project, @issue, query_params),
-                                       :class => (action_name == 'report' ? 'selected' : nil)) %></li>
-</ul>
+<div class="row hide-when-print">
+  <div class="col-xs-12">
+    <% query_params = params.slice(:f, :op, :v, :sort) %>
+    <ul class="nav nav-pills" role="tablist">
+        <li role="presentation" class="<%= (action_name == 'index' ? 'active' : nil) %>">
+          <%= link_to(l(:label_details), _time_entries_path(@project, @issue, query_params)) %>
+        </li>
+        <li role="presentation" class="<%= (action_name == 'report' ? 'active' : nil) %>">
+          <%= link_to(l(:label_report), _report_time_entries_path(@project, @issue, query_params)) %>
+        </li>
+    </ul>
+  </div>
 </div>
