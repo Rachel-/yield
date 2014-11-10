@@ -1429,12 +1429,12 @@ textarea {
 
 /* line 48, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/_scaffolding.scss */
 a {
-  color: #ff0000;
+  color: #2980b9;
   text-decoration: none;
 }
 /* line 52, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/_scaffolding.scss */
 a:hover, a:focus {
-  color: #b30000;
+  color: #1b557a;
   text-decoration: underline;
 }
 /* line 58, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/_scaffolding.scss */
@@ -1693,12 +1693,12 @@ mark,
 
 /* line 5, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/mixins/_text-emphasis.scss */
 .text-primary {
-  color: #ff0000;
+  color: #2980b9;
 }
 
 /* line 8, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/mixins/_text-emphasis.scss */
 a.text-primary:hover {
-  color: #cc0000;
+  color: #20638f;
 }
 
 /* line 5, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/mixins/_text-emphasis.scss */
@@ -1748,12 +1748,12 @@ a.text-danger:hover {
 
 /* line 5, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/mixins/_background-variant.scss */
 .bg-primary {
-  background-color: #ff0000;
+  background-color: #2980b9;
 }
 
 /* line 8, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/mixins/_background-variant.scss */
 a.bg-primary:hover {
-  background-color: #cc0000;
+  background-color: #20638f;
 }
 
 /* line 5, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/mixins/_background-variant.scss */
@@ -4159,14 +4159,14 @@ select[multiple].input-lg,
 /* line 63, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/_buttons.scss */
 .btn-primary {
   color: #fff;
-  background-color: #ff0000;
-  border-color: #e60000;
+  background-color: #2980b9;
+  border-color: #2472a4;
 }
 /* line 11, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/mixins/_buttons.scss */
 .btn-primary:hover, .btn-primary:focus, .btn-primary.focus, .btn-primary:active, .btn-primary.active, .open > .btn-primary.dropdown-toggle {
   color: #fff;
-  background-color: #cc0000;
-  border-color: #a80000;
+  background-color: #20638f;
+  border-color: #194f72;
 }
 /* line 21, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/mixins/_buttons.scss */
 .btn-primary:active, .btn-primary.active, .open > .btn-primary.dropdown-toggle {
@@ -4174,26 +4174,26 @@ select[multiple].input-lg,
 }
 /* line 29, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/mixins/_buttons.scss */
 .btn-primary.disabled, .btn-primary.disabled:hover, .btn-primary.disabled:focus, .btn-primary.disabled.focus, .btn-primary.disabled:active, .btn-primary.disabled.active, .btn-primary[disabled], .btn-primary[disabled]:hover, .btn-primary[disabled]:focus, .btn-primary[disabled].focus, .btn-primary[disabled]:active, .btn-primary[disabled].active, fieldset[disabled] .btn-primary, fieldset[disabled] .btn-primary:hover, fieldset[disabled] .btn-primary:focus, fieldset[disabled] .btn-primary.focus, fieldset[disabled] .btn-primary:active, fieldset[disabled] .btn-primary.active {
-  background-color: #ff0000;
-  border-color: #e60000;
+  background-color: #2980b9;
+  border-color: #2472a4;
 }
 /* line 40, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/mixins/_buttons.scss */
 .btn-primary .badge {
-  color: #ff0000;
+  color: #2980b9;
   background-color: #fff;
 }
 
 /* line 67, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/_buttons.scss */
 .btn-success {
   color: #fff;
-  background-color: #5cb85c;
-  border-color: #4cae4c;
+  background-color: #2ecc71;
+  border-color: #29b765;
 }
 /* line 11, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/mixins/_buttons.scss */
 .btn-success:hover, .btn-success:focus, .btn-success.focus, .btn-success:active, .btn-success.active, .open > .btn-success.dropdown-toggle {
   color: #fff;
-  background-color: #449d44;
-  border-color: #398439;
+  background-color: #25a25a;
+  border-color: #1e854a;
 }
 /* line 21, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/mixins/_buttons.scss */
 .btn-success:active, .btn-success.active, .open > .btn-success.dropdown-toggle {
@@ -4201,12 +4201,12 @@ select[multiple].input-lg,
 }
 /* line 29, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/mixins/_buttons.scss */
 .btn-success.disabled, .btn-success.disabled:hover, .btn-success.disabled:focus, .btn-success.disabled.focus, .btn-success.disabled:active, .btn-success.disabled.active, .btn-success[disabled], .btn-success[disabled]:hover, .btn-success[disabled]:focus, .btn-success[disabled].focus, .btn-success[disabled]:active, .btn-success[disabled].active, fieldset[disabled] .btn-success, fieldset[disabled] .btn-success:hover, fieldset[disabled] .btn-success:focus, fieldset[disabled] .btn-success.focus, fieldset[disabled] .btn-success:active, fieldset[disabled] .btn-success.active {
-  background-color: #5cb85c;
-  border-color: #4cae4c;
+  background-color: #2ecc71;
+  border-color: #29b765;
 }
 /* line 40, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/mixins/_buttons.scss */
 .btn-success .badge {
-  color: #5cb85c;
+  color: #2ecc71;
   background-color: #fff;
 }
 
@@ -4240,14 +4240,14 @@ select[multiple].input-lg,
 /* line 75, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/_buttons.scss */
 .btn-warning {
   color: #fff;
-  background-color: #f0ad4e;
-  border-color: #eea236;
+  background-color: #e67e22;
+  border-color: #d67118;
 }
 /* line 11, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/mixins/_buttons.scss */
 .btn-warning:hover, .btn-warning:focus, .btn-warning.focus, .btn-warning:active, .btn-warning.active, .open > .btn-warning.dropdown-toggle {
   color: #fff;
-  background-color: #ec971f;
-  border-color: #d58512;
+  background-color: #bf6516;
+  border-color: #9f5412;
 }
 /* line 21, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/mixins/_buttons.scss */
 .btn-warning:active, .btn-warning.active, .open > .btn-warning.dropdown-toggle {
@@ -4255,26 +4255,26 @@ select[multiple].input-lg,
 }
 /* line 29, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/mixins/_buttons.scss */
 .btn-warning.disabled, .btn-warning.disabled:hover, .btn-warning.disabled:focus, .btn-warning.disabled.focus, .btn-warning.disabled:active, .btn-warning.disabled.active, .btn-warning[disabled], .btn-warning[disabled]:hover, .btn-warning[disabled]:focus, .btn-warning[disabled].focus, .btn-warning[disabled]:active, .btn-warning[disabled].active, fieldset[disabled] .btn-warning, fieldset[disabled] .btn-warning:hover, fieldset[disabled] .btn-warning:focus, fieldset[disabled] .btn-warning.focus, fieldset[disabled] .btn-warning:active, fieldset[disabled] .btn-warning.active {
-  background-color: #f0ad4e;
-  border-color: #eea236;
+  background-color: #e67e22;
+  border-color: #d67118;
 }
 /* line 40, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/mixins/_buttons.scss */
 .btn-warning .badge {
-  color: #f0ad4e;
+  color: #e67e22;
   background-color: #fff;
 }
 
 /* line 79, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/_buttons.scss */
 .btn-danger {
   color: #fff;
-  background-color: #d9534f;
-  border-color: #d43f3a;
+  background-color: #e74c3c;
+  border-color: #e43725;
 }
 /* line 11, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/mixins/_buttons.scss */
 .btn-danger:hover, .btn-danger:focus, .btn-danger.focus, .btn-danger:active, .btn-danger.active, .open > .btn-danger.dropdown-toggle {
   color: #fff;
-  background-color: #c9302c;
-  border-color: #ac2925;
+  background-color: #d62c1a;
+  border-color: #b62516;
 }
 /* line 21, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/mixins/_buttons.scss */
 .btn-danger:active, .btn-danger.active, .open > .btn-danger.dropdown-toggle {
@@ -4282,18 +4282,18 @@ select[multiple].input-lg,
 }
 /* line 29, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/mixins/_buttons.scss */
 .btn-danger.disabled, .btn-danger.disabled:hover, .btn-danger.disabled:focus, .btn-danger.disabled.focus, .btn-danger.disabled:active, .btn-danger.disabled.active, .btn-danger[disabled], .btn-danger[disabled]:hover, .btn-danger[disabled]:focus, .btn-danger[disabled].focus, .btn-danger[disabled]:active, .btn-danger[disabled].active, fieldset[disabled] .btn-danger, fieldset[disabled] .btn-danger:hover, fieldset[disabled] .btn-danger:focus, fieldset[disabled] .btn-danger.focus, fieldset[disabled] .btn-danger:active, fieldset[disabled] .btn-danger.active {
-  background-color: #d9534f;
-  border-color: #d43f3a;
+  background-color: #e74c3c;
+  border-color: #e43725;
 }
 /* line 40, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/mixins/_buttons.scss */
 .btn-danger .badge {
-  color: #d9534f;
+  color: #e74c3c;
   background-color: #fff;
 }
 
 /* line 88, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/_buttons.scss */
 .btn-link {
-  color: #ff0000;
+  color: #2980b9;
   font-weight: normal;
   border-radius: 0;
 }
@@ -4309,7 +4309,7 @@ select[multiple].input-lg,
 }
 /* line 107, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/_buttons.scss */
 .btn-link:hover, .btn-link:focus {
-  color: #b30000;
+  color: #1b557a;
   text-decoration: underline;
   background-color: transparent;
 }
@@ -4486,7 +4486,7 @@ tbody.collapse.in {
   color: #fff;
   text-decoration: none;
   outline: 0;
-  background-color: #ff0000;
+  background-color: #2980b9;
 }
 
 /* line 101, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/_dropdowns.scss */
@@ -5009,7 +5009,7 @@ tbody.collapse.in {
 /* line 46, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/_navs.scss */
 .nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
   background-color: #eeeeee;
-  border-color: #ff0000;
+  border-color: #2980b9;
 }
 /* line 59, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/_navs.scss */
 .nav .nav-divider {
@@ -5067,7 +5067,7 @@ tbody.collapse.in {
 /* line 131, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/_navs.scss */
 .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
   color: #fff;
-  background-color: #ff0000;
+  background-color: #2980b9;
 }
 
 /* line 144, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/_navs.scss */
@@ -5690,111 +5690,111 @@ tbody.collapse.in {
 
 /* line 530, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/_navbar.scss */
 .navbar-inverse {
-  background-color: #222;
-  border-color: #090909;
+  background-color: #2c3e50;
+  border-color: #233140;
 }
 /* line 534, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/_navbar.scss */
 .navbar-inverse .navbar-brand {
-  color: #9d9d9d;
+  color: white;
 }
 /* line 536, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/_navbar.scss */
 .navbar-inverse .navbar-brand:hover, .navbar-inverse .navbar-brand:focus {
-  color: #fff;
+  color: #2980b9;
   background-color: transparent;
 }
 /* line 543, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/_navbar.scss */
 .navbar-inverse .navbar-text {
-  color: #9d9d9d;
+  color: white;
 }
 /* line 548, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/_navbar.scss */
 .navbar-inverse .navbar-nav > li > a {
-  color: #9d9d9d;
+  color: white;
 }
 /* line 551, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/_navbar.scss */
 .navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus {
-  color: #fff;
+  color: #2980b9;
   background-color: transparent;
 }
 /* line 558, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/_navbar.scss */
 .navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
-  color: #fff;
-  background-color: #090909;
+  color: #2980b9;
+  background-color: transparent;
 }
 /* line 566, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/_navbar.scss */
 .navbar-inverse .navbar-nav > .disabled > a, .navbar-inverse .navbar-nav > .disabled > a:hover, .navbar-inverse .navbar-nav > .disabled > a:focus {
-  color: #444;
+  color: #233140;
   background-color: transparent;
 }
 /* line 576, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/_navbar.scss */
 .navbar-inverse .navbar-toggle {
-  border-color: #333;
+  border-color: #233140;
 }
 /* line 578, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/_navbar.scss */
 .navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus {
-  background-color: #333;
+  background-color: #233140;
 }
 /* line 582, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/_navbar.scss */
 .navbar-inverse .navbar-toggle .icon-bar {
-  background-color: #fff;
+  background-color: #233140;
 }
 /* line 587, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/_navbar.scss */
 .navbar-inverse .navbar-collapse,
 .navbar-inverse .navbar-form {
-  border-color: #101010;
+  border-color: #1f2c39;
 }
 /* line 595, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/_navbar.scss */
 .navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
-  background-color: #090909;
-  color: #fff;
+  background-color: transparent;
+  color: #2980b9;
 }
 @media (max-width: 767px) {
   /* line 606, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/_navbar.scss */
   .navbar-inverse .navbar-nav .open .dropdown-menu > .dropdown-header {
-    border-color: #090909;
+    border-color: #233140;
   }
   /* line 609, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/_navbar.scss */
   .navbar-inverse .navbar-nav .open .dropdown-menu .divider {
-    background-color: #090909;
+    background-color: #233140;
   }
   /* line 612, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/_navbar.scss */
   .navbar-inverse .navbar-nav .open .dropdown-menu > li > a {
-    color: #9d9d9d;
+    color: white;
   }
   /* line 614, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/_navbar.scss */
   .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:focus {
-    color: #fff;
+    color: #2980b9;
     background-color: transparent;
   }
   /* line 621, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/_navbar.scss */
   .navbar-inverse .navbar-nav .open .dropdown-menu > .active > a, .navbar-inverse .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-inverse .navbar-nav .open .dropdown-menu > .active > a:focus {
-    color: #fff;
-    background-color: #090909;
+    color: #2980b9;
+    background-color: transparent;
   }
   /* line 629, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/_navbar.scss */
   .navbar-inverse .navbar-nav .open .dropdown-menu > .disabled > a, .navbar-inverse .navbar-nav .open .dropdown-menu > .disabled > a:hover, .navbar-inverse .navbar-nav .open .dropdown-menu > .disabled > a:focus {
-    color: #444;
+    color: #233140;
     background-color: transparent;
   }
 }
 /* line 640, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/_navbar.scss */
 .navbar-inverse .navbar-link {
-  color: #9d9d9d;
+  color: white;
 }
 /* line 642, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/_navbar.scss */
 .navbar-inverse .navbar-link:hover {
-  color: #fff;
+  color: #2980b9;
 }
 /* line 647, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/_navbar.scss */
 .navbar-inverse .btn-link {
-  color: #9d9d9d;
+  color: white;
 }
 /* line 649, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/_navbar.scss */
 .navbar-inverse .btn-link:hover, .navbar-inverse .btn-link:focus {
-  color: #fff;
+  color: #2980b9;
 }
 /* line 655, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/_navbar.scss */
 .navbar-inverse .btn-link[disabled]:hover, .navbar-inverse .btn-link[disabled]:focus, fieldset[disabled] .navbar-inverse .btn-link:hover, fieldset[disabled] .navbar-inverse .btn-link:focus {
-  color: #444;
+  color: #233140;
 }
 
 /* line 6, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/_breadcrumbs.scss */
@@ -5839,7 +5839,7 @@ tbody.collapse.in {
   padding: 6px 12px;
   line-height: 1.428571429;
   text-decoration: none;
-  color: #ff0000;
+  color: #2980b9;
   background-color: #fff;
   border: 1px solid #ddd;
   margin-left: -1px;
@@ -5861,7 +5861,7 @@ tbody.collapse.in {
 .pagination > li > a:hover, .pagination > li > a:focus,
 .pagination > li > span:hover,
 .pagination > li > span:focus {
-  color: #b30000;
+  color: #1b557a;
   background-color: #eeeeee;
   border-color: #ddd;
 }
@@ -5872,8 +5872,8 @@ tbody.collapse.in {
 .pagination > .active > span:focus {
   z-index: 2;
   color: #fff;
-  background-color: #ff0000;
-  border-color: #ff0000;
+  background-color: #2980b9;
+  border-color: #2980b9;
   cursor: default;
 }
 /* line 63, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/_pagination.scss */
@@ -6023,20 +6023,20 @@ a.label:hover, a.label:focus {
 
 /* line 48, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/_labels.scss */
 .label-primary {
-  background-color: #ff0000;
+  background-color: #2980b9;
 }
 /* line 7, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/mixins/_labels.scss */
 .label-primary[href]:hover, .label-primary[href]:focus {
-  background-color: #cc0000;
+  background-color: #20638f;
 }
 
 /* line 52, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/_labels.scss */
 .label-success {
-  background-color: #5cb85c;
+  background-color: #2ecc71;
 }
 /* line 7, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/mixins/_labels.scss */
 .label-success[href]:hover, .label-success[href]:focus {
-  background-color: #449d44;
+  background-color: #25a25a;
 }
 
 /* line 56, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/_labels.scss */
@@ -6050,20 +6050,20 @@ a.label:hover, a.label:focus {
 
 /* line 60, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/_labels.scss */
 .label-warning {
-  background-color: #f0ad4e;
+  background-color: #e67e22;
 }
 /* line 7, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/mixins/_labels.scss */
 .label-warning[href]:hover, .label-warning[href]:focus {
-  background-color: #ec971f;
+  background-color: #bf6516;
 }
 
 /* line 64, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/_labels.scss */
 .label-danger {
-  background-color: #d9534f;
+  background-color: #e74c3c;
 }
 /* line 7, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/mixins/_labels.scss */
 .label-danger[href]:hover, .label-danger[href]:focus {
-  background-color: #c9302c;
+  background-color: #d62c1a;
 }
 
 /* line 7, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/_badges.scss */
@@ -6097,7 +6097,7 @@ a.label:hover, a.label:focus {
 }
 /* line 39, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/_badges.scss */
 a.list-group-item.active > .badge, .nav-pills > .active > a > .badge {
-  color: #ff0000;
+  color: #2980b9;
   background-color: #fff;
 }
 /* line 44, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/_badges.scss */
@@ -6191,7 +6191,7 @@ a.badge:hover, a.badge:focus {
 a.thumbnail:hover,
 a.thumbnail:focus,
 a.thumbnail.active {
-  border-color: #ff0000;
+  border-color: #2980b9;
 }
 
 /* line 9, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/_alerts.scss */
@@ -6330,7 +6330,7 @@ a.thumbnail.active {
   line-height: 20px;
   color: #fff;
   text-align: center;
-  background-color: #ff0000;
+  background-color: #2980b9;
   -webkit-box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15);
   box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15);
   -webkit-transition: width 0.6s ease;
@@ -6357,7 +6357,7 @@ a.thumbnail.active {
 
 /* line 73, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/_progress-bars.scss */
 .progress-bar-success {
-  background-color: #5cb85c;
+  background-color: #2ecc71;
 }
 /* line 7, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/mixins/_progress-bar.scss */
 .progress-striped .progress-bar-success {
@@ -6379,7 +6379,7 @@ a.thumbnail.active {
 
 /* line 81, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/_progress-bars.scss */
 .progress-bar-warning {
-  background-color: #f0ad4e;
+  background-color: #e67e22;
 }
 /* line 7, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/mixins/_progress-bar.scss */
 .progress-striped .progress-bar-warning {
@@ -6390,7 +6390,7 @@ a.thumbnail.active {
 
 /* line 85, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/_progress-bars.scss */
 .progress-bar-danger {
-  background-color: #d9534f;
+  background-color: #e74c3c;
 }
 /* line 7, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/mixins/_progress-bar.scss */
 .progress-striped .progress-bar-danger {
@@ -6518,8 +6518,8 @@ a.list-group-item:hover, a.list-group-item:focus {
 .list-group-item.active, .list-group-item.active:hover, .list-group-item.active:focus {
   z-index: 2;
   color: #fff;
-  background-color: #ff0000;
-  border-color: #ff0000;
+  background-color: #2980b9;
+  border-color: #2980b9;
 }
 /* line 98, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/_list-group.scss */
 .list-group-item.active .list-group-item-heading,
@@ -6533,7 +6533,7 @@ a.list-group-item:hover, a.list-group-item:focus {
 }
 /* line 103, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/_list-group.scss */
 .list-group-item.active .list-group-item-text, .list-group-item.active:hover .list-group-item-text, .list-group-item.active:focus .list-group-item-text {
-  color: #ffcccc;
+  color: #bedcf0;
 }
 
 /* line 4, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/mixins/_list-group.scss */
@@ -6962,26 +6962,26 @@ a.list-group-item-danger.active, a.list-group-item-danger.active:hover, a.list-g
 
 /* line 247, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/_panels.scss */
 .panel-primary {
-  border-color: #ff0000;
+  border-color: #2980b9;
 }
 /* line 6, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/mixins/_panels.scss */
 .panel-primary > .panel-heading {
   color: #fff;
-  background-color: #ff0000;
-  border-color: #ff0000;
+  background-color: #2980b9;
+  border-color: #2980b9;
 }
 /* line 11, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/mixins/_panels.scss */
 .panel-primary > .panel-heading + .panel-collapse > .panel-body {
-  border-top-color: #ff0000;
+  border-top-color: #2980b9;
 }
 /* line 14, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/mixins/_panels.scss */
 .panel-primary > .panel-heading .badge {
-  color: #ff0000;
+  color: #2980b9;
   background-color: #fff;
 }
 /* line 20, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/mixins/_panels.scss */
 .panel-primary > .panel-footer + .panel-collapse > .panel-body {
-  border-bottom-color: #ff0000;
+  border-bottom-color: #2980b9;
 }
 
 /* line 250, ../../../../../../../../var/lib/gems/1.9.1/gems/bootstrap-sass-3.3.0.1/assets/stylesheets/bootstrap/_panels.scss */

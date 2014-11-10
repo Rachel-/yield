@@ -24,11 +24,11 @@
   <% if Issue.use_status_for_done_ratio? %>
   <td><%= h status.default_done_ratio %></td>
   <% end %>
-  <td><%= checked_image status.is_default? %></td>
-  <td><%= checked_image status.is_closed? %></td>
+  <td class="text-success"><%= icon('check') if status.is_default? %></td>
+  <td class="text-success"><%= icon('check') if status.is_closed? %></td>
   <td class="reorder"><%= reorder_links('issue_status', {:action => 'update', :id => status}, :put) %></td>
-  <td class="buttons">
-    <%= delete_link issue_status_path(status) %>
+  <td class="buttons text-right">
+    <%= delete_link issue_status_path(status), :class => 'btn btn-danger btn-xs' %>
   </td>
   </tr>
 <% end %>

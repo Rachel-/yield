@@ -1,79 +1,90 @@
-<div class="contextual">
-  <% if User.current.allowed_to?(:add_subprojects, @project) %>
-    <%= link_to l(:label_subproject_new), new_project_path(:parent_id => @project), :class => 'icon icon-add' %>
-  <% end %>
-  <% if User.current.allowed_to?(:close_project, @project) %>
-    <% if @project.active? %>
-      <%= link_to l(:button_close), close_project_path(@project), :data => {:confirm => l(:text_are_you_sure)}, :method => :post, :class => 'icon icon-lock' %>
-    <% else %>
-      <%= link_to l(:button_reopen), reopen_project_path(@project), :data => {:confirm => l(:text_are_you_sure)}, :method => :post, :class => 'icon icon-unlock' %>
+<div class="page-header">
+  <div class="btn-group pull-right">
+    <% if User.current.allowed_to?(:add_subprojects, @project) %>
+      <%= link_to icon('plus') + " #{l(:label_subproject_new)}", new_project_path(:parent_id => @project), :class => 'btn btn-success' %>
     <% end %>
-  <% end %>
+    <% if User.current.allowed_to?(:close_project, @project) %>
+      <% if @project.active? %>
+        <%= link_to icon('lock') + " #{l(:button_close)}", close_project_path(@project), :data => {:confirm => l(:text_are_you_sure)}, :method => :post, :class => 'btn btn-default' %>
+      <% else %>
+        <%= link_to icon('unlock') + " #{l(:button_reopen)}", reopen_project_path(@project), :data => {:confirm => l(:text_are_you_sure)}, :method => :post, :class => 'btn btn-default' %>
+      <% end %>
+    <% end %>
+  </div>
+  <h2><%=l(:label_overview)%></h2>
 </div>
-
-<h2><%=l(:label_overview)%></h2>
 
 <% unless @project.active? %>
-  <p class="warning"><span class="icon icon-lock"><%= l(:text_project_closed) %></span></p>
+  <p class="warning alerts alert-warning"><%= icon('lock') %> <%= l(:text_project_closed) %></span></p>
 <% end %>
 
-<div class="splitcontentleft">
-  <% if @project.description.present? %>
-  <div class="wiki">
-    <%= textilizable @project.description %>
-  </div>
-  <% end %>
-  <ul>
-  <% unless @project.homepage.blank? %>
-    <li><%=l(:field_homepage)%>: <%= link_to h(@project.homepage), @project.homepage %></li>
-  <% end %>
-  <% if @subprojects.any? %>
-    <li><%=l(:label_subproject_plural)%>:
-      <%= @subprojects.collect{|p| link_to p, project_path(p)}.join(", ").html_safe %></li>
-  <% end %>
-  <% @project.visible_custom_field_values.each do |custom_value| %>
-  <% if !custom_value.value.blank? %>
-     <li><%=h custom_value.custom_field.name %>: <%=h show_value(custom_value) %></li>
-  <% end %>
-  <% end %>
-  </ul>
+<div class="row">
+  <div class="col-sm-12 col-md-6">
 
-  <% if User.current.allowed_to?(:view_issues, @project) %>
-  <div class="issues box">
-    <h3><%=l(:label_issue_tracking)%></h3>
-    <ul>
-    <% for tracker in @trackers %>
-      <li><%= link_to h(tracker.name), project_issues_path(@project, :set_filter => 1, :tracker_id => tracker.id) %>:
-          <%= l(:label_x_open_issues_abbr_on_total, :count => @open_issues_by_tracker[tracker].to_i,
-                                                    :total => @total_issues_by_tracker[tracker].to_i) %>
-      </li>
+    <div class="panel panel-info">
+      <div class="panel-heading"><%=l(:label_information)%></div>
+
+      <% if @project.description.present? %>
+        <div class="panel-body">
+          <%= textilizable @project.description %>
+        </div>
+      <% end %>
+      <ul class="list-group">
+        <% unless @project.homepage.blank? %>
+          <li class="list-group-item"><%=l(:field_homepage)%>: <%= link_to h(@project.homepage), @project.homepage %></li>
+        <% end %>
+        <% if @subprojects.any? %>
+          <li class="list-group-item"><%=l(:label_subproject_plural)%>:
+            <%= @subprojects.collect{|p| link_to p, project_path(p)}.join(", ").html_safe %></li>
+        <% end %>
+        <% @project.visible_custom_field_values.each do |custom_value| %>
+          <% if !custom_value.value.blank? %>
+             <li class="list-group-item"><%=h custom_value.custom_field.name %>: <%=h show_value(custom_value) %></li>
+          <% end %>
+        <% end %>
+      </ul>
+    </div>
+
+    <% if User.current.allowed_to?(:view_issues, @project) %>
+      <div class="panel panel-warning">
+        <div class="panel-heading"><%=l(:label_issue_tracking)%></div>
+        <ul class="list-group">
+          <% for tracker in @trackers %>
+            <li class="list-group-item">
+              <%= link_to h(tracker.name), project_issues_path(@project, :set_filter => 1, :tracker_id => tracker.id) %>:
+              <%= l(:label_x_open_issues_abbr_on_total, :count => @open_issues_by_tracker[tracker].to_i, :total => @total_issues_by_tracker[tracker].to_i) %>
+            </li>
+          <% end %>
+        </ul>
+        <div class="panel-footer">
+          <%= link_to l(:label_issue_view_all), project_issues_path(@project, :set_filter => 1), :class => 'btn btn-default' %>
+          <% if User.current.allowed_to?(:view_calendar, @project, :global => true) %>
+            <%= link_to l(:label_calendar), project_calendar_path(@project), :class => 'btn btn-default' %>
+          <% end %>
+          <% if User.current.allowed_to?(:view_gantt, @project, :global => true) %>
+            <%= link_to l(:label_gantt), project_gantt_path(@project), :class => 'btn btn-default' %>
+          <% end %>
+        </div>
+      </div>
     <% end %>
-    </ul>
-    <p>
-      <%= link_to l(:label_issue_view_all), project_issues_path(@project, :set_filter => 1) %>
-      <% if User.current.allowed_to?(:view_calendar, @project, :global => true) %>
-        | <%= link_to l(:label_calendar), project_calendar_path(@project) %>
-      <% end %>
-      <% if User.current.allowed_to?(:view_gantt, @project, :global => true) %>
-        | <%= link_to l(:label_gantt), project_gantt_path(@project) %>
-      <% end %>
-    </p>
+    <%= call_hook(:view_projects_show_left, :project => @project) %>
   </div>
-  <% end %>
-  <%= call_hook(:view_projects_show_left, :project => @project) %>
-</div>
 
-<div class="splitcontentright">
-  <%= render :partial => 'members_box' %>
+  <div class="col-sm-12 col-md-6">
+    <%= render :partial => 'members_box' %>
 
-  <% if @news.any? && authorize_for('news', 'index') %>
-  <div class="news box">
-    <h3><%=l(:label_news_latest)%></h3>
-    <%= render :partial => 'news/news', :collection => @news %>
-    <p><%= link_to l(:label_news_view_all), project_news_index_path(@project) %></p>
+    <% if @news.any? && authorize_for('news', 'index') %>
+      <div class="panel panel-default">
+        <div class="panel-heading"><%=l(:label_news_latest)%></div>
+        <div class="panel-body"><%= render :partial => 'news/news', :collection => @news %></div>
+        <div class="panel-footer">
+          <%= link_to l(:label_news_view_all), project_news_index_path(@project), :class => 'btn btn-default' %>
+        </div>
+      </div>
+    <% end %>
+
+    <%= call_hook(:view_projects_show_right, :project => @project) %>
   </div>
-  <% end %>
-  <%= call_hook(:view_projects_show_right, :project => @project) %>
 </div>
 
 <% content_for :sidebar do %>

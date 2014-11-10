@@ -1,8 +1,10 @@
-  <% if @users_by_role.any? %>
-  <div class="members box">
-    <h3><%=l(:label_member_plural)%></h3>
-    <p><% @users_by_role.keys.sort.each do |role| %>
-    <%=h role %>: <%= @users_by_role[role].sort.collect{|u| link_to_user u}.join(", ").html_safe %><br />
-    <% end %></p>
+<% if @users_by_role.any? %>
+  <div class="panel panel-default">
+    <div class="panel-heading"><%=l(:label_member_plural)%></div>
+    <div class="panel-body">
+      <% @users_by_role.keys.sort.each do |role| %>
+        <%=h role %>: <%= @users_by_role[role].sort.collect{|u| link_to_user u}.join(", ").html_safe %><br />
+      <% end %>
+    </div>
   </div>
-  <% end %>
+<% end %>

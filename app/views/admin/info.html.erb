@@ -4,17 +4,16 @@
 
 <div class="panel panel-info">
   <div class="panel-heading"><%=l(:label_information_plural)%></div>
-  <div class="panel-body">
-    <strong style="white-space:pre" class="text-info"><%= Yield::Info.environment %></strong>
-  </div>
   <table class="table">
     <% @checklist.each do |label, result| %>
       <tr class="<%= cycle 'odd', 'even' %>">
         <td class="name"><%= l(label) %></td>
-        <td class="tick"><%= image_tag((result ? 'true.png' : 'exclamation.png'), :style => "vertical-align:bottom;") %></td>
+        <td class="tick text-<%= (result ? 'success' : 'warning') %>"><%= icon((result ? 'check' : 'warning')) %></td>
       </tr>
     <% end %>
   </table>
 </div>
+
+<pre class="panel-body"><%= Yield::Info.environment %></pre>
 
 <% html_title(l(:label_information_plural)) -%>

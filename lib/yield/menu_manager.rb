@@ -98,8 +98,7 @@ module Yield
           return render_menu_node_with_children(node, project)
         else
           caption, url, selected = extract_node_details(node, project)
-          return content_tag('li',
-                               render_single_menu_node(node, caption, url, selected))
+          return content_tag('li', render_single_menu_node(node, caption, url, selected))
         end
       end
 
@@ -154,9 +153,7 @@ module Yield
         raise MenuError, ":child_menus must be an array of MenuItems" unless menu_item.is_a? MenuItem
 
         if User.current.allowed_to?(menu_item.url, project)
-          link_to(h(menu_item.caption),
-                  menu_item.url,
-                  menu_item.html_options)
+          link_to(h(menu_item.caption), menu_item.url, menu_item.html_options)
         end
       end
 
