@@ -1,6 +1,8 @@
-<h4><%= link_to h(document.title), document_path(document) %></h4>
-<p><em><%= format_time(document.updated_on) %></em></p>
+<div class="panel panel-success">
+	<div class="panel-heading"><%= link_to h(document.title), document_path(document) %></div>
 
-<div class="wiki">
-  <%= textilizable(truncate_lines(document.description), :object => document) %>
+	<div class="panel-body">
+	  <%= textilizable(truncate_lines(document.description), :object => document) %>
+	</div>
+	<div class="panel-footer"><em><%= format_time(document.updated_on) %></em></div>
 </div>

@@ -1,3 +1,4 @@
-<h3><%=l(:label_document_plural)%></h3>
-
-<%= render :partial => 'documents/document', :collection => documents_items %>
+<div class="panel panel-primary">
+	<div class="panel-heading"><%=l(:label_document_plural)%></div>
+	<div class="panel-body"><%= render :partial => 'documents/document', :collection => documents_items %></div>
+</div>

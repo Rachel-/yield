@@ -1,3 +1,6 @@
-<h3><%=l(:label_news_latest)%></h3>
-
-<%= render :partial => 'news/news', :collection => news_items %>
+<div class="panel panel-primary">
+	<div class="panel-heading"><%=l(:label_news_latest)%></div>
+	<div class="panel-body">
+		<%= render :partial => 'news/news', :collection => news_items %>
+	</div>
+</div>

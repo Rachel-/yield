@@ -1,6 +1,7 @@
-<%= title l(:label_issue_new) %>
-
-<%= call_hook(:view_issues_new_top, {:issue => @issue}) %>
+<div class="page-header">
+  <%= call_hook(:view_issues_new_top, {:issue => @issue}) %>
+  <%= l(:label_issue_new) %>
+</div>
 
 <%= labelled_form_for @issue, :url => project_issues_path(@project),
                              :html => {:id => 'issue-form', :multipart => true} do |f| %>

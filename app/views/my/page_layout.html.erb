@@ -1,37 +1,42 @@
-<div class="contextual">
-<% if @block_options.present? %>
-  <%= form_tag({:action => "add_block"}, :id => "block-form") do %>
-  <%= label_tag('block-select', l(:label_my_page_block)) %>:
-  <%= select_tag 'block',
-                 content_tag('option') + options_for_select(@block_options),
-                 :id => "block-select" %>
-  <%= link_to l(:button_add), '#', :onclick => '$("#block-form").submit()', :class => 'icon icon-add' %>
-  <% end %>
-<% end %>
-<%= link_to l(:button_back), {:action => 'page'}, :class => 'icon icon-cancel' %>
+<div class="page-header">
+  <div class="pull-right">
+    <% if @block_options.present? %>
+      <%= form_tag({:action => "add_block"}, :id => "block-form", :class => 'form-inline pull-left') do %>
+        <div class="form-group">
+          <%= label_tag('block-select', l(:label_my_page_block), :class => 'form-label') %>
+          <%= select_tag 'block', content_tag('option') + options_for_select(@block_options), :id => "block-select", :class => 'form-control' %>
+        </div>
+        <div class="btn-group">
+          <%= link_to icon('plus') + " #{l(:button_add)}", '#', :onclick => '$("#block-form").submit()', :class => 'btn btn-success' %>
+          <%= link_to icon('ban') + " #{l(:button_back)}", {:action => 'page'}, :class => 'btn btn-default pull-left' %>
+        </div>
+      <% end %>
+    <% end %>
+    <% unless @block_options.present? %>
+      <%= link_to icon('ban') + " #{l(:button_back)}", {:action => 'page'}, :class => 'btn btn-default pull-left' %>
+    <% end %>
+  </div>
+  <h2><%=l(:label_my_page)%></h2>
 </div>
 
-<h2><%=l(:label_my_page)%></h2>
+<div class="row">
+  <div id="list-top" class="block-receiver col-sm-12 col-md-12">
+    <% @blocks['top'].each do |b| next unless MyController::BLOCKS.keys.include? b %>
+      <%= render :partial => 'block', :locals => {:user => @user, :block_name => b} %>
+    <% end if @blocks['top'] %>
+  </div>
 
-<div id="list-top" class="block-receiver">
-  <% @blocks['top'].each do |b|
-     next unless MyController::BLOCKS.keys.include? b %>
-  <%= render :partial => 'block', :locals => {:user => @user, :block_name => b} %>
-  <% end if @blocks['top'] %>
-</div>
+  <div id="list-left" class="splitcontentleft block-receiver col-sm-12 col-md-6">
+    <% @blocks['left'].each do |b| next unless MyController::BLOCKS.keys.include? b %>
+      <%= render :partial => 'block', :locals => {:user => @user, :block_name => b} %>
+    <% end if @blocks['left'] %>
+  </div>
 
-<div id="list-left" class="splitcontentleft block-receiver">
-  <% @blocks['left'].each do |b|
-     next unless MyController::BLOCKS.keys.include? b %>
-  <%= render :partial => 'block', :locals => {:user => @user, :block_name => b} %>
-  <% end if @blocks['left'] %>
-</div>
-
-<div id="list-right" class="splitcontentright block-receiver">
-  <% @blocks['right'].each do |b|
-     next unless MyController::BLOCKS.keys.include? b %>
-  <%= render :partial => 'block', :locals => {:user => @user, :block_name => b} %>
-  <% end if @blocks['right'] %>
+  <div id="list-right" class="splitcontentright block-receiver col-sm-12 col-md-6">
+    <% @blocks['right'].each do |b| next unless MyController::BLOCKS.keys.include? b %>
+      <%= render :partial => 'block', :locals => {:user => @user, :block_name => b} %>
+    <% end if @blocks['right'] %>
+  </div>
 </div>
 
 <%= javascript_tag "initMyPageSortable('top', '#{ escape_javascript url_for(:action => "order_blocks", :group => "top") }');" %>

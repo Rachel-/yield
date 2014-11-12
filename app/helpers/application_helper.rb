@@ -282,12 +282,8 @@ module ApplicationHelper
           end
         end
         classes = (ancestors.empty? ? 'root' : 'child')
-        s << "<div class='panel panel-primary #{classes}'><div class='panel-heading #{classes}'>"
-        s << project.name
-        s << "</div>\n"
-        s << "<div class='panel-body #{classes}'>"
+        s << "<div class='panel panel-default #{classes}'>"
         s << h(block_given? ? yield(project) : 'No description')
-        s << "</div>\n"
         ancestors << project
       end
       s << ("</div></div>\n" * ancestors.size)
@@ -302,8 +298,7 @@ module ApplicationHelper
       content << "<ul class=\"pages-hierarchy\">\n"
       pages[node].each do |page|
         content << "<li>"
-        content << link_to(h(page.pretty_title), {:controller => 'wiki', :action => 'show', :project_id => page.project, :id => page.title, :version => nil},
-                           :title => (options[:timestamp] && page.updated_on ? l(:label_updated_time, distance_of_time_in_words(Time.now, page.updated_on)) : nil))
+        content << link_to(h(page.pretty_title), {:controller => 'wiki', :action => 'show', :project_id => page.project, :id => page.title, :version => nil}, :title => (options[:timestamp] && page.updated_on ? l(:label_updated_time, distance_of_time_in_words(Time.now, page.updated_on)) : nil))
         content << "\n" + render_page_hierarchy(pages, page.id, options) if pages[page.id]
         content << "</li>\n"
       end

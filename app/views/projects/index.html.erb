@@ -14,8 +14,8 @@
 </div>
 
 <% if User.current.logged? %>
-  <p style="text-align:right;">
-    <span class="my-project"><%= l(:label_my_projects) %></span>
+  <p class="text-right text-info">
+    <%= icon('star') %> <%= l(:label_my_projects) %>
   </p>
 <% end %>
 

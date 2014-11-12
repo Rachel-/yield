@@ -1,30 +1,24 @@
 <div class="page-header">
-  <%= link_to l(:label_personalize_page), :action => 'page_layout' %>
+  <%= link_to icon('wrench') + " #{l(:label_personalize_page)}", {:action => 'page_layout'}, :class => 'btn btn-default pull-right' %>
   <h2><%=l(:label_my_page)%></h2>
 </div>
 
 <div class="row">
-  <div id="list-top">
+  <div id="list-top" class="col-sm-12 col-md-12">
     <% @blocks['top'].each do |b| next unless MyController::BLOCKS.keys.include? b  %>
-      <div class="panel panel-default">
-        <%= render :partial => "my/blocks/#{b}", :locals => { :user => @user } %>
-      </div>
+      <%= render :partial => "my/blocks/#{b}", :locals => { :user => @user } %>
     <% end if @blocks['top'] %>
   </div>
 
   <div id="list-left" class="col-sm-12 col-md-6">
     <% @blocks['left'].each do |b| next unless MyController::BLOCKS.keys.include? b %>
-    <div class="panel panel-danger">
       <%= render :partial => "my/blocks/#{b}", :locals => { :user => @user } %>
-    </div>
     <% end if @blocks['left'] %>
   </div>
 
   <div id="list-right" class="col-sm-12 col-md-6">
     <% @blocks['right'].each do |b| next unless MyController::BLOCKS.keys.include? b %>
-    <div class="panel panel-default">
       <%= render :partial => "my/blocks/#{b}", :locals => { :user => @user } %>
-    </div>
     <% end if @blocks['right'] %>
   </div>
 </div>

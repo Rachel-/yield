@@ -1,10 +1,7 @@
 <div id="block_<%= block_name.dasherize %>" class="mypage-box">
+	<%= link_to icon('close'), {:action => "remove_block", :block => block_name}, :method => 'post', :class => "btn btn-danger pull-right" %>
 
-    <div style="float:right;margin-right:16px;z-index:500;">
-    <%= link_to "", {:action => "remove_block", :block => block_name}, :method => 'post', :class => "close-icon" %>
-    </div>
-
-    <div class="handle">
-    <%= render :partial => "my/blocks/#{block_name}", :locals => { :user => user } %>
-    </div>
+	<div class="handle">
+		<%= render :partial => "my/blocks/#{block_name}", :locals => { :user => user } %>
+	</div>
 </div>

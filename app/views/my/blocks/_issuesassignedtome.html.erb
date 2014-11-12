@@ -1,9 +1,9 @@
-<div class="panel-heading">
-	<span class="badge pull-right"><%= Issue.visible.open.where(:assigned_to_id => ([User.current.id] + User.current.group_ids)).count %></span>
-  <%= link_to l(:label_assigned_to_me_issues), issues_path(:set_filter => 1, :assigned_to_id => 'me', :sort => 'priority:desc,updated_on:desc') %>
-</div>
+<div class="panel panel-primary">
+	<div class="panel-heading">
+		<%= link_to l(:label_assigned_to_me_issues), issues_path(:set_filter => 1, :assigned_to_id => 'me', :sort => 'priority:desc,updated_on:desc') %>
+		<span class="badge pull-right"><%= Issue.visible.open.where(:assigned_to_id => ([User.current.id] + User.current.group_ids)).count %></span>
+	</div>
 
-<div class="panel-body">
 	<% assigned_issues = issuesassignedtome_items %>
 	<%= render :partial => 'issues/list_simple', :locals => { :issues => assigned_issues } %>
 </div>
