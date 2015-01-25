@@ -1,4 +1,6 @@
-<%= title [l(:label_group_plural), groups_path], @group.name %>
+<div class="page-header">
+	<%= title [l(:label_group_plural), groups_path], @group.name %>
+</div>
 
 <ul>
 <% @group.users.each do |user| %>

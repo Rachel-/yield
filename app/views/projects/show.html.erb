@@ -1,13 +1,13 @@
 <div class="page-header">
   <div class="btn-group pull-right">
     <% if User.current.allowed_to?(:add_subprojects, @project) %>
-      <%= link_to icon('plus') + " #{l(:label_subproject_new)}", new_project_path(:parent_id => @project), :class => 'btn btn-success' %>
+      <%= link_to icon('plus') + l(:label_subproject_new), new_project_path(:parent_id => @project), :class => 'btn btn-success' %>
     <% end %>
     <% if User.current.allowed_to?(:close_project, @project) %>
       <% if @project.active? %>
-        <%= link_to icon('lock') + " #{l(:button_close)}", close_project_path(@project), :data => {:confirm => l(:text_are_you_sure)}, :method => :post, :class => 'btn btn-default' %>
+        <%= link_to icon('lock') + l(:button_close), close_project_path(@project), :data => {:confirm => l(:text_are_you_sure)}, :method => :post, :class => 'btn btn-default' %>
       <% else %>
-        <%= link_to icon('unlock') + " #{l(:button_reopen)}", reopen_project_path(@project), :data => {:confirm => l(:text_are_you_sure)}, :method => :post, :class => 'btn btn-default' %>
+        <%= link_to icon('unlock') + l(:button_reopen), reopen_project_path(@project), :data => {:confirm => l(:text_are_you_sure)}, :method => :post, :class => 'btn btn-default' %>
       <% end %>
     <% end %>
   </div>
@@ -15,7 +15,7 @@
 </div>
 
 <% unless @project.active? %>
-  <p class="warning alerts alert-warning"><%= icon('lock') %> <%= l(:text_project_closed) %></span></p>
+  <p class="warning alert alert-warning"><%= icon('lock') %> <%= l(:text_project_closed) %></span></p>
 <% end %>
 
 <div class="row">
@@ -92,7 +92,7 @@
 <% end %>
 
 <% content_for :header_tags do %>
-<%= auto_discovery_link_tag(:atom, {:controller => 'activities', :action => 'index', :id => @project, :format => 'atom', :key => User.current.rss_key}) %>
+  <%= auto_discovery_link_tag(:atom, {:controller => 'activities', :action => 'index', :id => @project, :format => 'atom', :key => User.current.rss_key}) %>
 <% end %>
 
 <% html_title(l(:label_overview)) -%>

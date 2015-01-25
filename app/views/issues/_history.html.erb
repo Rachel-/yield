@@ -1,20 +1,24 @@
 <% reply_links = authorize_for('issues', 'edit') -%>
+
 <% for journal in journals %>
   <div id="change-<%= journal.id %>" class="<%= journal.css_classes %>">
-    <div id="note-<%= journal.indice %>">
-    <h4><%= link_to "##{journal.indice}", {:anchor => "note-#{journal.indice}"}, :class => "journal-link" %>
-    <%= avatar(journal.user, :size => "24") %>
-    <%= authoring journal.created_on, journal.user, :label => :label_updated_time_by %>
-    <%= content_tag('span', l(:field_is_private), :class => 'private') if journal.private_notes? %></h4>
+    <div id="note-<%= journal.indice %>" class="panel panel-info">
+      <div class="panel-heading">
+        <h4 class="panel-title"><%= link_to "##{journal.indice}", {:anchor => "note-#{journal.indice}"}, :class => "journal-link" %>
+          <%= avatar(journal.user, :size => "24") %>
+          <%= authoring journal.created_on, journal.user, :label => :label_updated_time_by %>
+          <%= content_tag('span', l(:field_is_private), :class => 'private') if journal.private_notes? %>
+        </h4>
+      </div>
 
-    <% if journal.details.any? %>
-    <ul class="details">
-      <% details_to_strings(journal.visible_details).each do |string| %>
-       <li><%= string %></li>
+      <% if journal.details.any? %>
+        <ul class="details list-group">
+          <% details_to_strings(journal.visible_details).each do |string| %>
+            <li class="list-group-item"><%= string %></li>
+          <% end %>
+        </ul>
       <% end %>
-    </ul>
-    <% end %>
-    <%= render_notes(issue, journal, :reply_links => reply_links) unless journal.notes.blank? %>
+      <%= render_notes(issue, journal, :reply_links => reply_links) unless journal.notes.blank? %>
     </div>
   </div>
   <%= call_hook(:view_issues_history_journal_bottom, { :journal => journal }) %>

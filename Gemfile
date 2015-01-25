@@ -7,6 +7,7 @@ gem "builder", ">= 3.0.4"
 gem "request_store", "1.0.5"
 gem "mime-types"
 gem "rbpdf", "~> 1.18.1"
+gem "therubyracer", "~> 0.12.1"
 gem "uglifier", ">= 2.5.3"
 gem "sass-rails", ">= 3.2"
 gem "coffee-rails", ">= 3.2"
@@ -51,10 +52,13 @@ end
 # configuration file
 require "erb"
 require "yaml"
+
 database_file = File.join(File.dirname(__FILE__), "config/database.yml")
+
 if File.exist?(database_file)
   database_config = YAML::load(ERB.new(IO.read(database_file)).result)
   adapters = database_config.values.map {|c| c['adapter']}.compact.uniq
+  
   if adapters.any?
     adapters.each do |adapter|
       case adapter

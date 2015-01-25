@@ -1,9 +1,11 @@
+<div class="page-header no-border">
+  <%= render_timelog_breadcrumb %>
+</div>
+
 <div class="page-header">
   <%= link_to l(:button_log_time), _new_time_entry_path(@project, @issue), :class => 'btn btn-success pull-right' if User.current.allowed_to?(:log_time, @project, :global => true) %>
   <h2><%= l(:label_spent_time) %></h2>
 </div>
-
-<%= render_timelog_breadcrumb %>
 
 <%= form_tag(params.slice(:project_id, :issue_id), :method => :get, :id => 'query_form') do %>
   <%= render :partial => 'date_range' %>
@@ -41,5 +43,5 @@
 <% html_title l(:label_spent_time), l(:label_details) %>
 
 <% content_for :header_tags do %>
-    <%= auto_discovery_link_tag(:atom, {:issue_id => @issue, :format => 'atom', :key => User.current.rss_key}, :title => l(:label_spent_time)) %>
+  <%= auto_discovery_link_tag(:atom, {:issue_id => @issue, :format => 'atom', :key => User.current.rss_key}, :title => l(:label_spent_time)) %>
 <% end %>

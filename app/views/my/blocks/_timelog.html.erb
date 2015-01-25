@@ -1,7 +1,11 @@
 <div class="panel panel-primary">
   <div class="panel-heading">
-    <%= link_to l(:label_spent_time), time_entries_path(:user_id => 'me') %>
-    (<%= l(:label_last_n_days, 7) %>)
+    <span class="badge pull-right">
+      <%= l(:label_last_n_days, 7) %>
+    </span>
+    <h3 class="panel-title">
+      <%= link_to l(:label_spent_time), time_entries_path(:user_id => 'me') %>
+    </h3>
   </div>
 
   <%
@@ -34,7 +38,7 @@
               <td class="subject"><%=h entry.project %> <%= h(' - ') + link_to_issue(entry.issue, :truncate => 50) if entry.issue %></td>
               <td class="comments"><%=h entry.comments %></td>
               <td class="hours"><%= html_hours("%.2f" % entry.hours) %></td>
-              <td class="buttons">
+              <td class="buttons text-right">
                 <% if entry.editable_by?(@user) -%>
                   <%= link_to image_tag('edit.png'), {:controller => 'timelog', :action => 'edit', :id => entry}, :title => l(:button_edit) %>
                   <%= link_to image_tag('delete.png'), {:controller => 'timelog', :action => 'destroy', :id => entry}, :data => {:confirm => l(:text_are_you_sure)}, :method => :delete, :title => l(:button_delete) %>
@@ -49,9 +53,7 @@
 
   <div class="panel-footer">
     <% if User.current.allowed_to?(:log_time, nil, :global => true) %>
-      <div class="btn-group pull-right">
-        <%= link_to icon('plus') + l(:button_log_time), new_time_entry_path, :class => "btn btn-success" %>
-      </div>
+      <%= link_to icon('plus') + l(:button_log_time), new_time_entry_path, :class => "btn btn-success btn-sm pull-right" %>
     <% end %>
     <p><%= l(:label_total_time) %>: <%= html_hours("%.2f" % entries.sum(&:hours).to_f) %></p>
   </div>

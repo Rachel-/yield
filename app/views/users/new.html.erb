@@ -1,14 +1,20 @@
-<%= title [l(:label_user_plural), users_path], l(:label_user_new) %>
+<div class="page-header">
+  <%= title [l(:label_user_plural), users_path], l(:label_user_new) %>
+</div>
 
 <%= labelled_form_for @user do |f| %>
   <%= render :partial => 'form', :locals => { :f => f } %>
   <% if email_delivery_enabled? %>
-  <p><label><%= check_box_tag 'send_information', 1, true %> <%= l(:label_send_information) %></label></p>
+  <div class="form-group">
+    <div class="checkbox">
+      <label><%= check_box_tag 'send_information', 1, true %> <%= l(:label_send_information) %></label>
+    </div>
+  </div>
   <% end %>
-  <p>
-    <%= submit_tag l(:button_create) %>
-    <%= submit_tag l(:button_create_and_continue), :name => 'continue' %>
-  </p>
+  <div class="form-group">
+    <%= submit_tag l(:button_create), :class => 'btn btn-success' %>
+    <%= submit_tag l(:button_create_and_continue), :name => 'continue', :class => 'btn btn-default' %>
+  </div>
 <% end %>
 
 <% if @auth_sources.present? && @auth_sources.any?(&:searchable?) %>

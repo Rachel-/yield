@@ -1,4 +1,3 @@
-<!-- Nav tabs -->
 <ul class="nav nav-tabs" role="tablist" id="tabs">
   <% tabs.each do |tab| -%>
     <li class="<%= tab[:name] != selected_tab ? nil : 'active'%>">
@@ -9,7 +8,6 @@
   <% end -%>
 </ul>
 
-<!-- Tab panes -->
 <div class="tab-content">
   <% tabs.each do |tab| -%>
     <div id="<%= tab[:name] %>" class="tabpane <%= tab[:name] != selected_tab ? 'tab-pane' : 'tab-pane active' %>" role="tabpanel">

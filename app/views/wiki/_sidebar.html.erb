@@ -2,11 +2,18 @@
   <%= textilizable @wiki.sidebar.content, :text %>
 <% end -%>
 
-<h3><%= l(:label_wiki) %></h3>
-<ul>
-  <li><%= link_to(l(:field_start_page), {:action => 'show', :id => nil}) %></li>
-  <li><%= link_to(l(:label_index_by_title), {:action => 'index'}) %></li>
-  <li><%= link_to(l(:label_index_by_date),
-                  {:controller => 'wiki', :project_id => @project,
-                   :action => 'date_index'}) %></li>
+<div class="page-header">
+  <h3><%= l(:label_wiki) %></h3>
+</div>
+
+<ul class="nav nav-stacked">
+  <li>
+    <%= link_to(l(:field_start_page), {:action => 'show', :id => nil}) %>
+  </li>
+  <li>
+    <%= link_to(l(:label_index_by_title), {:action => 'index'}) %>
+  </li>
+  <li>
+    <%= link_to(l(:label_index_by_date), {:controller => 'wiki', :project_id => @project, :action => 'date_index'}) %>
+  </li>
 </ul>

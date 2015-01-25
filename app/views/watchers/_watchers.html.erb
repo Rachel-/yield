@@ -1,12 +1,9 @@
-<% if User.current.allowed_to?(:add_issue_watchers, @project) %>
-<div class="contextual">
-<%= link_to l(:button_add),
-      {:controller => 'watchers', :action => 'new', :object_type => watched.class.name.underscore, :object_id => watched},
-      :remote => true,
-      :method => 'get' %>
+<div class="page-header">
+  <h3><%= l(:label_issue_watchers) %> <span class="label label-primary pull-right"><%= watched.watcher_users.size %></span></h3>
 </div>
-<% end %>
-
-<h3><%= l(:label_issue_watchers) %> (<%= watched.watcher_users.size %>)</h3>
 
 <%= watchers_list(watched) %>
+
+<% if User.current.allowed_to?(:add_issue_watchers, @project) %>
+  <%= link_to l(:button_add), {:controller => 'watchers', :action => 'new', :object_type => watched.class.name.underscore, :object_id => watched}, :remote => true, :method => 'get', :class => 'btn btn-success' %>
+<% end %>

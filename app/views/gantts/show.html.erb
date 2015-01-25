@@ -8,10 +8,7 @@
 
 <h2><%= @query.new_record? ? l(:label_gantt) : h(@query.name) %></h2>
 
-<%= form_tag({:controller => 'gantts', :action => 'show',
-             :project_id => @project, :month => params[:month],
-             :year => params[:year], :months => params[:months]},
-             :method => :get, :id => 'query_form') do %>
+<%= form_tag({:controller => 'gantts', :action => 'show', :project_id => @project, :month => params[:month], :year => params[:year], :months => params[:months]}, :method => :get, :id => 'query_form') do %>
 <%= hidden_field_tag 'set_filter', '1' %>
 <%= hidden_field_tag 'gantt', '1' %>
 <fieldset id="filters" class="collapsible <%= @query.new_record? ? "" : "collapsed" %>">
@@ -33,8 +30,7 @@
               <% rels = [IssueRelation::TYPE_BLOCKS, IssueRelation::TYPE_PRECEDES] %>
               <% rels.each do |rel| %>
                 <% color = Yield::Helpers::Gantt::DRAW_TYPES[rel][:color] %>
-                <%= content_tag(:span, '&nbsp;&nbsp;&nbsp;'.html_safe,
-                                :style => "background-color: #{color}") %>
+                <%= content_tag(:span, '&nbsp;&nbsp;&nbsp;'.html_safe, :style => "background-color: #{color}") %>
                 <%= l(IssueRelation::TYPES[rel][:name]) %>
               <% end %>
             </label>
@@ -66,14 +62,10 @@
 <%= select_year(@gantt.year_from, :prefix => "year", :discard_type => true) %>
 <%= hidden_field_tag 'zoom', @gantt.zoom %>
 
-<%= link_to_function l(:button_apply), '$("#query_form").submit()',
-                     :class => 'icon icon-checked' %>
-<%= link_to l(:button_clear), { :project_id => @project, :set_filter => 1 },
-            :class => 'icon icon-reload' %>
+<%= link_to_function l(:button_apply), '$("#query_form").submit()', :class => 'icon icon-checked' %>
+<%= link_to l(:button_clear), { :project_id => @project, :set_filter => 1 }, :class => 'icon icon-reload' %>
 <% if @query.new_record? && User.current.allowed_to?(:save_queries, @project, :global => true) %>
-  <%= link_to_function l(:button_save),
-                       "$('#query_form').attr('action', '#{ @project ? new_project_query_path(@project) : new_query_path }').submit();",
-                       :class => 'icon icon-save' %>
+  <%= link_to_function l(:button_save), "$('#query_form').attr('action', '#{ @project ? new_project_query_path(@project) : new_query_path }').submit();", :class => 'icon icon-save' %>
 <% end %>
 </p>
 <% end %>
@@ -95,17 +87,16 @@
     show_weeks = true
     headers_height = 2 * header_height
     if @gantt.zoom > 2
-        show_days = true
-        headers_height = 3 * header_height
+      show_days = true
+      headers_height = 3 * header_height
     end
   end
 
   # Width of the entire chart
   g_width = ((@gantt.date_to - @gantt.date_from + 1) * zoom).to_i
-  @gantt.render(:top => headers_height + 8,
-                :zoom => zoom,
-                :g_width => g_width,
-                :subject_width => subject_width)
+  
+  @gantt.render(:top => headers_height + 8, :zoom => zoom, :g_width => g_width, :subject_width => subject_width)
+  
   g_height = [(20 * (@gantt.number_of_rows + 6)) + 150, 206].max
   t_height = g_height + headers_height
 %>
@@ -172,9 +163,7 @@
     style += "height: #{height}px;"
   %>
   <%= content_tag(:div, :style => style, :class => "gantt_hdr") do %>
-    <%= link_to h("#{month_f.year}-#{month_f.month}"),
-                @gantt.params.merge(:year => month_f.year, :month => month_f.month),
-                :title => "#{month_name(month_f.month)} #{month_f.year}" %>
+    <%= link_to h("#{month_f.year}-#{month_f.month}"), @gantt.params.merge(:year => month_f.year, :month => month_f.month), :title => "#{month_name(month_f.month)} #{month_f.year}" %>
   <% end %>
   <%
     left = left + width + 1
@@ -210,9 +199,7 @@
   <% end %>
   <% while week_f <= @gantt.date_to %>
     <%
-      width = ((week_f + 6 <= @gantt.date_to) ?
-                  7 * zoom - 1 :
-                  (@gantt.date_to - week_f + 1) * zoom - 1).to_i
+      width = ((week_f + 6 <= @gantt.date_to) ? 7 * zoom - 1 : (@gantt.date_to - week_f + 1) * zoom - 1).to_i
       style  = ""
       style += "left: #{left}px;"
       style += "top: 19px;"
@@ -294,12 +281,10 @@
 <table style="width:100%">
 <tr>
   <td style="text-align:left;">
-    <%= link_to_content_update("\xc2\xab " + l(:label_previous),
-                               params.merge(@gantt.params_previous)) %>
+    <%= link_to_content_update("\xc2\xab " + l(:label_previous), params.merge(@gantt.params_previous)) %>
   </td>
   <td style="text-align:right;">
-    <%= link_to_content_update(l(:label_next) + " \xc2\xbb",
-                               params.merge(@gantt.params_next)) %>
+    <%= link_to_content_update(l(:label_next) + " \xc2\xbb", params.merge(@gantt.params_next)) %>
   </td>
 </tr>
 </table>

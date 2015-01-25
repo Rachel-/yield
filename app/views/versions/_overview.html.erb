@@ -5,30 +5,26 @@
 <% end %>
 
 <p><%=h version.description %></p>
+
 <% if version.custom_field_values.any? %>
-<ul>
-  <% version.custom_field_values.each do |custom_value| %>
-    <% if custom_value.value.present? %>
-       <li><%=h custom_value.custom_field.name %>: <%=h show_value(custom_value) %></li>
+  <ul>
+    <% version.custom_field_values.each do |custom_value| %>
+      <% if custom_value.value.present? %>
+         <li><%=h custom_value.custom_field.name %>: <%=h show_value(custom_value) %></li>
+      <% end %>
     <% end %>
-  <% end %>
-</ul>
+  </ul>
 <% end %>
 
 <% if version.issues_count > 0 %>
-    <%= progress_bar([version.closed_percent, version.completed_percent],
-                     :width => '40em', :legend => ('%0.0f%' % version.completed_percent)) %>
+    <%= progress_bar([version.closed_percent, version.completed_percent], :legend => ('%0.0f%' % version.completed_percent)) %>
+    
     <p class="progress-info">
-      <%= link_to(l(:label_x_issues, :count => version.issues_count),
-                  version_filtered_issues_path(version, :status_id => '*')) %>
+      <%= link_to(l(:label_x_issues, :count => version.issues_count), version_filtered_issues_path(version, :status_id => '*')) %>
       &nbsp;
-      (<%= link_to_if(version.closed_issues_count > 0,
-                      l(:label_x_closed_issues_abbr, :count => version.closed_issues_count),
-                      version_filtered_issues_path(version, :status_id => 'c')) %>
+      (<%= link_to_if(version.closed_issues_count > 0, l(:label_x_closed_issues_abbr, :count => version.closed_issues_count), version_filtered_issues_path(version, :status_id => 'c')) %>
       &#8212;
-      <%= link_to_if(version.open_issues_count > 0,
-                     l(:label_x_open_issues_abbr, :count => version.open_issues_count),
-                     version_filtered_issues_path(version, :status_id => 'o')) %>)
+      <%= link_to_if(version.open_issues_count > 0, l(:label_x_open_issues_abbr, :count => version.open_issues_count), version_filtered_issues_path(version, :status_id => 'o')) %>)
     </p>
 <% else %>
     <p class="progress-info"><%= l(:label_roadmap_no_issues) %></p>

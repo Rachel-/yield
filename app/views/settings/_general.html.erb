@@ -1,40 +1,70 @@
 <%= form_tag({:action => 'edit'}) do %>
+  <div class="form-group">
+    <%= setting_text_field :app_title, :size => 30, :class => 'form-control' %>
+  </div>
 
-<div class="box tabular settings">
-<p><%= setting_text_field :app_title, :size => 30 %></p>
+  <div class="form-group">
+    <%= setting_text_area :welcome_text, :cols => 60, :rows => 5, :class => 'wiki-edit form-control' %>
+  </div>
+  <%= wikitoolbar_for 'settings_welcome_text' %>
 
-<p><%= setting_text_area :welcome_text, :cols => 60, :rows => 5, :class => 'wiki-edit' %></p>
-<%= wikitoolbar_for 'settings_welcome_text' %>
+  <div class="form-group custom-control inline-control">
+    <%= setting_text_field :attachment_max_size, :size => 10 %>
+    <%= l(:"number.human.storage_units.units.kb") %>
+  </div>
 
-<p><%= setting_text_field :attachment_max_size, :size => 6 %> <%= l(:"number.human.storage_units.units.kb") %></p>
+  <div class="form-group">
+    <%= setting_text_field :per_page_options, :size => 20, :class => 'form-control' %>
+    <span class="help-block"><%= l(:text_comma_separated) %></span>
+  </div>
 
-<p><%= setting_text_field :per_page_options, :size => 20 %>
-<em class="info"><%= l(:text_comma_separated) %></em></p>
+  <div class="form-group custom-control inline-control">
+    <%= setting_text_field :activity_days_default, :size => 10 %>
+    <%= l(:label_day_plural) %>
+  </div>
 
-<p><%= setting_text_field :activity_days_default, :size => 6 %> <%= l(:label_day_plural) %></p>
+  <div class="form-group">
+    <%= setting_text_field :host_name, :size => 60, :class => 'form-control' %>
+    <span class="help-block" class="info"><%= l(:label_example) %>: <%= @guessed_host_and_path %></span>
+  </div>
 
-<p><%= setting_text_field :host_name, :size => 60 %>
-<em class="info"><%= l(:label_example) %>: <%= @guessed_host_and_path %></em></p>
+  <div class="form-group">
+    <%= setting_select :protocol, [['HTTP', 'http'], ['HTTPS', 'https']], :class => 'form-control' %>
+  </div>
 
-<p><%= setting_select :protocol, [['HTTP', 'http'], ['HTTPS', 'https']] %></p>
+  <div class="form-group">
+    <%= setting_select :text_formatting, Yield::WikiFormatting.formats_for_select, :blank => :label_none, :class => 'form-control' %>
+  </div>
 
-<p><%= setting_select :text_formatting, Yield::WikiFormatting.formats_for_select, :blank => :label_none %></p>
+  <div class="form-group">
+    <div class="checkbox custom-checkbox">
+      <%= setting_check_box :cache_formatted_text %>
+    </div>
+  </div>
 
-<p><%= setting_check_box :cache_formatted_text %></p>
+  <div class="form-group">
+    <%= setting_select :wiki_compression, [['Gzip', 'gzip']], :blank => :label_none, :class => 'form-control' %>
+  </div>
 
-<p><%= setting_select :wiki_compression, [['Gzip', 'gzip']], :blank => :label_none %></p>
+  <div class="form-group">
+    <%= setting_text_field :feeds_limit, :size => 6, :class => 'form-control' %>
+  </div>
 
-<p><%= setting_text_field :feeds_limit, :size => 6 %></p>
+  <div class="form-group custom-control inline-control">
+    <%= setting_text_field :file_max_size_displayed, :size => 10 %>
+    <%= l(:"number.human.storage_units.units.kb") %>
+  </div>
 
-<p><%= setting_text_field :file_max_size_displayed, :size => 6 %> <%= l(:"number.human.storage_units.units.kb") %></p>
+  <div class="form-group">
+    <%= setting_text_field :diff_max_lines_displayed, :size => 6, :class => 'form-control' %>
+  </div>
 
-<p><%= setting_text_field :diff_max_lines_displayed, :size => 6 %></p>
+  <div class="form-group">
+    <%= setting_text_field :repositories_encodings, :size => 60, :class => 'form-control' %>
+    <span class="help-block"><%= l(:text_comma_separated) %></span>
+  </div>
 
-<p><%= setting_text_field :repositories_encodings, :size => 60 %>
-<em class="info"><%= l(:text_comma_separated) %></em></p>
+  <%= call_hook(:view_settings_general_form) %>
 
-<%= call_hook(:view_settings_general_form) %>
-</div>
-
-<%= submit_tag l(:button_save) %>
+  <%= submit_tag l(:button_save), :class => 'btn btn-success' %>
 <% end %>

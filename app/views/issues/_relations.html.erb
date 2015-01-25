@@ -1,14 +1,14 @@
 <div class="contextual">
-<% if User.current.allowed_to?(:manage_issue_relations, @project) %>
-  <%= toggle_link l(:button_add), 'new-relation-form', {:focus => 'relation_issue_to_id'} %>
-<% end %>
+  <% if User.current.allowed_to?(:manage_issue_relations, @project) %>
+    <%= toggle_link l(:button_add), 'new-relation-form', {:focus => 'relation_issue_to_id'}, {:class => 'btn btn-success btn-sm pull-right'} %>
+  <% end %>
 </div>
 
 <p><strong><%=l(:label_related_issues)%></strong></p>
 
 <% if @relations.present? %>
 <form>
-<table class="list issues">
+<table class="table issues">
 <% @relations.each do |relation| %>
   <% other_issue = relation.other_issue(@issue) -%>
   <tr class="issue hascontextmenu" id="relation-<%= relation.id %>">
@@ -22,7 +22,7 @@
   <td class="status"><%=h other_issue.status.name %></td>
   <td class="start_date"><%= format_date(other_issue.start_date) %></td>
   <td class="due_date"><%= format_date(other_issue.due_date) %></td>
-  <td class="buttons"><%= link_to image_tag('link_break.png'),
+  <td class="buttons text-right"><%= link_to image_tag('link_break.png'),
                                   relation_path(relation),
                                   :remote => true,
                                   :method => :delete,

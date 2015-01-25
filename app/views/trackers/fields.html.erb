@@ -3,14 +3,14 @@
 <% if @trackers.any? %>
   <%= form_tag fields_trackers_path do %>
     <div class="autoscroll">
-    <table class="list">
+    <table class="table">
     <thead>
       <tr>
         <th></th>
         <% @trackers.each do |tracker| %>
         <th>
           <%= tracker.name %>
-          <%= link_to_function(image_tag('toggle_check.png'), "toggleCheckboxesBySelector('input.tracker-#{tracker.id}')",
+          <%= link_to_function(icon('check'), "toggleCheckboxesBySelector('input.tracker-#{tracker.id}')",
                                                               :title => "#{l(:button_check_all)}/#{l(:button_uncheck_all)}") %>
         </th>
         <% end %>
@@ -26,7 +26,7 @@
       <% Tracker::CORE_FIELDS.each do |field| %>
       <tr class="<%= cycle("odd", "even") %>">
         <td class="name">
-          <%= link_to_function(image_tag('toggle_check.png'), "toggleCheckboxesBySelector('input.core-field-#{field}')",
+          <%= link_to_function(icon('check'), "toggleCheckboxesBySelector('input.core-field-#{field}')",
                                                               :title => "#{l(:button_check_all)}/#{l(:button_uncheck_all)}") %>
           <%= l("field_#{field}".sub(/_id$/, '')) %>
         </td>
@@ -48,7 +48,7 @@
         <% @custom_fields.each do |field| %>
         <tr class="<%= cycle("odd", "even") %>">
           <td class="name">
-            <%= link_to_function(image_tag('toggle_check.png'), "toggleCheckboxesBySelector('input.custom-field-#{field.id}')",
+            <%= link_to_function(icon('check'), "toggleCheckboxesBySelector('input.custom-field-#{field.id}')",
                                                                 :title => "#{l(:button_check_all)}/#{l(:button_uncheck_all)}") %>
             <%= field.name %>
           </td>

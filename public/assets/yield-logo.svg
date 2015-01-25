@@ -7,34 +7,10 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    version="1.1"
-   width="55"
-   height="63"
-   id="svg2"
-   inkscape:version="0.48.4 r9939"
-   sodipodi:docname="yield-logo.svg">
-  <sodipodi:namedview
-     pagecolor="#ffffff"
-     bordercolor="#666666"
-     borderopacity="1"
-     objecttolerance="10"
-     gridtolerance="10"
-     guidetolerance="10"
-     inkscape:pageopacity="0"
-     inkscape:pageshadow="2"
-     inkscape:window-width="1551"
-     inkscape:window-height="876"
-     id="namedview11"
-     showgrid="false"
-     inkscape:zoom="3.6203867"
-     inkscape:cx="40.628163"
-     inkscape:cy="7.3124136"
-     inkscape:window-x="49"
-     inkscape:window-y="24"
-     inkscape:window-maximized="1"
-     inkscape:current-layer="svg2" />
+   width="38"
+   height="38"
+   id="svg2">
   <defs
      id="defs4" />
   <metadata
@@ -45,23 +21,58 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
-  <text
-     sodipodi:linespacing="200%"
-     style="font-size:36px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:200%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:FontAwesome;-inkscape-font-specification:FontAwesome"
-     xml:space="preserve"
-     id="text2719"
-     y="-290.66565"
-     x="244.45209"><tspan
-       id="tspan2721"
-       y="-290.66565"
-       x="244.45209"></tspan></text>
+  <polygon
+     points="48.002,45.512 91.271,23.875 47.998,2.179 4.729,23.814 "
+     transform="matrix(0.23110165,0,0,0.25384796,7.9071203,1.4468688)"
+     id="polygon3858"
+     style="fill:#e6e6e6;fill-opacity:1" />
   <path
-     inkscape:connector-curvature="0"
-     style="fill:#ffffff"
-     id="path2729"
-     d="M 26.99999,6 C 13.75,6 3,16.75605 3,30.00605 c 0,13.25 10.75,23.99193 23.99999,23.99193 l 8.0519,0 0,8.00202 12.01415,-11.99597 -12.01415,-12.0383 0,7.94556 -8.0519,0.0847 c -8.828,0 -16.00471,-7.16192 -16.00471,-15.98992 0,-8.828 7.17671,-16.00403 16.00471,-16.00403 8.82801,0 16.00473,7.17603 16.00473,16.00403 l 7.99528,0 C 51,16.75607 40.25,6.00002 26.99999,6.00002 z m -7.24527,17.16129 c 0.90126,1.65788 1.84844,3.31141 2.83019,4.95363 0.98174,1.64224 2.01685,3.29424 3.12735,4.96774 l 0,6.33669 3.04245,0 0,-6.37903 c 1.11049,-1.65786 2.14755,-3.2988 3.11321,-4.9254 0.98173,-1.64222 1.92891,-3.29575 2.83019,-4.95363 l -3.38207,0 c -0.56331,1.21996 -1.19004,2.43684 -1.88208,3.64113 -0.69205,1.20431 -1.39841,2.38344 -2.12264,3.55645 -0.74034,-1.17301 -1.4467,-2.35214 -2.12264,-3.55645 -0.67596,-1.20429 -1.30463,-2.42117 -1.86793,-3.64113 l -3.56603,0 z" />
+     d="m 8.0000064,9 0,9.931378 L 18.100006,24 l 0,-9.600007 z"
+     id="polygon3860"
+     style="fill:#e6e6e6" />
+  <path
+     d="M 19.9,23.999999 30,18.905352 30,8.999999 19.9,14.399997 z"
+     id="polygon3862"
+     style="fill:#e6e6e6" />
+  <path
+     d="m 19.9,14.399997 0,9.6 10.1,-5.094643 z"
+     id="path3864"
+     style="fill:#f9f9f9" />
+  <path
+     d="m 18.100006,14.399994 0,9.6 -10.0999995,-5.068627 z"
+     id="path3866"
+     style="fill:#f9f9f9" />
+  <path
+     d="M 19.000925,12.999997 29,7.5074924 19,2.0000096 z"
+     id="path3868"
+     style="fill:#f9f9f9;fill-opacity:1" />
+  <g
+     transform="matrix(1.0030264,0,0,1.0014306,-0.66864649,0.05457994)"
+     id="text2989"
+     style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Montserrat;-inkscape-font-specification:Montserrat">
+    <path
+       d="m 8.9530508,35.89407 -1.2,0 0,-2.76 -2.6,-4.23 1.29,0 1.91,3.18 1.9100002,-3.18 1.29,0 -2.6000002,4.23 0,2.76"
+       id="path2991"
+       style="font-family:Montserrat;-inkscape-font-specification:Montserrat" />
+    <path
+       d="m 12.43352,28.90407 1.18,0 0,6.99 -1.18,0 0,-6.99"
+       id="path2993"
+       style="font-family:Montserrat;-inkscape-font-specification:Montserrat" />
+    <path
+       d="m 20.46852,28.90407 0,1.11 -3.73,0 0,1.85 3.35,0 0,1.05 -3.35,0 0,1.87 3.85,0 0,1.11 -5.03,0 0,-6.99 4.91,0"
+       id="path2995"
+       style="font-family:Montserrat;-inkscape-font-specification:Montserrat" />
+    <path
+       d="m 22.101488,35.89407 0,-6.99 1.18,0 0,5.87 3.19,0 0,1.12 -4.37,0"
+       id="path2997"
+       style="font-family:Montserrat;-inkscape-font-specification:Montserrat" />
+    <path
+       d="m 30.165551,28.90407 c 1.253329,7e-6 2.216661,0.306673 2.89,0.92 0.673326,0.606672 1.009993,1.453338 1.01,2.54 -7e-6,1.086669 -0.326674,1.946668 -0.98,2.58 -0.653339,0.633333 -1.653338,0.95 -3,0.95 l -2.32,0 0,-6.99 2.4,0 m 2.71,3.49 c -6e-6,-1.599995 -0.916672,-2.399994 -2.75,-2.4 l -1.18,0 0,4.79 1.31,0 c 0.846662,10e-7 1.493328,-0.199999 1.94,-0.6 0.453327,-0.406665 0.679994,-1.003331 0.68,-1.79"
+       id="path2999"
+       style="font-family:Montserrat;-inkscape-font-specification:Montserrat" />
+  </g>
 </svg>

@@ -1,25 +1,27 @@
 <div class="page-header">
-  <%= link_to icon('plus') + " #{l(:label_group_new)}", new_group_path, :class => 'btn btn-success pull-right' %>
-  <h2><%= icon('group') %> <%= l(:label_group_plural) %></h2>
+  <%= link_to icon('plus') + l(:label_group_new), new_group_path, :class => 'btn btn-success pull-right' %>
+  <h2><%= icon('group') %><%= l(:label_group_plural) %></h2>
 </div>
 
 <% if @groups.any? %>
-<table class="table groups">
-  <thead><tr>
-  <th><%=l(:label_group)%></th>
-  <th><%=l(:label_user_plural)%></th>
-  <th></th>
-  </tr></thead>
-  <tbody>
-<% @groups.each do |group| %>
-  <tr id="group-<%= group.id %>" class="<%= cycle 'odd', 'even' %> <%= "builtin" if group.builtin? %>">
-    <td class="name"><%= link_to h(group), edit_group_path(group) %></td>
-    <td class="user_count"><%= (@user_count_by_group_id[group.id] || 0) unless group.builtin? %></td>
-    <td class="buttons"><%= delete_link group unless group.builtin? %></td>
-  </tr>
-<% end %>
-  </tbody>
-</table>
+  <table class="table groups">
+    <thead>
+      <tr>
+        <th><%=l(:label_group)%></th>
+        <th><%=l(:label_user_plural)%></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @groups.each do |group| %>
+        <tr id="group-<%= group.id %>" class="<%= cycle 'odd', 'even' %> <%= "builtin" if group.builtin? %>">
+          <td class="name"><%= link_to h(group), edit_group_path(group) %></td>
+          <td class="user_count"><%= (@user_count_by_group_id[group.id] || 0) unless group.builtin? %></td>
+          <td class="buttons text-right"><%= delete_link group unless group.builtin? %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 <% else %>
-<p class="nodata"><%= l(:label_no_data) %></p>
+  <div class="nodata alert alert-warning"><%= l(:label_no_data) %></div>
 <% end %>

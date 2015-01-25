@@ -1,6 +1,9 @@
-<h2><%=h "#{@issue.tracker.name} ##{@issue.id}" %></h2>
+<div class="page-header">
+  <h2><%=h "#{@issue.tracker.name} ##{@issue.id}" %></h2>
+</div>
 
 <%= render :partial => 'edit' %>
+
 <% content_for :header_tags do %>
-    <%= robot_exclusion_tag %>
+  <%= robot_exclusion_tag %>
 <% end %>

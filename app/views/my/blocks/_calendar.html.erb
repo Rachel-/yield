@@ -1,8 +1,14 @@
 <div class="panel panel-primary">
-	<div class="panel-heading"><%= l(:label_calendar) %></div>
+  <div class="panel-heading">
+    <h3 class="panel-title">
+      <%= l(:label_calendar) %>
+    </h3>
+  </div>
 
-	<% calendar = Yield::Helpers::Calendar.new(Date.today, current_language, :week)
-	   calendar.events = calendar_items(calendar.startdt, calendar.enddt) %>
+  <%
+    calendar = Yield::Helpers::Calendar.new(Date.today, current_language, :week)
+    calendar.events = calendar_items(calendar.startdt, calendar.enddt)
+  %>
 
-	<%= render :partial => 'common/calendar', :locals => {:calendar => calendar } %>
+  <%= render :partial => 'common/calendar', :locals => {:calendar => calendar } %>
 </div>

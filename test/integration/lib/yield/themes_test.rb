@@ -57,7 +57,7 @@ class ThemesTest < ActionController::IntegrationTest
     get '/'
 
     assert_response :success
-    assert_select 'link[rel=shortcut icon][href^=/favicon.ico]'
+    assert_select 'link[rel=shortcut icon][href^=/favicon.png]'
   end
 
   def test_use_theme_favicon_if_theme_provides_one

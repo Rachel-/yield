@@ -1,3 +1,5 @@
-<%= title [l(:label_group_plural), groups_path], @group.name %>
+<div class="page-header">
+	<%= title [icon('users') + l(:label_group_plural), groups_path], @group.name %>
+</div>
 
 <%= render_tabs group_settings_tabs(@group) %>

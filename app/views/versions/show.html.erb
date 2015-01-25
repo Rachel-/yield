@@ -36,7 +36,7 @@
 
 <% if @issues.present? %>
 <%= form_tag({}) do -%>
-  <table class="list related-issues">
+  <table class="table related-issues">
   <caption><%= l(:label_related_issues) %></caption>
   <%- @issues.each do |issue| -%>
     <tr class="issue hascontextmenu">

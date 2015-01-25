@@ -1,19 +1,13 @@
-<%= labelled_form_for @wiki,
-                   :as => :wiki,
-                   :url => { :controller => 'wikis', :action => 'edit', :id => @project },
-                   :remote => true, :method => 'post' do |f| %>
+<%= labelled_form_for @wiki, :as => :wiki, :url => { :controller => 'wikis', :action => 'edit', :id => @project }, :remote => true, :method => 'post' do |f| %>
+  <%= error_messages_for 'wiki' %>
 
-<%= error_messages_for 'wiki' %>
+  <div class="form-group">
+    <%= f.text_field :start_page, :size => 60, :required => true, :class => 'form-control' %>
+    <span class="help-block"><%= l(:text_unallowed_characters) %>: , . / ? ; : |</span>
+  </div>
 
-<div class="box tabular">
-<p><%= f.text_field :start_page, :size => 60, :required => true %>
-<em class="info"><%= l(:text_unallowed_characters) %>: , . / ? ; : |</em></p>
-</div>
-
-<div class="contextual">
-<%= link_to(l(:button_delete), {:controller => 'wikis', :action => 'destroy', :id => @project},
-            :class => 'icon icon-del') if @wiki && !@wiki.new_record? %>
-</div>
-
-<%= submit_tag((@wiki.nil? || @wiki.new_record?) ? l(:button_create) : l(:button_save)) %>
+  <div class="form-group">
+    <%= submit_tag((@wiki.nil? || @wiki.new_record?) ? l(:button_create) : l(:button_save), :class => 'btn btn-success') %>
+    <%= link_to(l(:button_delete), {:controller => 'wikis', :action => 'destroy', :id => @project}, :class => 'btn btn-danger pull-right') if @wiki && !@wiki.new_record? %>
+  </div>
 <% end %>

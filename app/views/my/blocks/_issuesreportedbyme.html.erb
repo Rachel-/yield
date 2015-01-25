@@ -1,11 +1,13 @@
 <div class="panel panel-primary">
-	<div class="panel-heading">
-	  <span class="badge pull-right"><%= Issue.visible.where(:author_id => User.current.id).count %></span>
-	  <%= link_to l(:label_reported_issues), issues_path(:set_filter => 1, :status_id => '*', :author_id => 'me', :sort => 'updated_on:desc') %>
-	</div>
+  <div class="panel-heading">
+    <span class="badge pull-right"><%= Issue.visible.where(:author_id => User.current.id).count %></span>
+    <h3 class="panel-title">
+      <%= link_to l(:label_reported_issues), issues_path(:set_filter => 1, :status_id => '*', :author_id => 'me', :sort => 'updated_on:desc') %>
+    </h3>
+  </div>
 
-	<% reported_issues = issuesreportedbyme_items %>
-	<%= render :partial => 'issues/list_simple', :locals => { :issues => reported_issues } %>
+  <% reported_issues = issuesreportedbyme_items %>
+  <%= render :partial => 'issues/list_simple', :locals => { :issues => reported_issues } %>
 </div>
 
 <% content_for :header_tags do %>

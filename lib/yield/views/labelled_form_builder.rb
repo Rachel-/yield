@@ -20,8 +20,7 @@ require 'action_view/helpers/form_helper'
 class Yield::Views::LabelledFormBuilder < ActionView::Helpers::FormBuilder
   include Yield::I18n
 
-  (field_helpers.map(&:to_s) - %w(radio_button hidden_field fields_for check_box) +
-        %w(date_select)).each do |selector|
+  (field_helpers.map(&:to_s) - %w(radio_button hidden_field fields_for check_box) + %w(date_select)).each do |selector|
     src = <<-END_SRC
     def #{selector}(field, options = {})
       label_for_field(field, options) + super(field, options.except(:label)).html_safe
@@ -47,7 +46,7 @@ class Yield::Views::LabelledFormBuilder < ActionView::Helpers::FormBuilder
     return ''.html_safe if options.delete(:no_label)
     text = options[:label].is_a?(Symbol) ? l(options[:label]) : options[:label]
     text ||= l(("field_" + field.to_s.gsub(/\_id$/, "")).to_sym)
-    text += @template.content_tag("span", " *", :class => "required") if options.delete(:required)
-    @template.content_tag("label", text.html_safe, :class => (@object && @object.errors[field].present? ? "error" : nil), :for => (@object_name.to_s + "_" + field.to_s))
+    text += @template.content_tag("span", " *", :class => "required text-danger") if options.delete(:required)
+    @template.content_tag("label", text.html_safe, :class => (@object && @object.errors[field].present? ? "error text-danger" : nil), :for => (@object_name.to_s + "_" + field.to_s))
   end
 end

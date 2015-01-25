@@ -6,7 +6,7 @@
       <thead>
         <tr>
           <th class="checked hide-when-print">
-            <%= link_to image_tag('toggle_check.png'), {}, :onclick => 'toggleIssuesSelection(this); return false;', :title => "#{l(:button_check_all)}/#{l(:button_uncheck_all)}" %>
+            <%= link_to icon('check'), {}, :onclick => 'toggleIssuesSelection(this); return false;', :title => "#{l(:button_check_all)}/#{l(:button_uncheck_all)}" %>
           </th>
           <% query.inline_columns.each do |column| %>
             <%= column_header(column) %>

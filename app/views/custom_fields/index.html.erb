@@ -1,6 +1,6 @@
 <div class="page-header">
-	<%= link_to icon('plus') + " #{l(:label_custom_field_new)}", new_custom_field_path, :class => 'btn btn-success pull-right' %>
-	<h2><%= icon('list') %> <%= l(:label_custom_field_plural) %></h2>
+  <%= link_to icon('plus') + l(:label_custom_field_new), new_custom_field_path, :class => 'btn btn-success pull-right' %>
+  <h2><%= icon('list') %><%= l(:label_custom_field_plural) %></h2>
 </div>
 
 <% if @custom_fields_by_type.present? %>

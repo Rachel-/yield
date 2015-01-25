@@ -12,49 +12,62 @@
 
 <%= form_tag({ :controller => 'issues', :action => 'index', :project_id => @project }, :method => :get, :id => 'query_form') do %>
   <div id="query_form_with_buttons" class="row hide-when-print">
-    <div id="query_form_content" class="panel-group col-xs-12" role="tablist" aria-multiselectable="true">
-      <!-- Filters Panel Start -->
-      <div id="filters" class="panel panel-default">
-        <div class="panel-heading" role="tab" id="filters-heading">
-          <h4 class="panel-title">
-            <a data-toggle="collapse" data-parent="#accordion" href="#filters-collapse" aria-expanded="true" aria-controls="filters-collapse">
-              <%= l(:label_filter_plural) %>
-            </a>
-          </h4>
+    <div id="query_form_content" class="col-xs-12" role="tablist" aria-multiselectable="true">
+
+      <fieldset id="filters">
+        <legend>
+          <%= l(:label_filter_plural) %>
+          <a class="btn btn-link" data-toggle="collapse" href="#filters-collapse" aria-expanded="true" aria-controls="filters-collapse">
+            <span class="caret"></span>
+          </a>
+        </legend>
+        <div id="filters-collapse" class="collapse form-group" aria-labelledby="filters-heading">
+          <%= render :partial => 'queries/filters', :locals => {:query => @query} %>
         </div>
-        <div id="filters-collapse" class="panel-collapse collapse" role="tabpanel" aria-labelledby="filters-heading">
-          <div class="panel-body"><%= render :partial => 'queries/filters', :locals => {:query => @query} %></div>
+      </fieldset>
+
+      <fieldset id="options" class="form-group">
+        <legend>
+          <%= l(:label_options) %>
+          <a class="btn btn-link" data-toggle="collapse" href="#options-collapse" aria-expanded="true" aria-controls="options-collapse">
+            <span class="caret"></span>
+          </a>
+        </legend>
+        <div id="options-collapse" class="collapse form-group" aria-labelledby="options-heading">
+          <div class="form-group">
+            <div class="row">
+              <div class="col-xs-12 col-sm-2"><%= l(:field_column_names) %></div>
+              <div class="col-xs-12 col-sm-10"><%= render_query_columns_selection(@query) %></div>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <div class="row">
+              <div class="col-xs-12 col-sm-2"><%= l(:field_group_by) %></div>
+              <div class="col-xs-12 col-sm-10">
+                <div class="form-inline">
+                  <%= select_tag('group_by', options_for_select( [[]] + @query.groupable_columns.collect {|c| [c.caption, c.name.to_s]}, @query.group_by), :class => 'form-control' ) %>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <div class="row">
+              <div class="col-xs-12 col-sm-2"><%= l(:button_show) %></div>
+              <div class="col-xs-12 col-sm-10">
+                <div class="form-inline">
+                  <div class="checkbox">
+                    <%= available_block_columns_tags(@query) %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
-      <!-- Filters Panel End -->
-      <!-- Options Panel Start -->
-      <div id="options" class="panel panel-default">
-        <div class="panel-heading" role="tab" id="options-heading">
-          <h4 class="panel-title">
-            <a data-toggle="collapse" data-parent="#accordion" href="#options-collapse" aria-expanded="true" aria-controls="options-collapse">
-              <%= l(:label_options) %>
-            </a>
-          </h4>
-        </div>
-        <div id="options-collapse" class="panel-collapse collapse" role="tabpanel" aria-labelledby="options-heading">
-          <table class="table">
-            <tr>
-              <td><%= l(:field_column_names) %></td>
-              <td><%= render_query_columns_selection(@query) %></td>
-            </tr>
-            <tr>
-              <td><label for='group_by'><%= l(:field_group_by) %></label></td>
-              <td><%= select_tag('group_by', options_for_select( [[]] + @query.groupable_columns.collect {|c| [c.caption, c.name.to_s]}, @query.group_by) ) %></td>
-            </tr>
-            <tr>
-              <td><%= l(:button_show) %></td>
-              <td><%= available_block_columns_tags(@query) %></td>
-            </tr>
-          </table>
-        </div>
-      </div>
-      <!-- Options Panel End -->
-    </div>
+    </fieldset>
 
     <div class="col-xs-12">
       <div class="btn-group pull-right">
@@ -71,9 +84,10 @@
 <%= error_messages_for 'query' %>
 
 <% if @query.valid? %>
+  <br>
 
   <% if @issues.empty? %>
-    <p class="nodata alert alert-warning"><%= l(:label_no_data) %></p>
+    <div class="nodata alert alert-warning"><%= l(:label_no_data) %></div>
   <% else %>
     <%= render :partial => 'issues/list', :locals => {:issues => @issues, :query => @query} %>
     <p class="pagination"><%= pagination_links_full @issue_pages, @issue_count %></p>
@@ -139,9 +153,9 @@
             <%= submit_tag l(:button_cancel), :name => nil, :class => "btn btn-default", :"data-dismiss" => "modal" %>
             <%= submit_tag l(:button_export), :name => nil, :class => "btn btn-success" %>
           </div>
-        </div><!-- /.modal-content -->
-      </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
+        </div>
+      </div>
+    </div>
   <% end %>
 
 <% end %>

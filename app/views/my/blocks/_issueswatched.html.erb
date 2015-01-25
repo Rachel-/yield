@@ -1,10 +1,12 @@
 <div class="panel panel-primary">
-	<div class="panel-heading">
-		<%= link_to l(:label_watched_issues), issues_path(:set_filter => 1, :watcher_id => 'me', :sort => 'updated_on:desc') %>
-		<span class="badge pull-right"><%= Issue.visible.watched_by(user.id).count %></span>
-	</div>
-	<div class="panel-body">
-		<% watched_issues = issueswatched_items %>
-		<%= render :partial => 'issues/list_simple', :locals => { :issues => watched_issues } %>
-	</div>
+  <div class="panel-heading">
+    <span class="badge pull-right"><%= Issue.visible.watched_by(user.id).count %></span>
+    <h3 class="panel-title">
+      <%= link_to l(:label_watched_issues), issues_path(:set_filter => 1, :watcher_id => 'me', :sort => 'updated_on:desc') %>
+    </h3>
+  </div>
+  <div class="panel-body">
+    <% watched_issues = issueswatched_items %>
+    <%= render :partial => 'issues/list_simple', :locals => { :issues => watched_issues } %>
+  </div>
 </div>

@@ -1,12 +1,11 @@
-<div class="contextual">
-<%= link_to l(:button_log_time), 
-            _new_time_entry_path(@project, @issue),
-            :class => 'icon icon-time-add' if User.current.allowed_to?(:log_time, @project, :global => true) %>
+<div class="page-header no-border">
+  <%= render_timelog_breadcrumb %>
 </div>
 
-<%= render_timelog_breadcrumb %>
-
-<h2><%= l(:label_spent_time) %></h2>
+<div class="page-header">
+  <%= link_to icon('plus') + l(:button_log_time), _new_time_entry_path(@project, @issue), :class => 'btn btn-success pull-right' if User.current.allowed_to?(:log_time, @project, :global => true) %>
+  <h2><%= l(:label_spent_time) %></h2>
+</div>
 
 <%= form_tag(params.slice(:project_id, :issue_id), :method => :get, :id => 'query_form') do %>
   <% @report.criteria.each do |criterion| %>
@@ -14,18 +13,23 @@
   <% end %>
   <%= render :partial => 'timelog/date_range' %>
 
-  <p><label for='columns'><%= l(:label_details) %></label>: <%= select_tag 'columns', options_for_select([[l(:label_year), 'year'],
-                                                                            [l(:label_month), 'month'],
-                                                                            [l(:label_week), 'week'],
-                                                                            [l(:label_day_plural).titleize, 'day']], @report.columns),
-                                                        :onchange => "this.form.submit();" %>
+  <div class="form-inline">
+    <div class="form-group">
+      <label for='columns'>
+        <%= l(:label_details) %>
+      </label>
+      <%= select_tag 'columns', options_for_select([[l(:label_year), 'year'], [l(:label_month), 'month'], [l(:label_week), 'week'], [l(:label_day_plural).titleize, 'day']], @report.columns), :onchange => "this.form.submit();", :class => 'form-control' %>
+    </div>
 
-  <label for='criterias'><%= l(:button_add) %></label>: <%= select_tag('criteria[]', options_for_select([[]] + (@report.available_criteria.keys - @report.criteria).collect{|k| [l_or_humanize(@report.available_criteria[k][:label]), k]}),
-                                                          :onchange => "this.form.submit();",
-                                                          :style => 'width: 200px',
-                                                          :id => nil,
-                                                          :disabled => (@report.criteria.length >= 3), :id => "criterias") %>
-     <%= link_to l(:button_clear), {:project_id => @project, :issue_id => @issue, :period_type => params[:period_type], :period => params[:period], :from => @from, :to => @to, :columns => @report.columns}, :class => 'icon icon-reload' %></p>
+    <div class="form-group">
+      <label for='criterias'>
+        <%= l(:button_add) %>
+      </label>
+      <%= select_tag('criteria[]', options_for_select([[]] + (@report.available_criteria.keys - @report.criteria).collect{|k| [l_or_humanize(@report.available_criteria[k][:label]), k]}), :onchange => "this.form.submit();", :style => 'width: 200px', :id => nil, :disabled => (@report.criteria.length >= 3), :id => "criterias", :class => 'form-control') %>
+
+        <%= link_to icon('refresh') + l(:button_clear), {:project_id => @project, :issue_id => @issue, :period_type => params[:period_type], :period => params[:period], :from => @from, :to => @to, :columns => @report.columns}, :class => 'btn btn-default' %>
+    </div>
+  </div>
 <% end %>
 
 <% unless @report.criteria.empty? %>
@@ -35,7 +39,7 @@
 
 <% unless @report.hours.empty? %>
 <div class="autoscroll">
-<table class="list" id="time-report">
+<table class="table" id="time-report">
 <thead>
 <tr>
 <% @report.criteria.each do |criteria| %>

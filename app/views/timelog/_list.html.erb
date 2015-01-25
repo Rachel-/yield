@@ -1,11 +1,11 @@
 <%= form_tag({}) do -%>
 <%= hidden_field_tag 'back_url', url_for(params) %>
 <div class="autoscroll">
-<table class="list time-entries">
+<table class="table time-entries">
 <thead>
   <tr>
     <th class="checkbox hide-when-print">
-      <%= link_to image_tag('toggle_check.png'),
+      <%= link_to icon('check'),
         {},
         :onclick => 'toggleIssuesSelection(this); return false;',
         :title => "#{l(:button_check_all)}/#{l(:button_uncheck_all)}" %>
@@ -21,7 +21,7 @@
   <tr class="time-entry <%= cycle("odd", "even") %> hascontextmenu">
     <td class="checkbox hide-when-print"><%= check_box_tag("ids[]", entry.id, false, :id => nil) %></td>
     <%= raw @query.inline_columns.map {|column| "<td class=\"#{column.css_classes}\">#{column_content(column, entry)}</td>"}.join %>
-    <td class="buttons">
+    <td class="buttons text-right">
     <% if entry.editable_by?(User.current) -%>
         <%= link_to image_tag('edit.png'), edit_time_entry_path(entry),
                                            :title => l(:button_edit) %>

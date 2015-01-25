@@ -109,12 +109,12 @@ module IssuesHelper
  end
 
   # Returns a link for adding a new subtask to the given issue
-  def link_to_new_subtask(issue)
+  def link_to_new_subtask(issue, html_options={})
     attrs = {
       :tracker_id => issue.tracker,
       :parent_issue_id => issue
     }
-    link_to(l(:button_add), new_project_issue_path(issue.project, :issue => attrs))
+    link_to(l(:button_add), new_project_issue_path(issue.project, :issue => attrs), html_options)
   end
 
   class IssueFieldsRows

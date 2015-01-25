@@ -1,6 +1,6 @@
 <div class="page-header">
   <div class="btn-group pull-right">
-    <%= link_to(icon("asterisk") + " #{l(:button_change_password)}", {:action => 'password'}, :class => 'btn btn-default') if @user.change_password_allowed? %>
+    <%= link_to(icon("asterisk") + l(:button_change_password), {:action => 'password'}, :class => 'btn btn-default') if @user.change_password_allowed? %>
     <%= call_hook(:view_my_account_contextual, :user => @user)%>
   </div>
   <h2><%=l(:label_my_account)%></h2>

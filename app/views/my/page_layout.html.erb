@@ -7,13 +7,13 @@
           <%= select_tag 'block', content_tag('option') + options_for_select(@block_options), :id => "block-select", :class => 'form-control' %>
         </div>
         <div class="btn-group">
-          <%= link_to icon('plus') + " #{l(:button_add)}", '#', :onclick => '$("#block-form").submit()', :class => 'btn btn-success' %>
-          <%= link_to icon('ban') + " #{l(:button_back)}", {:action => 'page'}, :class => 'btn btn-default pull-left' %>
+          <%= link_to icon('plus') + l(:button_add), '#', :onclick => '$("#block-form").submit()', :class => 'btn btn-success' %>
+          <%= link_to icon('ban') + l(:button_back), {:action => 'page'}, :class => 'btn btn-default pull-left' %>
         </div>
       <% end %>
     <% end %>
     <% unless @block_options.present? %>
-      <%= link_to icon('ban') + " #{l(:button_back)}", {:action => 'page'}, :class => 'btn btn-default pull-left' %>
+      <%= link_to icon('ban') + l(:button_back), {:action => 'page'}, :class => 'btn btn-default pull-left' %>
     <% end %>
   </div>
   <h2><%=l(:label_my_page)%></h2>

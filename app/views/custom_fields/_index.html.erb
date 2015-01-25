@@ -1,4 +1,4 @@
-<table class="list">
+<table class="table">
   <thead><tr>
     <th><%=l(:field_name)%></th>
     <th><%=l(:field_field_format)%></th>
@@ -21,7 +21,7 @@
       <td><%= l(:label_x_projects, :count => custom_field.projects.count) if custom_field.is_a? IssueCustomField and !custom_field.is_for_all? %></td>
       <% end %>
       <td class="reorder"><%= reorder_links('custom_field', {:action => 'update', :id => custom_field}, :put) %></td>
-      <td class="buttons">
+      <td class="buttons text-right">
         <%= delete_link custom_field_path(custom_field) %>
       </td>
     </tr>

@@ -1,25 +1,26 @@
 <!DOCTYPE html>
 <html lang="<%= current_language %>">
 <head>
-<meta charset="utf-8" />
-<title><%=h html_title %></title>
-<meta name="description" content="<%= Yield::Info.app_name %>" />
-<meta name="keywords" content="issue,bug,tracker" />
-<%= csrf_meta_tag %>
-<%= favicon %>
-<%= stylesheet_link_tag 'application', :media => 'all' %>
-<%= stylesheet_link_tag 'rtl', :media => 'all' if l(:direction) == 'rtl' %>
-<%= javascript_heads %>
-<%= heads_for_theme %>
-<%= call_hook :view_layouts_base_html_head %>
-<!-- page specific tags -->
-<%= yield :header_tags -%>
+  <meta charset="utf-8" />
+  <title><%=h html_title %></title>
+  <meta name="description" content="<%= Yield::Info.app_name %>" />
+  <meta name="keywords" content="issue,bug,tracker" />
+  <%= csrf_meta_tag %>
+  <%= favicon %>
+  <%= stylesheet_link_tag 'application', :media => 'all' %>
+  <%= stylesheet_link_tag 'rtl', :media => 'all' if l(:direction) == 'rtl' %>
+  <%= javascript_heads %>
+  <%= heads_for_theme %>
+  <%= call_hook :view_layouts_base_html_head %>
+  <!-- page specific tags -->
+  <%= yield :header_tags -%>
 </head>
+
 <body class="<%=h body_css_classes %>">
 
   <nav id="top-bar" class="navbar navbar-default navbar-static-top navbar-inverse" role="navigation">
     <div class="container">
-      <!-- Brand and toggle get grouped for better mobile display -->
+
       <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#top-navbar-collapse">
           <span class="sr-only">Toggle navigation</span>
@@ -33,7 +34,6 @@
         <p class="navbar-text"><%= page_header_title %></p>
       </div>
 
-      <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="top-navbar-collapse">
 
         <ul class="nav navbar-nav navbar-right">
@@ -61,12 +61,12 @@
             <% end %>
         <% end %>
 
-      </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
+      </div>
+    </div>
   </nav>
 
   <% if display_main_menu?(@project) %>
-    <div id="main-bar" class="navbar navbar-default navbar-static-top">
+    <div id="main-bar" class="navbar navbar-default">
       <div class="container">
         <%= render_main_menu(@project) %>
       </div>

@@ -16,10 +16,15 @@ body
 .gravatar
 	border-radius: 4px
 
-.checkbox.pref-field input[type="checkbox"]
-	position: absolute
-	left: 0
-	margin-left: 0
+.page-header
+
+	.breadcrumb
+		margin-bottom: 0
+
+	h2, h3
+
+		i
+			margin-right: 10px
 
 // Top Bar
 
@@ -36,31 +41,47 @@ body
 		border-left: 1px solid rgba(black, .3)
 		box-shadow: inset -1px 0 0 rgba(white, .15), -1px 0 0 rgba(white, .15)
 		position: relative
-		width: 3em
+		padding: 6px
 
 		img
-			height: 2em
-			position: absolute
-			top: .4em
-			left: .5em
-			width: auto
+			max-width: 100%
+			height: auto
+			margin-right: 1px
+
+	.navbar-text
+		font-size: 18px
+		margin-top: 14px
+		margin-bottom: 10px
 
 // Main bar
 
 #main-bar
 	margin-bottom: 0
 
-	.nav-justified a
-		white-space: nowrap
+	.nav
+		width: 100%
+
+		li
+			display: table-cell
+			width: 1%
+			float: none
+			text-align: center
+
+		a
+			white-space: nowrap
 
 // Sidebar
 
 #sidebar
-	padding-top: .5em
+	margin-top: 7px
+
+	.nav
+		margin-bottom: 20px
 
 // Content
 
 #content
+	margin-bottom: 40px
 
 // Footer
 
@@ -70,5 +91,241 @@ body
 // Login
 
 #login-form, #password-lost-form, #register-form, #recover-password-form
-	margin-top: 5em
-	margin-bottom: 5em
+	margin-top: 60px
+	margin-bottom: 60px
+
+// Nav
+
+.checkbox-nav
+
+	li
+		position: relative
+
+		a
+			padding-left: 40px
+
+		label
+			position: absolute
+			top: 9px
+			left: 15px
+			z-index: 10
+
+// Tabs
+
+.nav-tabs
+	margin-bottom: 25px
+
+// Forms
+
+.form-group
+
+	&.custom-control
+
+		input, textarea, select
+			@extend .form-control
+
+		label
+			display: block
+
+		&.inline-control
+
+			input, textarea, select
+				width: auto
+				display: inline-block
+				margin-right: 7px
+
+	.checkbox-inline, .radio-inline
+		margin: 0 0 0 10px
+		position: relative
+		top: -1px
+
+.checkbox
+
+	&.custom-checkbox, &.pref-field
+
+		input
+			position: absolute
+			left: 0
+			margin-left: 0
+
+// Panels
+
+.panel
+
+	&.child
+		margin: 0 15px 15px
+
+	.panel-heading
+
+		&.my-project
+
+			.panel-title:before
+				@extend .fa
+				@extend .fa-star
+				margin-right: 7px
+
+	.nodata
+		margin: 15px
+
+	.panel-body
+
+		.nodata
+			margin: 0
+
+.required
+	@extend .text-danger
+
+// List group
+
+.list-group-item
+	
+	.help-block:last-child
+		margin-bottom: 0
+
+// Controls
+
+.radio, .checkbox
+
+	&.pull-right
+		margin-top: 0 
+
+// Icons
+
+.label, .btn
+
+	&.icon-right
+
+		i
+			margin-right: 0
+			margin-left: 7px
+
+	&.icon-only
+
+		i
+			margin: 0
+	
+	i
+		margin-right: 7px
+
+// Admin menu
+
+#admin-menu
+	
+	a:before
+		@extend .fa
+		margin-right: 7px
+
+	.projects:before
+		@extend .fa-cubes
+
+	.users:before
+		@extend .fa-user
+
+	.groups:before
+		@extend .fa-group
+
+	.roles:before
+		@extend .fa-eye
+
+	.trackers:before
+		@extend .fa-bug
+
+	.groups:before
+		@extend .fa-group
+
+	.issue-statuses:before
+		@extend .fa-warning
+
+	.workflows:before
+		@extend .fa-columns
+
+	.custom-fields:before
+		@extend .fa-list
+
+	.enumerations:before
+		@extend .fa-list-alt
+
+	.settings:before
+		@extend .fa-gears
+
+	.ldap-authentication:before
+		@extend .fa-key
+
+	.plugins:before
+		@extend .fa-puzzle-piece
+
+	.info:before
+		@extend .fa-info-circle
+
+// Admin page
+
+#admin-index
+	margin-top: 30px
+	margin-left: -15px
+	margin-right: -15px
+
+	li
+		width: 25%
+		float: left
+		text-align: center
+		padding: 15px
+
+		a
+			border: 1px solid $gray-lighter
+			padding: 15px
+
+			&:before
+				font-size: 32px
+				display: block
+				margin-bottom: 15px
+				margin-right: 0
+
+// Alerts
+
+.flash
+	@extend .alert
+	position: relative
+	top: 25px
+
+	&.notice
+		@extend .alert-success
+
+	&.error
+		@extend .alert-danger
+
+// Account
+
+.controller-account
+
+	&.action-login, &.action-lost_password
+
+		.flash
+			margin-bottom: 0
+
+			@media screen and (min-width: $screen-md)
+				+make-md-column(4)
+				margin: 0 auto
+				float: none !important
+
+	&.action-register
+
+		.alert
+			margin-bottom: 0
+			position: relative
+			top: 25px
+
+// My page
+
+.mypage-box
+
+	.remove-block
+		margin: 5px 5px 5px 10px
+		
+		i
+			margin: 0
+
+
+// Other formats
+
+.other-formats
+	margin-top: 40px

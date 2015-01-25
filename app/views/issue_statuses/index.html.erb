@@ -1,37 +1,39 @@
 <div class="page-header">
   <div class="btn-group pull-right">
-  <%= link_to icon('plus') + " #{l(:label_issue_status_new)}", new_issue_status_path, :class => 'btn btn-success' %>
-  <%= link_to(icon('tasks') + " #{l(:label_update_issue_done_ratios)}", update_issue_done_ratio_issue_statuses_path, :class => 'btn btn-default', :method => 'post', :data => {:confirm => l(:text_are_you_sure)}) if Issue.use_status_for_done_ratio? %>
+  <%= link_to icon('plus') + l(:label_issue_status_new), new_issue_status_path, :class => 'btn btn-success' %>
+  <%= link_to(icon('tasks') + l(:label_update_issue_done_ratios), update_issue_done_ratio_issue_statuses_path, :class => 'btn btn-default', :method => 'post', :data => {:confirm => l(:text_are_you_sure)}) if Issue.use_status_for_done_ratio? %>
   </div>
-  <h2><%= icon('warning') %> <%=l(:label_issue_status_plural)%></h2>
+  <h2><%= icon('warning') %><%=l(:label_issue_status_plural)%></h2>
 </div>
 
 <table class="table">
-  <thead><tr>
-  <th><%=l(:field_status)%></th>
-  <% if Issue.use_status_for_done_ratio? %>
-  <th><%=l(:field_done_ratio)%></th>
-  <% end %>
-  <th><%=l(:field_is_default)%></th>
-  <th><%=l(:field_is_closed)%></th>
-  <th><%=l(:button_sort)%></th>
-  <th></th>
-  </tr></thead>
+  <thead>
+    <tr>
+      <th><%=l(:field_status)%></th>
+      <% if Issue.use_status_for_done_ratio? %>
+        <th><%=l(:field_done_ratio)%></th>
+      <% end %>
+      <th><%=l(:field_is_default)%></th>
+      <th><%=l(:field_is_closed)%></th>
+      <th><%=l(:button_sort)%></th>
+      <th></th>
+    </tr>
+  </thead>
   <tbody>
-<% for status in @issue_statuses %>
-  <tr class="<%= cycle("odd", "even") %>">
-  <td class="name"><%= link_to h(status.name), edit_issue_status_path(status) %></td>
-  <% if Issue.use_status_for_done_ratio? %>
-  <td><%= h status.default_done_ratio %></td>
-  <% end %>
-  <td class="text-success"><%= icon('check') if status.is_default? %></td>
-  <td class="text-success"><%= icon('check') if status.is_closed? %></td>
-  <td class="reorder"><%= reorder_links('issue_status', {:action => 'update', :id => status}, :put) %></td>
-  <td class="buttons text-right">
-    <%= delete_link issue_status_path(status), :class => 'btn btn-danger btn-xs' %>
-  </td>
-  </tr>
-<% end %>
+    <% for status in @issue_statuses %>
+      <tr class="<%= cycle("odd", "even") %>">
+        <td class="name"><%= link_to h(status.name), edit_issue_status_path(status) %></td>
+        <% if Issue.use_status_for_done_ratio? %>
+          <td><%= h status.default_done_ratio %></td>
+        <% end %>
+        <td class="text-success"><%= icon('check') if status.is_default? %></td>
+        <td class="text-success"><%= icon('check') if status.is_closed? %></td>
+        <td class="reorder"><%= reorder_links('issue_status', {:action => 'update', :id => status}, :put) %></td>
+        <td class="buttons text-right">
+          <%= delete_link issue_status_path(status), :class => 'btn btn-danger btn-xs' %>
+        </td>
+      </tr>
+    <% end %>
   </tbody>
 </table>
 

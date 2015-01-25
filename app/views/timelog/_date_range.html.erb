@@ -1,37 +1,37 @@
 <div id="query_form_with_buttons" class="row hide-when-print">
   <div id="query_form_content" class="panel-group col-xs-12" role="tablist" aria-multiselectable="true">
     <!-- Filters Panel Start -->
-    <div id="filters" class="panel panel-default">
-      <div class="panel-heading" role="tab" id="filters-heading">
-        <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" href="#filters-collapse" aria-expanded="true" aria-controls="filters-collapse">
-            <%= l(:label_filter_plural) %>
-          </a>
-        </h4>
+    <fieldset id="filters" class="form-group">
+      <legend>
+          <%= l(:label_filter_plural) %>
+        <a data-toggle="collapse" class="btn btn-link" href="#filters-collapse" aria-expanded="true" aria-controls="filters-collapse">
+          <span class="caret"></span>
+        </a>
+      </legend>
+      <div id="filters-collapse" class="collapse" aria-labelledby="filters-heading">
+        <%= render :partial => 'queries/filters', :locals => {:query => @query} %>
       </div>
-      <div id="filters-collapse" class="panel-collapse collapse" role="tabpanel" aria-labelledby="filters-heading">
-        <div class="panel-body"><%= render :partial => 'queries/filters', :locals => {:query => @query} %></div>
-      </div>
-    </div>
+    </fieldset>
     <!-- Filters Panel End -->
     <!-- Options Panel Start -->
-    <div id="options" class="panel panel-default">
-      <div class="panel-heading" role="tab" id="options-heading">
-        <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" href="#options-collapse" aria-expanded="true" aria-controls="options-collapse">
-            <%= l(:label_options) %>
-          </a>
-        </h4>
+    <fieldset id="options" class="form-group">
+      <legend>
+        <%= l(:label_options) %>
+        <a data-toggle="collapse" class="btn btn-link" href="#options-collapse" aria-expanded="true" aria-controls="options-collapse">
+          <span class="caret"></span>
+        </a>
+      </legend>
+      <div id="options-collapse" class="collapse" role="tabpanel" aria-labelledby="options-heading">
+        <div class="row">
+          <div class="col-xs-12 col-md-2">
+            <%= l(:field_column_names) %>
+          </div>
+          <div class="col-xs-12 col-md-10">
+            <%= render_query_columns_selection(@query) %>
+          </div>
+        </div>
       </div>
-      <div id="options-collapse" class="panel-collapse collapse" role="tabpanel" aria-labelledby="options-heading">
-        <table class="table">
-          <tr>
-            <td><%= l(:field_column_names) %></td>
-            <td><%= render_query_columns_selection(@query) %></td>
-          </tr>
-        </table>
-      </div>
-    </div>
+    </fieldset>
     <!-- Options Panel End -->
   </div>
 
@@ -46,7 +46,7 @@
 <div class="row hide-when-print">
   <div class="col-xs-12">
     <% query_params = params.slice(:f, :op, :v, :sort) %>
-    <ul class="nav nav-pills" role="tablist">
+    <ul class="nav nav-tabs" role="tablist">
         <li role="presentation" class="<%= (action_name == 'index' ? 'active' : nil) %>">
           <%= link_to(l(:label_details), _time_entries_path(@project, @issue, query_params)) %>
         </li>

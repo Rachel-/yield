@@ -1,5 +1,5 @@
 <% content_for :header_tags do %>
-    <%= auto_discovery_link_tag(:atom, {:action => 'index', :format => 'atom', :key => User.current.rss_key}) %>
+  <%= auto_discovery_link_tag(:atom, {:action => 'index', :format => 'atom', :key => User.current.rss_key}) %>
 <% end %>
 
 <div class="page-header">
@@ -20,7 +20,7 @@
 <% end %>
 
 <% other_formats_links do |f| %>
-  <%= f.link_to icon('rss') + ' Atom', :url => {:key => User.current.rss_key}, :class => 'label label-primary' %>
+  <%= f.link_to 'Atom', :url => {:key => User.current.rss_key}, :class => 'label label-primary' %>
 <% end %>
 
 <% content_for :sidebar do %>
@@ -33,8 +33,8 @@
         <label for="closed">
           <%= check_box_tag 'closed', 1, params[:closed] %>
           <%= l(:label_show_closed_projects) %>
-          <%= submit_tag l(:button_apply), :class => 'btn btn-success btn-xs', :name => nil %>
         </label>
+        <%= submit_tag l(:button_apply), :class => 'btn btn-success btn-xs pull-right', :name => nil %>
       </div>
     </div>
   <% end %>

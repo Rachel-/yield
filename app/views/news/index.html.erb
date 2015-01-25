@@ -1,6 +1,6 @@
 <div class="page-header">
   <div class="btn-group pull-right">
-    <%= link_to(icon('plus') + " #{l(:label_news_new)}", new_project_news_path(@project), :class => 'btn btn-success', :onclick => 'showAndScrollTo("add-news", "news_title"); return false;') if @project && User.current.allowed_to?(:manage_news, @project) %>
+    <%= link_to(icon('plus') + l(:label_news_new), new_project_news_path(@project), :class => 'btn btn-success', :onclick => 'showAndScrollTo("add-news", "news_title"); return false;') if @project && User.current.allowed_to?(:manage_news, @project) %>
     <%= watcher_link(@project.enabled_module('news'), User.current) if @project && User.current.logged? %>
   </div>
   <h2><%=l(:label_news_plural)%></h2>
@@ -21,12 +21,20 @@
   <p class="nodata alert alert-warning"><%= l(:label_no_data) %></p>
 <% else %>
   <% @newss.each do |news| %>
-    <h3><%= avatar(news.author, :size => "24") %><%= link_to_project(news.project) + ': ' unless news.project == @project %>
-    <%= link_to h(news.title), news_path(news) %>
-    <%= "(#{l(:label_x_comments, :count => news.comments_count)})" if news.comments_count > 0 %></h3>
-    <p class="author"><%= authoring news.created_on, news.author %></p>
-    <div class="wiki">
-    <%= textilizable(news, :description) %>
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          <%= avatar(news.author, :size => "24") %><%= link_to_project(news.project) + ': ' unless news.project == @project %>
+          <%= link_to h(news.title), news_path(news) %>
+          <%= "(#{l(:label_x_comments, :count => news.comments_count)})" if news.comments_count > 0 %>
+        </h3>
+      </div>
+      <div class="panel-body">
+        <div class="wiki">
+        <%= textilizable(news, :description) %>
+        </div>     
+      </div>
+      <div class="author panel-footer"><%= authoring news.created_on, news.author %></div>
     </div>
   <% end %>
 <% end %>

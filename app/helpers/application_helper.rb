@@ -140,9 +140,9 @@ module ApplicationHelper
     elsif options.key?(:action)
       ActiveSupport::Deprecation.warn "#link_to_project with :action option is deprecated and will be removed in Yield 3.0."
       url = {:controller => 'projects', :action => 'show', :id => project}.merge(options)
-      link_to project.name, url, html_options
+      link_to(project.name, url, html_options)
     else
-      link_to project.name, project_path(project, options), html_options
+      link_to(project.name, project_path(project, options), html_options)
     end
   end
 
@@ -218,11 +218,11 @@ module ApplicationHelper
       :title => attachment.filename
   end
 
-  def toggle_link(name, id, options={})
+  def toggle_link(name, id, options={}, html_options={})
     onclick = "$('##{id}').toggle(); "
     onclick << (options[:focus] ? "$('##{options[:focus]}').focus(); " : "this.blur(); ")
     onclick << "return false;"
-    link_to(name, "#", :onclick => onclick)
+    link_to(name, "#", :onclick => onclick, :class => html_options[:class])
   end
 
   def image_to_function(name, function, html_options = {})
@@ -281,8 +281,8 @@ module ApplicationHelper
             s << "</div></div>\n"
           end
         end
-        classes = (ancestors.empty? ? 'root' : 'child')
-        s << "<div class='panel panel-default #{classes}'>"
+        classes = (ancestors.empty? ? 'root panel-primary' : 'child panel-default')
+        s << "<div class='panel #{classes}'>"
         s << h(block_given? ? yield(project) : 'No description')
         ancestors << project
       end
@@ -325,7 +325,7 @@ module ApplicationHelper
       selected ||= tabs.first[:name]
       render :partial => 'common/tabs', :locals => {:tabs => tabs, :selected_tab => selected}
     else
-      content_tag 'p', l(:label_no_data), :class => "nodata"
+      content_tag 'p', l(:label_no_data), :class => "alert alert-warning nodata"
     end
   end
 
@@ -472,16 +472,16 @@ module ApplicationHelper
   def reorder_links(name, url, method = :post)
     link_to(icon('arrow-circle-up'),
             url.merge({"#{name}[move_to]" => 'highest'}),
-            :method => method, :title => l(:label_sort_highest), :class => 'btn btn-success btn-xs') + " " +
+            :method => method, :title => l(:label_sort_highest), :class => 'btn btn-success btn-xs icon-only') + " " +
     link_to(icon('arrow-circle-o-up'),
             url.merge({"#{name}[move_to]" => 'higher'}),
-           :method => method, :title => l(:label_sort_higher), :class => 'btn btn-default btn-xs') + " " +
+           :method => method, :title => l(:label_sort_higher), :class => 'btn btn-default btn-xs icon-only') + " " +
     link_to(icon('arrow-circle-o-down'),
             url.merge({"#{name}[move_to]" => 'lower'}),
-            :method => method, :title => l(:label_sort_lower), :class => 'btn btn-default btn-xs') + " " +
+            :method => method, :title => l(:label_sort_lower), :class => 'btn btn-default btn-xs icon-only') + " " +
     link_to(icon('arrow-circle-down'),
             url.merge({"#{name}[move_to]" => 'lowest'}),
-           :method => method, :title => l(:label_sort_lowest), :class => 'btn btn-danger btn-xs')
+           :method => method, :title => l(:label_sort_lowest), :class => 'btn btn-danger btn-xs icon-only')
   end
 
   def breadcrumb(*args)
@@ -1074,9 +1074,9 @@ module ApplicationHelper
     objects = objects.map {|o| o.is_a?(String) ? instance_variable_get("@#{o}") : o}.compact
     errors = objects.map {|o| o.errors.full_messages}.flatten
     if errors.any?
-      html << "<div id='errorExplanation' class='alert alert-danger' role='alert'\n"
+      html << "<div id='errorExplanation' class='alert alert-danger alert-dismissible' role='alert'>\n"
       errors.each do |error|
-        html << "<h5>#{h error}</h5>\n"
+        html << "<p>#{h error}</p>\n"
       end
       html << "</div>\n"
     end
@@ -1087,7 +1087,7 @@ module ApplicationHelper
     options = {
       :method => :delete,
       :data => {:confirm => l(:text_are_you_sure)},
-      :class => 'icon icon-del'
+      :class => 'btn btn-xs btn-danger'
     }.merge(options)
 
     link_to l(:button_delete), url, options
@@ -1097,7 +1097,8 @@ module ApplicationHelper
     content_tag 'a', l(:label_preview), {
         :href => "#",
         :onclick => %|submitPreview("#{escape_javascript url_for(url)}", "#{escape_javascript form}", "#{escape_javascript target}"); return false;|,
-        :accesskey => accesskey(:preview)
+        :accesskey => accesskey(:preview),
+        :class => 'btn btn-primary'
       }.merge(options)
   end
 
@@ -1124,9 +1125,10 @@ module ApplicationHelper
   end
 
   def check_all_links(form_name)
-    link_to_function(l(:button_check_all), "checkAll('#{form_name}', true)") +
-    " | ".html_safe +
-    link_to_function(l(:button_uncheck_all), "checkAll('#{form_name}', false)")
+    "<div class='btn-group' role='group'>".html_safe +
+    link_to_function(l(:button_check_all), "checkAll('#{form_name}', true)", :class => 'btn btn-default').html_safe +
+    link_to_function(l(:button_uncheck_all), "checkAll('#{form_name}', false)", :class => 'btn btn-default') +
+    "</div>".html_safe
   end
 
   def progress_bar(pcts, options={})
@@ -1134,7 +1136,7 @@ module ApplicationHelper
     pcts = pcts.collect(&:round)
     pcts[1] = pcts[1] - pcts[0]
     pcts << (100 - pcts[1] - pcts[0])
-    width = options[:width] || '100px;'
+    width = options[:width] || '100%'
     legend = options[:legend] || ''
     content_tag('div',
         (pcts[0] > 0 ? content_tag('div', legend, :style => "width: #{pcts[0]}%;", :class => 'progress-bar-success progress-bar') : ''.html_safe) +
@@ -1144,7 +1146,7 @@ module ApplicationHelper
 
   def checked_image(checked=true)
     if checked
-      image_tag 'toggle_check.png'
+      icon 'check'
     end
   end
 
@@ -1306,7 +1308,7 @@ module ApplicationHelper
 
   # Returns the path to the favicon
   def favicon_path
-    icon = (current_theme && current_theme.favicon?) ? current_theme.favicon_path : '/favicon.ico'
+    icon = (current_theme && current_theme.favicon?) ? current_theme.favicon_path : '/favicon.png'
     image_path(icon)
   end
 

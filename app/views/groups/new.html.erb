@@ -1,9 +1,11 @@
-<%= title [l(:label_group_plural), groups_path], l(:label_group_new) %>
+<div class="page-header">
+  <%= title [l(:label_group_plural), groups_path], l(:label_group_new) %>
+</div>
 
 <%= labelled_form_for @group do |f| %>
-<%= render :partial => 'form', :locals => { :f => f } %>
-<p>
-  <%= f.submit l(:button_create) %>
-  <%= f.submit l(:button_create_and_continue), :name => 'continue' %>
-</p>
+  <%= render :partial => 'form', :locals => { :f => f } %>
+  <div class="form-group">
+    <%= f.submit l(:button_create), :class => 'btn btn-success' %>
+    <%= f.submit l(:button_create_and_continue), :name => 'continue', :class => 'btn btn-default' %>
+  </div>
 <% end %>

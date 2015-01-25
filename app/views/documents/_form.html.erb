@@ -1,15 +1,22 @@
 <%= error_messages_for @document %>
 
-<div class="box tabular">
-<p><%= f.select :category_id, DocumentCategory.active.collect {|c| [c.name, c.id]} %></p>
-<p><%= f.text_field :title, :required => true, :size => 60 %></p>
-<p><%= f.text_area :description, :cols => 60, :rows => 15, :class => 'wiki-edit' %></p>
+<div class="form-group custom-control">
+  <%= f.select :category_id, DocumentCategory.active.collect {|c| [c.name, c.id]} %>
+</div>
+
+<div class="form-group">
+  <%= f.text_field :title, :required => true, :size => 60, :class => 'form-control' %>
+</div>
+
+<div class="form-group">
+  <%= f.text_area :description, :cols => 60, :rows => 15, :class => 'wiki-edit form-control' %>
 </div>
 
 <%= wikitoolbar_for 'document_description' %>
 
 <% if @document.new_record? %>
-<div class="box tabular">
-<p><label><%=l(:label_attachment_plural)%></label><%= render :partial => 'attachments/form', :locals => {:container => @document} %></p>
-</div>
+  <div class="form-group">
+    <label><%=l(:label_attachment_plural)%></label>
+    <%= render :partial => 'attachments/form', :locals => {:container => @document} %>
+  </div>
 <% end %>

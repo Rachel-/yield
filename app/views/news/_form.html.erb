@@ -1,10 +1,20 @@
 <%= error_messages_for @news %>
 
-<div class="box tabular">
-<p><%= f.text_field :title, :required => true, :size => 60 %></p>
-<p><%= f.text_area :summary, :cols => 60, :rows => 2 %></p>
-<p><%= f.text_area :description, :required => true, :cols => 60, :rows => 15, :class => 'wiki-edit' %></p>
-<p id="attachments_form"><label><%= l(:label_attachment_plural) %></label><%= render :partial => 'attachments/form', :locals => {:container => @news} %></p>
+<div class="form-group">
+  <%= f.text_field :title, :required => true, :size => 60, :class => 'form-control' %>
+</div>
+
+<div class="form-group">
+  <%= f.text_area :summary, :cols => 60, :rows => 2, :class => 'form-control' %>
+</div>
+
+<div class="form-group">
+  <%= f.text_area :description, :required => true, :cols => 60, :rows => 15, :class => 'wiki-edit form-control' %>
+</div>
+
+<div id="attachments_form" class="form-group">
+  <label><%= l(:label_attachment_plural) %></label>
+  <%= render :partial => 'attachments/form', :locals => {:container => @news} %>
 </div>
 
 <%= wikitoolbar_for 'news_description' %>

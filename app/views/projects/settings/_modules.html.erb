@@ -1,18 +1,23 @@
-<%= form_for @project,
-            :url => { :action => 'modules', :id => @project },
-            :html => {:id => 'modules-form',
-                      :method => :post} do |f| %>
+<%= form_for @project, :url => { :action => 'modules', :id => @project }, :html => {:id => 'modules-form', :method => :post} do |f| %>
+  <div class="form-group">
+    <div class="row">
+      <% Yield::AccessControl.available_project_modules.each do |m| %>
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+          <div class="checkbox">
+            <label>
+              <%= check_box_tag 'enabled_module_names[]', m, @project.module_enabled?(m), :id => nil -%>
+              <%= l_or_humanize(m, :prefix => "project_module_") %>
+            </label>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
 
-<fieldset class="box">
-<legend><%= l(:text_select_project_modules) %></legend>
-
-<% Yield::AccessControl.available_project_modules.each do |m| %>
-<p><label><%= check_box_tag 'enabled_module_names[]', m, @project.module_enabled?(m), :id => nil -%>
- <%= l_or_humanize(m, :prefix => "project_module_") %></label></p>
-<% end %>
-</fieldset>
-<p><%= check_all_links 'modules-form' %></p>
-
-<p><%= submit_tag l(:button_save) %></p>
-
+  <div class="form-group">
+    <div class="pull-right">
+      <%= check_all_links 'modules-form' %>
+    </div>
+    <%= submit_tag l(:button_save), :class => 'btn btn-success' %>
+  </div>
 <% end %>
